@@ -154,8 +154,6 @@ TEMPLATE_CSS = """  * { box-sizing: border-box; margin: 0; padding: 0; }
   .chart-box { background: #161b22; border: 1px solid #2d333b; border-radius: 10px; padding: 14px; }
   .chart-box .cb-title { font-size: 13px; color: #8b949e; margin-bottom: 8px; text-align: center; }
   .chart-box .echart { width: 100%; height: 220px; }
-  .portal-summary { margin-top: 16px; font-size: 13px; color: #8b949e; line-height: 1.8; }
-  .portal-summary b { color: #e1e8ed; }
   @media (max-width: 768px) {
     .charts { grid-template-columns: 1fr; }
     .chart-box .echart { height: 200px; }
@@ -727,10 +725,6 @@ def _portal_section(d):
         return int(m.group(1)) if m else 0
     ladder = [{"tier": r["tier"], "succ": _succ_num(r["succ"])} for r in ladder]
 
-    # 最新摘要
-    core = d.get("main_line", {}).get("core_logic", "")
-    summary = core[:160] + "…" if len(core) > 160 else core
-
     js = json.dumps({
         "up": up_n, "down": down_n,
         "fund": fund_rows,
@@ -751,7 +745,6 @@ def _portal_section(d):
       <div class="chart-box"><div class="cb-title">板块主力资金净流入(亿)</div><div class="echart" id="chartFund"></div></div>
       <div class="chart-box"><div class="cb-title">连板梯队（成功数）</div><div class="echart" id="chartLadder"></div></div>
     </div>
-    <div class="portal-summary"><b>📌 最新复盘摘要：</b>{summary}</div>
   </div>
   <script>
   (function(){{
