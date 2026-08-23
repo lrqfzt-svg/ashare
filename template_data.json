@@ -237,17 +237,17 @@
   "zhaban_low": [
     {
       "name": "山东黄金",
-      "line": "龙虎净买4.11亿",
+      "line": "+4.96% · 龙虎净买4.11亿",
       "sub": "✅ 强势股"
     },
     {
       "name": "沃森生物",
-      "line": "龙虎净买2.75亿",
+      "line": "+6.48% · 龙虎净买2.75亿",
       "sub": "✅ 强势股"
     },
     {
       "name": "誉衡药业",
-      "line": "龙虎净买—",
+      "line": "-8.03% · 龙虎净买—",
       "sub": "✅ 强势股"
     }
   ],
@@ -258,8 +258,8 @@
       "cls": "#3fb950",
       "items": [
         "<b>汉森制药</b>（3）— 全场最高板，3进4关键日，若封板则持有",
-        "<b>山东黄金</b>（龙虎净买4.11亿）— ，重点观察",
-        "<b>沃森生物</b>（龙虎净买2.75亿）— ，重点观察"
+        "<b>山东黄金</b>（+4.96% · 龙虎净买4.11亿）— ，重点观察",
+        "<b>沃森生物</b>（+6.48% · 龙虎净买2.75亿）— ，重点观察"
       ]
     },
     {
@@ -334,7 +334,7 @@
       "name": "山东黄金",
       "badge": "龙虎净买",
       "badge_cls": "badge-hot",
-      "change": "净买4.11亿 · 机构4.11亿/游资—亿",
+      "change": "+4.96% · 净买4.11亿 · 机构4.11亿/游资—亿",
       "change_cls": "up",
       "info": "—",
       "info_cls": ""
@@ -343,7 +343,7 @@
       "name": "沃森生物",
       "badge": "龙虎净买",
       "badge_cls": "badge-hot",
-      "change": "净买2.75亿 · 机构2.75亿/游资—亿",
+      "change": "+6.48% · 净买2.75亿 · 机构2.75亿/游资—亿",
       "change_cls": "up",
       "info": "—",
       "info_cls": ""
@@ -352,8 +352,8 @@
       "name": "誉衡药业",
       "badge": "龙虎净买",
       "badge_cls": "badge-hot",
-      "change": "净买0亿",
-      "change_cls": "up",
+      "change": "-8.03% · 净买0亿",
+      "change_cls": "down",
       "info": "—",
       "info_cls": ""
     },
@@ -361,7 +361,7 @@
       "name": "通鼎互联",
       "badge": "龙虎净买",
       "badge_cls": "badge-hot",
-      "change": "净买1.13亿 · 机构1.13亿/游资—亿",
+      "change": "+10.02% · 净买1.13亿 · 机构1.13亿/游资—亿",
       "change_cls": "up",
       "info": "—",
       "info_cls": ""
@@ -370,7 +370,7 @@
       "name": "湖南白银",
       "badge": "龙虎净买",
       "badge_cls": "badge-hot",
-      "change": "净买1.66亿 · 机构1.66亿/游资—亿",
+      "change": "+10.03% · 净买1.66亿 · 机构1.66亿/游资—亿",
       "change_cls": "up",
       "info": "—",
       "info_cls": ""
@@ -502,42 +502,42 @@
         "name": "山东黄金",
         "hot_yi": 4.11,
         "net_yi": 4.11,
-        "change": null,
+        "change": 4.96,
         "concepts": []
       },
       {
         "name": "中瓷电子",
         "hot_yi": 3.06,
         "net_yi": 3.06,
-        "change": null,
+        "change": 10.0,
         "concepts": []
       },
       {
         "name": "沃森生物",
         "hot_yi": 2.75,
         "net_yi": 2.75,
-        "change": null,
+        "change": 6.48,
         "concepts": []
       },
       {
         "name": "盛达资源",
         "hot_yi": 2.52,
         "net_yi": 2.52,
-        "change": null,
+        "change": 10.01,
         "concepts": []
       },
       {
         "name": "湖南白银",
         "hot_yi": 1.66,
         "net_yi": 1.66,
-        "change": null,
+        "change": 10.03,
         "concepts": []
       },
       {
         "name": "星网锐捷",
         "hot_yi": 1.38,
         "net_yi": 1.38,
-        "change": null,
+        "change": 10.02,
         "concepts": []
       }
     ],

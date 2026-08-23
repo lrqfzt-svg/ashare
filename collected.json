@@ -52,264 +52,322 @@
   "dragons": [
     {
       "name": "山东黄金",
+      "code": "sh600547",
       "net_yi": 4.11,
-      "change": null,
+      "change": 4.96,
       "concepts": [],
       "org_yi": 4.11,
       "hot_yi": null,
-      "type": "both"
+      "type": "both",
+      "chg_pct": "+4.96%"
     },
     {
       "name": "沃森生物",
+      "code": "sz300142",
       "net_yi": 2.75,
-      "change": null,
+      "change": 6.48,
       "concepts": [],
       "org_yi": 2.75,
       "hot_yi": null,
-      "type": "both"
+      "type": "both",
+      "chg_pct": "+6.48%"
     },
     {
       "name": "誉衡药业",
+      "code": "sz002437",
       "net_yi": null,
-      "change": null,
+      "change": -8.03,
       "concepts": [],
       "org_yi": null,
       "hot_yi": null,
-      "type": "both"
+      "type": "both",
+      "chg_pct": "-8.03%"
     },
     {
       "name": "通鼎互联",
+      "code": "sz002491",
       "net_yi": 1.13,
-      "change": null,
+      "change": 10.02,
       "concepts": [],
       "org_yi": 1.13,
       "hot_yi": null,
-      "type": "both"
+      "type": "both",
+      "chg_pct": "+10.02%"
     },
     {
       "name": "湖南白银",
+      "code": "sz002716",
       "net_yi": 1.66,
-      "change": null,
+      "change": 10.03,
       "concepts": [],
       "org_yi": 1.66,
       "hot_yi": null,
-      "type": "both"
+      "type": "both",
+      "chg_pct": "+10.03%"
     },
     {
       "name": "国仪公司",
+      "code": "sh688828",
       "net_yi": null,
-      "change": null,
+      "change": 10.39,
       "concepts": [],
       "org_yi": null,
       "hot_yi": null,
-      "type": "both"
+      "type": "both",
+      "chg_pct": "+10.39%"
     },
     {
       "name": "日科化学",
+      "code": "sz300214",
       "net_yi": null,
-      "change": null,
+      "change": 20.0,
       "concepts": [],
       "org_yi": null,
       "hot_yi": null,
-      "type": "both"
+      "type": "both",
+      "chg_pct": "+20.00%"
     },
     {
       "name": "永安药业",
+      "code": "sz002365",
       "net_yi": null,
-      "change": null,
+      "change": 5.27,
       "concepts": [],
       "org_yi": null,
       "hot_yi": null,
-      "type": "both"
+      "type": "both",
+      "chg_pct": "+5.27%"
     },
     {
       "name": "欣天科技",
+      "code": "sz300615",
       "net_yi": null,
-      "change": null,
+      "change": -2.3,
       "concepts": [],
       "org_yi": null,
       "hot_yi": null,
-      "type": "both"
+      "type": "both",
+      "chg_pct": "-2.30%"
     },
     {
       "name": "哈三联",
+      "code": "sz002900",
       "net_yi": null,
-      "change": null,
+      "change": -10.0,
       "concepts": [],
       "org_yi": null,
       "hot_yi": null,
-      "type": "both"
+      "type": "both",
+      "chg_pct": "-10.00%"
     },
     {
       "name": "盛达资源",
+      "code": "sz000603",
       "net_yi": 2.52,
-      "change": null,
+      "change": 10.01,
       "concepts": [],
       "org_yi": 2.52,
       "hot_yi": null,
-      "type": "both"
+      "type": "both",
+      "chg_pct": "+10.01%"
     },
     {
       "name": "肯特股份",
+      "code": "sz301591",
       "net_yi": null,
-      "change": null,
+      "change": 20.01,
       "concepts": [],
       "org_yi": null,
       "hot_yi": null,
-      "type": "both"
+      "type": "both",
+      "chg_pct": "+20.01%"
     },
     {
       "name": "北陆药业",
+      "code": "sz300016",
       "net_yi": null,
-      "change": null,
+      "change": 20.0,
       "concepts": [],
       "org_yi": null,
       "hot_yi": null,
-      "type": "both"
+      "type": "both",
+      "chg_pct": "+20.00%"
     },
     {
       "name": "万向德农",
+      "code": "sh600371",
       "net_yi": null,
-      "change": null,
+      "change": -10.0,
       "concepts": [],
       "org_yi": null,
       "hot_yi": null,
-      "type": "both"
+      "type": "both",
+      "chg_pct": "-10.00%"
     },
     {
       "name": "*ST泉为",
+      "code": "sz300716",
       "net_yi": null,
-      "change": null,
+      "change": 17.61,
       "concepts": [],
       "org_yi": null,
       "hot_yi": null,
-      "type": "both"
+      "type": "both",
+      "chg_pct": "+17.61%"
     },
     {
       "name": "红棉股份",
+      "code": "sz000523",
       "net_yi": null,
-      "change": null,
+      "change": -9.92,
       "concepts": [],
       "org_yi": null,
       "hot_yi": null,
-      "type": "both"
+      "type": "both",
+      "chg_pct": "-9.92%"
     },
     {
       "name": "中关村",
+      "code": "sz000931",
       "net_yi": null,
-      "change": null,
+      "change": 9.94,
       "concepts": [],
       "org_yi": null,
       "hot_yi": null,
-      "type": "both"
+      "type": "both",
+      "chg_pct": "+9.94%"
     },
     {
       "name": "博汇股份",
+      "code": "sz300839",
       "net_yi": null,
-      "change": null,
+      "change": 20.02,
       "concepts": [],
       "org_yi": null,
       "hot_yi": null,
-      "type": "both"
+      "type": "both",
+      "chg_pct": "+20.02%"
     },
     {
       "name": "深中华A",
+      "code": "sz000017",
       "net_yi": null,
-      "change": null,
+      "change": 10.06,
       "concepts": [],
       "org_yi": null,
       "hot_yi": null,
-      "type": "both"
+      "type": "both",
+      "chg_pct": "+10.06%"
     },
     {
       "name": "京粮控股",
+      "code": "sz000505",
       "net_yi": null,
-      "change": null,
+      "change": -10.01,
       "concepts": [],
       "org_yi": null,
       "hot_yi": null,
-      "type": "both"
+      "type": "both",
+      "chg_pct": "-10.01%"
     },
     {
       "name": "宇环数控",
+      "code": "sz002903",
       "net_yi": null,
-      "change": null,
+      "change": 10.01,
       "concepts": [],
       "org_yi": null,
       "hot_yi": null,
-      "type": "both"
+      "type": "both",
+      "chg_pct": "+10.01%"
     },
     {
       "name": "神农种业",
+      "code": "sz300189",
       "net_yi": 1.17,
-      "change": null,
+      "change": -11.83,
       "concepts": [],
       "org_yi": 1.17,
       "hot_yi": null,
-      "type": "both"
+      "type": "both",
+      "chg_pct": "-11.83%"
     },
     {
       "name": "福华尚纬",
+      "code": "sh603333",
       "net_yi": null,
-      "change": null,
+      "change": 10.06,
       "concepts": [],
       "org_yi": null,
       "hot_yi": null,
-      "type": "both"
+      "type": "both",
+      "chg_pct": "+10.06%"
     },
     {
       "name": "星网锐捷",
+      "code": "sz002396",
       "net_yi": 1.38,
-      "change": null,
+      "change": 10.02,
       "concepts": [],
       "org_yi": 1.38,
       "hot_yi": null,
-      "type": "both"
+      "type": "both",
+      "chg_pct": "+10.02%"
     },
     {
       "name": "神奇制药",
+      "code": "sh600613",
       "net_yi": null,
-      "change": null,
+      "change": 5.14,
       "concepts": [],
       "org_yi": null,
       "hot_yi": null,
-      "type": "both"
+      "type": "both",
+      "chg_pct": "+5.14%"
     },
     {
       "name": "志邦家居",
+      "code": "sh603801",
       "net_yi": null,
-      "change": null,
+      "change": -3.87,
       "concepts": [],
       "org_yi": null,
       "hot_yi": null,
-      "type": "both"
+      "type": "both",
+      "chg_pct": "-3.87%"
     },
     {
       "name": "中瓷电子",
+      "code": "sz003031",
       "net_yi": 3.06,
-      "change": null,
+      "change": 10.0,
       "concepts": [],
       "org_yi": 3.06,
       "hot_yi": null,
-      "type": "both"
+      "type": "both",
+      "chg_pct": "+10.00%"
     },
     {
       "name": "华大智造",
+      "code": "sh688114",
       "net_yi": null,
-      "change": null,
+      "change": 8.22,
       "concepts": [],
       "org_yi": null,
       "hot_yi": null,
-      "type": "both"
+      "type": "both",
+      "chg_pct": "+8.22%"
     },
     {
       "name": "键凯科技",
+      "code": "sh688356",
       "net_yi": null,
-      "change": null,
+      "change": 20.0,
       "concepts": [],
       "org_yi": null,
       "hot_yi": null,
-      "type": "both"
+      "type": "both",
+      "chg_pct": "+20.00%"
     }
   ],
   "limit_up": [],
@@ -568,7 +626,8 @@
     {
       "src": "westock.lhb",
       "ok": true,
-      "count": 29
+      "count": 29,
+      "chg_filled": 29
     },
     {
       "src": "westock.emotion",
