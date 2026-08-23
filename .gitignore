@@ -10,3 +10,8 @@ __pycache__/
 
 # 本地假数据/测试残留备份（宁缺毋假清理时 mv 出来，绝不入库）
 _trash/
+
+# 采集层临时探测/日志/中间产物（collect.py / mx-data 运行残留，绝不入库）
+_*/
+mx_data_*
+mx_search_*
