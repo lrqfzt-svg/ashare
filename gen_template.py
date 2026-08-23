@@ -163,7 +163,7 @@ TEMPLATE_CSS = """  * { box-sizing: border-box; margin: 0; padding: 0; }
 SAMPLE_TEMPLATE_DATA = {
   "title": "A股市场复盘报告 · 2026-08-21",
   "date": "2026年08月21日（周五）",
-  "source": "同花顺(涨停池/龙虎榜/指数) / 东方财富·妙想(资金流·融资融券·行业)",
+  "source": "",
   "tags": ["今日复盘","A股市场","短线情绪","数据已更新","⚡ 股指期货交割日·缩量1.88万亿·观望平衡"],
   "indices": [
     {"name":"上证指数","value":"3905.20","sub":"+0.04% ▲","cls":"up"},
@@ -405,7 +405,7 @@ SAMPLE_TEMPLATE_DATA = {
   ],
   "disclaimer": "⚠️ <b>免责声明：</b>本报告仅供参考，不构成投资建议。A股市场有风险，投资需谨慎。部分板块涨跌幅、个股精确成交额、跌停家数及前日连板基数当日接口未返回，已以\"—\"或方向性口径标注并加脚注说明。",
   "generated": "📊 A股市场复盘报告 · 2026-08-22",
-  "source_footer": "数据源：同花顺（涨停池/指数/龙虎榜/热度）· 东方财富·妙想（资金流/融资融券/行业）· 用户盘后复盘（外围/仓位观点）",
+  "source_footer": "",
 }
 
 # ============== 构建函数 ==============
@@ -733,7 +733,7 @@ def _portal_section(d):
 
     return f"""  <div class="portal">
     <div class="portal-head">
-      <div class="ph-title">📡 实时概览 · 数据来源：本地实采（同花顺 / 东方财富）</div>
+      <div class="ph-title">📡 实时概览</div>
       <div class="portal-links">
         <a href="archive.html">📚 历史报告</a>
         <a href="#sec-mainline">🔶 主线分析</a>
