@@ -173,8 +173,8 @@
     <div class="charts">
       <div class="chart-box">
         <div class="cb-title">涨跌家数分布</div>
-        <div class="echart" id="chartUpDown" data-up="2431.0" data-down=""></div>
-        <div class="cb-empty">下跌家数缺失，不画饼图（宁缺毋假）</div>
+        <div class="echart" id="chartUpDown" data-up="2431.0" data-down="2540.0"></div>
+        
       </div>
       <div class="chart-box"><div class="cb-title">板块主力资金净流入(亿)</div><div class="echart" id="chartFund"></div></div>
       <div class="chart-box"><div class="cb-title">连板梯队（成功数）</div><div class="echart" id="chartLadder"></div></div>
@@ -182,7 +182,7 @@
   </div>
   <script>
   (function(){
-    var D = {"up": 2431.0, "down": null, "fund": [{"name": "通信设备（板块）", "val": 76.34, "out": false}, {"name": "半导体（板块）", "val": 15.19, "out": false}, {"name": "黄金（板块）", "val": 5.39, "out": false}, {"name": "全A合计", "val": 167.8, "out": false}, {"name": "医药生物（板块）", "val": -39.33, "out": true}], "ladder": [{"tier": "1进2", "succ": 10}, {"tier": "2进3", "succ": 1}, {"tier": "3进4", "succ": 0}, {"tier": "4进5", "succ": 0}]};
+    var D = {"up": 2431.0, "down": 2540.0, "fund": [{"name": "通信设备（板块）", "val": 76.34, "out": false}, {"name": "半导体（板块）", "val": 15.19, "out": false}, {"name": "黄金（板块）", "val": 5.39, "out": false}, {"name": "全A合计", "val": 167.8, "out": false}, {"name": "医药生物（板块）", "val": -39.33, "out": true}], "ladder": [{"tier": "1进2", "succ": 10}, {"tier": "2进3", "succ": 1}, {"tier": "3进4", "succ": 0}, {"tier": "4进5", "succ": 0}]};
     var TXT = '#e1e8ed', SUB='#8b949e', GRID='#21262d';
     function render(){
       try{
@@ -281,8 +281,8 @@
     <div class="section-title"><span class="icon">📈</span> 涨跌家数概览</div>
     <div class="grid-4" style="text-align:center;">
       <div><div style="font-size:36px;font-weight:700;color:#f85149;">2431</div><div style="font-size:13px;color:#8b949e;">上涨家数</div></div>
-      <div><div style="font-size:36px;font-weight:700;color:#3fb950;">—</div><div style="font-size:13px;color:#8b949e;">下跌家数</div></div>
-      <div><div style="font-size:36px;font-weight:700;color:#d29922;">—</div><div style="font-size:13px;color:#8b949e;">涨跌比</div></div>
+      <div><div style="font-size:36px;font-weight:700;color:#3fb950;">2540</div><div style="font-size:13px;color:#8b949e;">下跌家数</div></div>
+      <div><div style="font-size:36px;font-weight:700;color:#d29922;">0.96</div><div style="font-size:13px;color:#8b949e;">涨跌比</div></div>
       <div><div style="font-size:36px;font-weight:700;color:#d29922;">1.88万亿</div><div style="font-size:13px;color:#3fb950;">沪深总成交 ▼-2000亿缩量</div></div>
     </div>
   </div>

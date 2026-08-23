@@ -178,7 +178,7 @@ SAMPLE_TEMPLATE_DATA = {
     {"label":"📊 涨停封板率","value":"93.1%","sub":"54/58 · 封板率偏高 打板友好","style":"#58a6ff44","vcolor":"#58a6ff"},
     {"label":"💥 炸板率","value":"6.9%","sub":"4/58 · 炸板率偏低 分歧小","style":"#f8514944","vcolor":"#3fb950"},
   ],
-  "change_overview": {"up":"2431","down":"—","ratio":"—","amount":"1.88万亿","amount_sub":"沪深总成交 ▼-2000亿缩量","amount_cls":"#3fb950"},
+  "change_overview": {"up":"2431","down":"2540","ratio":"0.96","amount":"1.88万亿","amount_sub":"沪深总成交 ▼-2000亿缩量","amount_cls":"#3fb950"},
   "emotion_panorama": [
     {"label":"连板总数","value":"11","sub":"2板10只+3板1只 非ST","cls":""},
     {"label":"空间板","value":"3板","sub":"汉森制药 创新药+中药","cls":"#f85149"},
