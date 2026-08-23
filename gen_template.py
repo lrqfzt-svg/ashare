@@ -762,7 +762,7 @@ def _portal_section(d):
         var c1 = echarts.init(document.getElementById('chartUpDown'));
         var total = (D.up||0)+(D.down||0);
         c1.setOption({{ tooltip:{{trigger:'item',formatter:'{{b}}: {{c}}<br/>占比 {{d}}%'}},
-          title:{{text:'总 {total} 只',left:'center',top:6,textStyle:{{color:SUB,fontSize:11,fontWeight:'normal'}}}},
+          title:{{text:'总 '+total+' 只',left:'center',top:6,textStyle:{{color:SUB,fontSize:11,fontWeight:'normal'}}}},
           series:[{{ type:'pie', radius:['38%','62%'], avoidLabelOverlap:false,
             data:[{{name:'上涨',value:D.up,itemStyle:{{color:'#f85149'}}}},{{name:'下跌',value:D.down,itemStyle:{{color:'#3fb950'}}}}],
             label:{{color:TXT,fontSize:14,fontWeight:'bold',formatter:'{{b}}\\n{{c}}'}},
