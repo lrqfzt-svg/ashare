@@ -154,6 +154,7 @@ TEMPLATE_CSS = """  * { box-sizing: border-box; margin: 0; padding: 0; }
   .chart-box { background: #161b22; border: 1px solid #2d333b; border-radius: 10px; padding: 14px; }
   .chart-box .cb-title { font-size: 13px; color: #8b949e; margin-bottom: 8px; text-align: center; }
   .chart-box .echart { width: 100%; height: 220px; }
+  .chart-box .cb-empty { font-size: 11px; color: #d29922; text-align: center; margin-top: 4px; }
   @media (max-width: 768px) {
     .charts { grid-template-columns: 1fr; }
     .chart-box .echart { height: 200px; }
@@ -679,16 +680,18 @@ def build_template(d):
 def _portal_section(d):
     """首页门户区：最新摘要 + 三张 ECharts 图（涨跌饼图/板块资金/连板梯队）+ 历史入口。"""
     co = d.get("change_overview", {})
-    up = co.get("up", "0") or "0"
-    down = co.get("down", "0") or "0"
-    try:
-        up_n = float(str(up).replace(",", "").replace("~", "").replace("约", ""))
-    except Exception:
-        up_n = 0
-    try:
-        down_n = float(str(down).replace(",", "").replace("~", "").replace("约", ""))
-    except Exception:
-        down_n = 0
+    up = co.get("up", "") or ""
+    down = co.get("down", "") or ""
+    # 宁缺毋假：parse 失败返回 None（不让 down="—" 被当成 0 导致饼图失真全红）
+    def _to_num(v):
+        try:
+            return float(str(v).replace(",", "").replace("~", "").replace("约", ""))
+        except Exception:
+            return None
+    up_n = _to_num(up)
+    down_n = _to_num(down)
+    has_down = (down_n is not None) and (down_n > 0)
+    has_up = (up_n is not None) and (up_n > 0)
 
     # 板块资金（从 money_in/money_out 解析数值，单位亿）
     def _parse_yi(v):
@@ -717,7 +720,8 @@ def _portal_section(d):
     ladder = [{"tier": r["tier"], "succ": _succ_num(r["succ"])} for r in ladder]
 
     js = json.dumps({
-        "up": up_n, "down": down_n,
+        "up": up_n if has_up else None,
+        "down": down_n if has_down else None,
         "fund": fund_rows,
         "ladder": ladder,
     }, ensure_ascii=False)
@@ -732,7 +736,11 @@ def _portal_section(d):
       </div>
     </div>
     <div class="charts">
-      <div class="chart-box"><div class="cb-title">涨跌家数分布</div><div class="echart" id="chartUpDown"></div></div>
+      <div class="chart-box">
+        <div class="cb-title">涨跌家数分布</div>
+        <div class="echart" id="chartUpDown" data-up="{up_n if has_up else ''}" data-down="{down_n if has_down else ''}"></div>
+        {('<div class="cb-empty">下跌家数缺失，不画饼图（宁缺毋假）</div>' if not has_down else '')}
+      </div>
       <div class="chart-box"><div class="cb-title">板块主力资金净流入(亿)</div><div class="echart" id="chartFund"></div></div>
       <div class="chart-box"><div class="cb-title">连板梯队（成功数）</div><div class="echart" id="chartLadder"></div></div>
     </div>
@@ -744,14 +752,29 @@ def _portal_section(d):
     function render(){{
       try{{
         var c1 = echarts.init(document.getElementById('chartUpDown'));
-        var total = (D.up||0)+(D.down||0);
-        c1.setOption({{ tooltip:{{trigger:'item',formatter:'{{b}}: {{c}}<br/>占比 {{d}}%'}},
-          title:{{text:'总 '+total+' 只',left:'center',top:6,textStyle:{{color:SUB,fontSize:11,fontWeight:'normal'}}}},
-          series:[{{ type:'pie', radius:['38%','62%'], avoidLabelOverlap:false,
-            data:[{{name:'上涨',value:D.up,itemStyle:{{color:'#f85149'}}}},{{name:'下跌',value:D.down,itemStyle:{{color:'#3fb950'}}}}],
-            label:{{color:TXT,fontSize:14,fontWeight:'bold',formatter:'{{b}}\\n{{c}}'}},
-            labelLine:{{lineStyle:{{color:SUB}},length:8,length2:6}},
-            emphasis:{{label:{{fontSize:16}}}} }}] }});
+        var hasDown = (D.down !== null && D.down !== undefined && D.down > 0);
+        var hasUp = (D.up !== null && D.up !== undefined && D.up > 0);
+        if(hasUp && hasDown){{
+          var total = (D.up||0)+(D.down||0);
+          c1.setOption({{ tooltip:{{trigger:'item',formatter:'{{b}}: {{c}}<br/>占比 {{d}}%'}},
+            title:{{text:'总 '+total+' 只',left:'center',top:6,textStyle:{{color:SUB,fontSize:11,fontWeight:'normal'}}}},
+            series:[{{ type:'pie', radius:['38%','62%'], avoidLabelOverlap:false,
+              data:[{{name:'上涨',value:D.up,itemStyle:{{color:'#f85149'}}}},{{name:'下跌',value:D.down,itemStyle:{{color:'#3fb950'}}}}],
+              label:{{color:TXT,fontSize:13,formatter:'{{b}}\\n{{c}}'}},
+              labelLine:{{show:true,length:6,length2:4,lineStyle:{{color:SUB}}}},
+              labelLayout:{{hideOverlap:false}},
+              emphasis:{{label:{{fontSize:15}}}} }}] }});
+        }} else {{
+          // 缺失项：显示占位文字+上涨柱，绝不画失真饼
+          var sUp = hasUp ? D.up : 0;
+          c1.setOption({{ grid:{{left:8,right:8,top:30,bottom:10,containLabel:true}},
+            title:{{text: hasUp ? '上涨 '+sUp+' 只（下跌数据缺失）' : '涨跌数据均缺失', left:'center', top:4, textStyle:{{color:SUB,fontSize:11,fontWeight:'normal'}}}},
+            xAxis:{{type:'value',axisLabel:{{color:SUB,fontSize:10}},splitLine:{{lineStyle:{{color:GRID}}}}}},
+            yAxis:{{type:'category',data:['上涨'],axisLabel:{{color:TXT,fontSize:12}}}},
+            series:[{{type:'bar',barMaxWidth:20,
+              data:[{{value:sUp,itemStyle:{{color:'#f85149'}}}}],
+              label:{{show:true,position:'right',color:'#ffffff',fontSize:12,fontWeight:'bold',formatter:'{{c}} 只'}}}}] }});
+        }}
         var c2 = echarts.init(document.getElementById('chartFund'));
         var fdata = D.fund.slice().sort(function(a,b){{return a.val-b.val;}});
         c2.setOption({{ grid:{{left:8,right:36,top:10,bottom:10,containLabel:true}},
