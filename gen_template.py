@@ -756,27 +756,35 @@ def _portal_section(d):
   <script>
   (function(){{
     var D = {js};
+    var TXT = '#e1e8ed', SUB='#8b949e', GRID='#21262d';
     function render(){{
       try{{
         var c1 = echarts.init(document.getElementById('chartUpDown'));
-        c1.setOption({{ tooltip:{{trigger:'item'}}, series:[{{ type:'pie', radius:['45%','70%'],
-          data:[{{name:'上涨',value:D.up,itemStyle:{{color:'#f85149'}}}},{{name:'下跌',value:D.down,itemStyle:{{color:'#3fb950'}}}}],
-          label:{{color:'#e1e8ed',formatter:'{{b}}: {{c}}'}}, labelLine:{{lineStyle:{{color:'#8b949e'}}}} }}] }});
+        var total = (D.up||0)+(D.down||0);
+        c1.setOption({{ tooltip:{{trigger:'item',formatter:'{{b}}: {{c}}<br/>占比 {{d}}%'}},
+          title:{{text:'总 {total} 只',left:'center',top:6,textStyle:{{color:SUB,fontSize:11,fontWeight:'normal'}}}},
+          series:[{{ type:'pie', radius:['38%','62%'], avoidLabelOverlap:false,
+            data:[{{name:'上涨',value:D.up,itemStyle:{{color:'#f85149'}}}},{{name:'下跌',value:D.down,itemStyle:{{color:'#3fb950'}}}}],
+            label:{{color:TXT,fontSize:14,fontWeight:'bold',formatter:'{{b}}\\n{{c}}'}},
+            labelLine:{{lineStyle:{{color:SUB}},length:8,length2:6}},
+            emphasis:{{label:{{fontSize:16}}}} }}] }});
         var c2 = echarts.init(document.getElementById('chartFund'));
         var fdata = D.fund.slice().sort(function(a,b){{return a.val-b.val;}});
-        c2.setOption({{ grid:{{left:8,right:24,top:10,bottom:10,containLabel:true}},
+        c2.setOption({{ grid:{{left:8,right:36,top:10,bottom:10,containLabel:true}},
           tooltip:{{trigger:'axis',axisPointer:{{type:'shadow'}}}},
-          xAxis:{{type:'value',axisLabel:{{color:'#8b949e'}},splitLine:{{lineStyle:{{color:'#21262d'}}}}}},
-          yAxis:{{type:'category',data:fdata.map(function(r){{return r.name;}}),axisLabel:{{color:'#e1e8ed',fontSize:11}}}},
-          series:[{{type:'bar',data:fdata.map(function(r){{return {{value:r.val,itemStyle:{{color:r.out?'#f85149':'#3fb950'}}}};}}),
-            label:{{show:true,position:'right',color:'#8b949e',formatter:'{{c}}'}}}}] }});
+          xAxis:{{type:'value',axisLabel:{{color:SUB,fontSize:11}},splitLine:{{lineStyle:{{color:GRID}}}}}},
+          yAxis:{{type:'category',data:fdata.map(function(r){{return r.name;}}),axisLabel:{{color:TXT,fontSize:11}}}},
+          series:[{{type:'bar',barMaxWidth:18,
+            data:fdata.map(function(r){{return {{value:r.val,itemStyle:{{color:r.out?'#f85149':'#3fb950'}}}};}}),
+            label:{{show:true,position:function(p){{return p.value<0?'left':'right';}},color:TXT,fontSize:11,fontWeight:'bold',formatter:'{{c}}'}}}}] }});
         var c3 = echarts.init(document.getElementById('chartLadder'));
-        c3.setOption({{ grid:{{left:8,right:24,top:10,bottom:10,containLabel:true}},
+        c3.setOption({{ grid:{{left:8,right:24,top:30,bottom:10,containLabel:true}},
           tooltip:{{trigger:'axis',axisPointer:{{type:'shadow'}}}},
-          xAxis:{{type:'category',data:D.ladder.map(function(r){{return r.tier;}}),axisLabel:{{color:'#e1e8ed',fontSize:11}}}},
-          yAxis:{{type:'value',axisLabel:{{color:'#8b949e'}},splitLine:{{lineStyle:{{color:'#21262d'}}}}}},
-          series:[{{type:'bar',data:D.ladder.map(function(r){{return r.succ;}}),itemStyle:{{color:'#58a6ff'}},
-            label:{{show:true,position:'top',color:'#8b949e'}}}}] }});
+          xAxis:{{type:'category',data:D.ladder.map(function(r){{return r.tier;}}),axisLabel:{{color:TXT,fontSize:11}}}},
+          yAxis:{{type:'value',axisLabel:{{color:SUB,fontSize:11}},splitLine:{{lineStyle:{{color:GRID}}}},minInterval:1}},
+          series:[{{type:'bar',barMaxWidth:32,
+            data:D.ladder.map(function(r){{return {{value:r.succ,itemStyle:{{color:'#58a6ff'}}}};}}),
+            label:{{show:true,position:'insideTop',color:'#ffffff',fontSize:13,fontWeight:'bold',formatter:'{{c}}'}}}}] }});
         window.addEventListener('resize',function(){{c1.resize();c2.resize();c3.resize();}});
       }}catch(e){{console.warn('chart err',e);}}
     }}
