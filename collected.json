@@ -1,32 +1,32 @@
 {
   "trade_date": "2026-08-21",
-  "up": 2407,
-  "down": 2627,
-  "flat": null,
-  "total": 5034,
-  "amount_yi": 1.879,
+  "up": 2505,
+  "down": 2862,
+  "flat": 182,
+  "total": 5367,
+  "amount_yi": 1.8793,
   "zt": 58,
   "dt": 15,
   "indices": [
     {
       "name": "上证指数",
       "value": "3905.20",
-      "chg_pct": 0.04
+      "chg_pct": "+0.04%"
     },
     {
       "name": "深证成指",
       "value": "14094.17",
-      "chg_pct": 0.87
+      "chg_pct": "+0.87%"
     },
     {
       "name": "创业板指",
       "value": "3545.58",
-      "chg_pct": 1.43
+      "chg_pct": "+1.43%"
     },
     {
       "name": "科创50",
       "value": "1653.56",
-      "chg_pct": 0.04
+      "chg_pct": "+0.04%"
     }
   ],
   "ladder": {
@@ -46,2114 +46,543 @@
       "汉森制药"
     ]
   },
-  "space_board": "3板",
+  "space_board": 3,
   "space_stock": "汉森制药",
-  "hot": [
-    {
-      "rank": 1,
-      "name": "宇树科技",
-      "heat": "6888037"
-    },
-    {
-      "rank": 2,
-      "name": "士兰微",
-      "heat": "4697389"
-    },
-    {
-      "rank": 3,
-      "name": "中际旭创",
-      "heat": "3955647"
-    },
-    {
-      "rank": 4,
-      "name": "通鼎互联",
-      "heat": "3487775"
-    },
-    {
-      "rank": 5,
-      "name": "哈药股份",
-      "heat": "2733664"
-    },
-    {
-      "rank": 6,
-      "name": "湖南白银",
-      "heat": "2519332"
-    },
-    {
-      "rank": 7,
-      "name": "长鑫科技",
-      "heat": "2386526"
-    },
-    {
-      "rank": 8,
-      "name": "紫金矿业",
-      "heat": "2269486"
-    },
-    {
-      "rank": 9,
-      "name": "诺德股份",
-      "heat": "2028928"
-    },
-    {
-      "rank": 10,
-      "name": "旭光电子",
-      "heat": "2025205"
-    }
-  ],
+  "hot": [],
   "dragons": [
     {
       "name": "山东黄金",
-      "net_yi": 8.56,
-      "change": 4.96,
-      "concepts": [
-        "黄金概念",
-        "国企改革",
-        "数字经济"
-      ],
-      "org_yi": 4.39,
-      "hot_yi": -2.73
+      "net_yi": 4.11,
+      "change": null,
+      "concepts": [],
+      "org_yi": 4.11,
+      "hot_yi": null,
+      "type": "both"
     },
     {
       "name": "沃森生物",
-      "net_yi": 5.06,
-      "change": 6.48,
-      "concepts": [
-        "生物疫苗",
-        "流感",
-        "创新药"
-      ],
-      "org_yi": 1.75,
-      "hot_yi": -0.92
-    },
-    {
-      "name": "湖南白银",
-      "net_yi": 4.09,
-      "change": 10.03,
-      "concepts": [
-        "黄金概念",
-        "金属锌",
-        "金属铅"
-      ],
-      "org_yi": 1.67,
-      "hot_yi": -0.07
-    },
-    {
-      "name": "星网锐捷",
-      "net_yi": 4.03,
-      "change": 10.02,
-      "concepts": [
-        "WiFi 6",
-        "F5G概念",
-        "共封装光学(CPO)"
-      ],
-      "org_yi": -0.34,
-      "hot_yi": 1.26
-    },
-    {
-      "name": "天洋新材",
-      "net_yi": 2.08,
-      "change": 10.04,
-      "concepts": [
-        "消费电子概念",
-        "芯片概念",
-        "共封装光学(CPO)"
-      ],
-      "org_yi": 0.0,
-      "hot_yi": 0.7
-    },
-    {
-      "name": "康希诺",
-      "net_yi": 2.02,
-      "change": 20.01,
-      "concepts": [
-        "生物疫苗",
-        "猴痘概念",
-        "CRO概念"
-      ],
-      "org_yi": 0.0,
-      "hot_yi": 2.79
-    },
-    {
-      "name": "诺德股份",
-      "net_yi": 1.88,
-      "change": 10.04,
-      "concepts": [
-        "PET铜箔",
-        "固态电池",
-        "PCB概念"
-      ],
-      "org_yi": 0.0,
-      "hot_yi": 0.04
-    },
-    {
-      "name": "北陆药业",
-      "net_yi": 1.65,
-      "change": 20.0,
-      "concepts": [
-        "基因测序",
-        "创新药",
-        "阿尔茨海默概念"
-      ],
-      "org_yi": 0.05,
-      "hot_yi": 0.0
-    },
-    {
-      "name": "华大智造",
-      "net_yi": 1.6,
-      "change": 8.22,
-      "concepts": [
-        "基因测序",
-        "智能医疗",
-        "脑机接口"
-      ],
-      "org_yi": -0.88,
-      "hot_yi": 1.22
-    },
-    {
-      "name": "哈药股份",
-      "net_yi": 1.49,
-      "change": -10.02,
-      "concepts": [
-        "振兴东北",
-        "流感",
-        "维生素",
-        "医药电商"
-      ],
-      "org_yi": 0.0,
-      "hot_yi": 0.47
-    },
-    {
-      "name": "国仪公司",
-      "net_yi": 1.29,
-      "change": 10.39,
+      "net_yi": 2.75,
+      "change": null,
       "concepts": [],
-      "org_yi": 1.23,
-      "hot_yi": -0.6
+      "org_yi": 2.75,
+      "hot_yi": null,
+      "type": "both"
     },
     {
-      "name": "赤天化",
-      "net_yi": 1.26,
-      "change": 5.62,
-      "concepts": [
-        "化肥",
-        "煤化工概念",
-        "煤炭概念"
-      ],
-      "org_yi": 0.0,
-      "hot_yi": 0.13
-    }
-  ],
-  "limit_up": [
-    {
-      "name": "汉森制药",
-      "reason": "创新药+中药+中报预增",
-      "board": 3,
-      "seal_yi": 1.5,
-      "is_st": false,
-      "ticker": "002412"
-    },
-    {
-      "name": "键凯科技",
-      "reason": "mRNA疫苗+LNP递送+聚乙二醇+创新药",
-      "board": 2,
-      "seal_yi": 4.72,
-      "is_st": false,
-      "ticker": "688356"
+      "name": "誉衡药业",
+      "net_yi": null,
+      "change": null,
+      "concepts": [],
+      "org_yi": null,
+      "hot_yi": null,
+      "type": "both"
     },
     {
       "name": "通鼎互联",
-      "reason": "中报扭亏+光纤光缆+储能安防",
-      "board": 2,
-      "seal_yi": 1.51,
-      "is_st": false,
-      "ticker": "002491"
-    },
-    {
-      "name": "科森科技",
-      "reason": "折叠屏+机器人+消费电子+中报扭亏",
-      "board": 2,
-      "seal_yi": 1.45,
-      "is_st": false,
-      "ticker": "603626"
-    },
-    {
-      "name": "双鹭药业",
-      "reason": "mRNA平台+GLP-1+创新药+国企改革",
-      "board": 2,
-      "seal_yi": 1.27,
-      "is_st": false,
-      "ticker": "002038"
-    },
-    {
-      "name": "贝瑞基因",
-      "reason": "AI医疗+基因测序+三代测序",
-      "board": 2,
-      "seal_yi": 0.76,
-      "is_st": false,
-      "ticker": "000710"
-    },
-    {
-      "name": "哈森股份",
-      "reason": "苹果产业链+机器人概念+重组+中报预计扭亏",
-      "board": 2,
-      "seal_yi": 0.57,
-      "is_st": false,
-      "ticker": "603958"
-    },
-    {
-      "name": "宇环数控",
-      "reason": "机器人+消费电子+数控机床",
-      "board": 2,
-      "seal_yi": 0.51,
-      "is_st": false,
-      "ticker": "002903"
-    },
-    {
-      "name": "深中华A",
-      "reason": "黄金珠宝+黄金涨价+年报增长",
-      "board": 2,
-      "seal_yi": 0.4,
-      "is_st": false,
-      "ticker": "000017"
-    },
-    {
-      "name": "中关村",
-      "reason": "mRNA疫苗平台+创新药+麻精镇痛+药品获批",
-      "board": 2,
-      "seal_yi": 0.28,
-      "is_st": false,
-      "ticker": "000931"
-    },
-    {
-      "name": "近岸蛋白",
-      "reason": "mRNA肿瘤疫苗+合成生物+mRNA原料酶",
-      "board": 2,
-      "seal_yi": 0.27,
-      "is_st": false,
-      "ticker": "688137"
-    },
-    {
-      "name": "士兰微",
-      "reason": "SiC+功率半导体+IDM模式",
-      "board": 1,
-      "seal_yi": 4.83,
-      "is_st": false,
-      "ticker": "600460"
-    },
-    {
-      "name": "圣达生物",
-      "reason": "维生素+合成生物+生物保鲜剂+回购",
-      "board": 1,
-      "seal_yi": 2.67,
-      "is_st": false,
-      "ticker": "603079"
-    },
-    {
-      "name": "飞龙股份",
-      "reason": "液冷服务器+汽车热管理+机器人",
-      "board": 1,
-      "seal_yi": 2.41,
-      "is_st": false,
-      "ticker": "002536"
-    },
-    {
-      "name": "星网锐捷",
-      "reason": "数据中心交换机+CPO+半年报增长+福建国资",
-      "board": 1,
-      "seal_yi": 2.39,
-      "is_st": false,
-      "ticker": "002396"
-    },
-    {
-      "name": "诺德股份",
-      "reason": "铜箔+AI服务器+固态电池+半年报扭亏",
-      "board": 1,
-      "seal_yi": 1.86,
-      "is_st": false,
-      "ticker": "600110"
+      "net_yi": 1.13,
+      "change": null,
+      "concepts": [],
+      "org_yi": 1.13,
+      "hot_yi": null,
+      "type": "both"
     },
     {
       "name": "湖南白银",
-      "reason": "半年报增长+白银+湖南国资",
-      "board": 1,
-      "seal_yi": 1.63,
-      "is_st": false,
-      "ticker": "002716"
-    },
-    {
-      "name": "可川科技",
-      "reason": "硅光芯片+CPO+功能性器件",
-      "board": 1,
-      "seal_yi": 1.57,
-      "is_st": false,
-      "ticker": "603052"
-    },
-    {
-      "name": "精达股份",
-      "reason": "电磁线+人形机器人+数据中心+可转债赎回完成",
-      "board": 1,
-      "seal_yi": 1.39,
-      "is_st": false,
-      "ticker": "600577"
-    },
-    {
-      "name": "白银有色",
-      "reason": "白银+黄金+多金属综合+锂电材料",
-      "board": 1,
-      "seal_yi": 1.39,
-      "is_st": false,
-      "ticker": "601212"
-    },
-    {
-      "name": "新华百货",
-      "reason": "回购+新质零售+区域零售",
-      "board": 1,
-      "seal_yi": 1.37,
-      "is_st": false,
-      "ticker": "600785"
-    },
-    {
-      "name": "中瓷电子",
-      "reason": "CPO+电子陶瓷+央企",
-      "board": 1,
-      "seal_yi": 1.35,
-      "is_st": false,
-      "ticker": "003031"
-    },
-    {
-      "name": "深科达",
-      "reason": "半导体设备+存储芯片+CPO+中报增长",
-      "board": 1,
-      "seal_yi": 1.21,
-      "is_st": false,
-      "ticker": "688328"
-    },
-    {
-      "name": "和远气体",
-      "reason": "定增获批+电子特气+大宗气体",
-      "board": 1,
-      "seal_yi": 1.2,
-      "is_st": false,
-      "ticker": "002971"
-    },
-    {
-      "name": "高新发展",
-      "reason": "功率半导体+此前拟收购华鲲振宇股权+虚拟电厂+成都国资",
-      "board": 1,
-      "seal_yi": 1.16,
-      "is_st": false,
-      "ticker": "000628"
-    },
-    {
-      "name": "江钨装备",
-      "reason": "钨钽铌资产注入+磁选装备+江西国资",
-      "board": 1,
-      "seal_yi": 1.15,
-      "is_st": false,
-      "ticker": "600397"
-    },
-    {
-      "name": "共达电声",
-      "reason": "AI算力+电声元器件+苹果概念+汽车电子",
-      "board": 1,
-      "seal_yi": 1.13,
-      "is_st": false,
-      "ticker": "002655"
-    },
-    {
-      "name": "德尔未来",
-      "reason": "石墨烯+家居+半年报预计减亏",
-      "board": 1,
-      "seal_yi": 1.11,
-      "is_st": false,
-      "ticker": "002631"
-    },
-    {
-      "name": "国光电器",
-      "reason": "AI眼镜+智能音箱+PCB概念+锂电池",
-      "board": 1,
-      "seal_yi": 1.11,
-      "is_st": false,
-      "ticker": "002045"
-    },
-    {
-      "name": "旭光电子",
-      "reason": "氮化铝+真空灭弧室+可控核聚变+定增过会",
-      "board": 1,
-      "seal_yi": 1.08,
-      "is_st": false,
-      "ticker": "600353"
-    },
-    {
-      "name": "沃特股份",
-      "reason": "PTFE薄膜+PCB概念+人形机器人+半年报增长",
-      "board": 1,
-      "seal_yi": 1.03,
-      "is_st": false,
-      "ticker": "002886"
-    },
-    {
-      "name": "肯特股份",
-      "reason": "PCB覆铜板+PEEK材料+高性能工程塑料",
-      "board": 1,
-      "seal_yi": 0.92,
-      "is_st": false,
-      "ticker": "301591"
-    },
-    {
-      "name": "楚天龙",
-      "reason": "数字人民币+AI应用+数字政务",
-      "board": 1,
-      "seal_yi": 0.87,
-      "is_st": false,
-      "ticker": "003040"
-    },
-    {
-      "name": "融捷股份",
-      "reason": "锂矿+半年报增长+实控人增持",
-      "board": 1,
-      "seal_yi": 0.8,
-      "is_st": false,
-      "ticker": "002192"
-    },
-    {
-      "name": "瑞斯康达",
-      "reason": "光网络+算力+半年报减亏",
-      "board": 1,
-      "seal_yi": 0.77,
-      "is_st": false,
-      "ticker": "603803"
-    },
-    {
-      "name": "福达合金",
-      "reason": "AI数据中心+电接触材料+黄金概念+半年报预增",
-      "board": 1,
-      "seal_yi": 0.69,
-      "is_st": false,
-      "ticker": "603045"
-    },
-    {
-      "name": "越剑智能",
-      "reason": "AI验布机+纺织机械+高端装备",
-      "board": 1,
-      "seal_yi": 0.66,
-      "is_st": false,
-      "ticker": "603095"
-    },
-    {
-      "name": "福华尚纬",
-      "reason": "定增落地+特种电缆+电子级氢氟酸",
-      "board": 1,
-      "seal_yi": 0.59,
-      "is_st": false,
-      "ticker": "603333"
-    },
-    {
-      "name": "金富科技",
-      "reason": "液冷服务器+定增扩产+中报预增",
-      "board": 1,
-      "seal_yi": 0.58,
-      "is_st": false,
-      "ticker": "003018"
-    },
-    {
-      "name": "北陆药业",
-      "reason": "集采拟中选+化药+中药",
-      "board": 1,
-      "seal_yi": 0.56,
-      "is_st": false,
-      "ticker": "300016"
-    },
-    {
-      "name": "博汇股份",
-      "reason": "液冷算力+燃料油深加工+项目投资",
-      "board": 1,
-      "seal_yi": 0.45,
-      "is_st": false,
-      "ticker": "300839"
-    },
-    {
-      "name": "盛达资源",
-      "reason": "黄金+白银龙头+铜金矿投产+半年报增长",
-      "board": 1,
-      "seal_yi": 0.42,
-      "is_st": false,
-      "ticker": "000603"
-    },
-    {
-      "name": "国星光电",
-      "reason": "Micro LED+光耦+先进光电封装+广东国资",
-      "board": 1,
-      "seal_yi": 0.41,
-      "is_st": false,
-      "ticker": "002449"
-    },
-    {
-      "name": "杭齿前进",
-      "reason": "半年报增长+机器人关节+齿轮箱龙头+杭州国资",
-      "board": 1,
-      "seal_yi": 0.39,
-      "is_st": false,
-      "ticker": "601177"
-    },
-    {
-      "name": "水发燃气",
-      "reason": "氦气+燃气轮机+天然气+山东国资",
-      "board": 1,
-      "seal_yi": 0.38,
-      "is_st": false,
-      "ticker": "603318"
-    },
-    {
-      "name": "天洋新材",
-      "reason": "CPO+电子胶+半年报预盈+超跌反弹",
-      "board": 1,
-      "seal_yi": 0.36,
-      "is_st": false,
-      "ticker": "603330"
-    },
-    {
-      "name": "秦安股份",
-      "reason": "人形机器人+汽车零部件+真空镀膜+超跌反弹",
-      "board": 1,
-      "seal_yi": 0.34,
-      "is_st": false,
-      "ticker": "603758"
-    },
-    {
-      "name": "日科化学",
-      "reason": "半年报增长+算力租赁+电解液+拟收购亘元新材",
-      "board": 1,
-      "seal_yi": 0.33,
-      "is_st": false,
-      "ticker": "300214"
-    },
-    {
-      "name": "亿利达",
-      "reason": "控制权变更+数据中心+风机龙头+国企改革",
-      "board": 1,
-      "seal_yi": 0.33,
-      "is_st": false,
-      "ticker": "002686"
-    },
-    {
-      "name": "勤上股份",
-      "reason": "半导体照明+LED照明+车路云协同+储能",
-      "board": 1,
-      "seal_yi": 0.33,
-      "is_st": false,
-      "ticker": "002638"
-    },
-    {
-      "name": "东信和平",
-      "reason": "数字货币+eSIM+央企",
-      "board": 1,
-      "seal_yi": 0.3,
-      "is_st": false,
-      "ticker": "002017"
-    },
-    {
-      "name": "达意隆",
-      "reason": "半年报增长+机器人+液态包装装备",
-      "board": 1,
-      "seal_yi": 0.24,
-      "is_st": false,
-      "ticker": "002209"
-    },
-    {
-      "name": "宿迁联盛",
-      "reason": "磷化铟衬底+光稳定剂",
-      "board": 1,
-      "seal_yi": 0.17,
-      "is_st": false,
-      "ticker": "603065"
-    },
-    {
-      "name": "豪美新材",
-      "reason": "机器人轻量化+AI产业基金+汽车轻量化",
-      "board": 1,
-      "seal_yi": 0.15,
-      "is_st": false,
-      "ticker": "002988"
-    }
-  ],
-  "break_pool": [
-    {
-      "name": "康希诺",
-      "open_times": 13,
-      "chg_pct": 20.01,
-      "turnover_yi": 18.91
-    },
-    {
-      "name": "南风股份",
-      "open_times": 1,
-      "chg_pct": 12.53,
-      "turnover_yi": 9.25
+      "net_yi": 1.66,
+      "change": null,
+      "concepts": [],
+      "org_yi": 1.66,
+      "hot_yi": null,
+      "type": "both"
     },
     {
       "name": "国仪公司",
-      "open_times": 5,
-      "chg_pct": 10.39,
-      "turnover_yi": 10.24
+      "net_yi": null,
+      "change": null,
+      "concepts": [],
+      "org_yi": null,
+      "hot_yi": null,
+      "type": "both"
     },
     {
-      "name": "海森药业",
-      "open_times": 2,
-      "chg_pct": 9.16,
-      "turnover_yi": 2.36
+      "name": "日科化学",
+      "net_yi": null,
+      "change": null,
+      "concepts": [],
+      "org_yi": null,
+      "hot_yi": null,
+      "type": "both"
     },
     {
-      "name": "中化国际",
-      "open_times": 1,
-      "chg_pct": 8.25,
-      "turnover_yi": 14.76
+      "name": "永安药业",
+      "net_yi": null,
+      "change": null,
+      "concepts": [],
+      "org_yi": null,
+      "hot_yi": null,
+      "type": "both"
     },
     {
-      "name": "艾艾精工",
-      "open_times": 1,
-      "chg_pct": 8.01,
-      "turnover_yi": 14.43
+      "name": "欣天科技",
+      "net_yi": null,
+      "change": null,
+      "concepts": [],
+      "org_yi": null,
+      "hot_yi": null,
+      "type": "both"
     },
     {
-      "name": "大中矿业",
-      "open_times": 5,
-      "chg_pct": 7.22,
-      "turnover_yi": 15.31
+      "name": "哈三联",
+      "net_yi": null,
+      "change": null,
+      "concepts": [],
+      "org_yi": null,
+      "hot_yi": null,
+      "type": "both"
     },
     {
-      "name": "大元泵业",
-      "open_times": 1,
-      "chg_pct": 7.0,
-      "turnover_yi": 9.5
+      "name": "盛达资源",
+      "net_yi": 2.52,
+      "change": null,
+      "concepts": [],
+      "org_yi": 2.52,
+      "hot_yi": null,
+      "type": "both"
     },
     {
-      "name": "崇达技术",
-      "open_times": 1,
-      "chg_pct": 6.88,
-      "turnover_yi": 10.3
+      "name": "肯特股份",
+      "net_yi": null,
+      "change": null,
+      "concepts": [],
+      "org_yi": null,
+      "hot_yi": null,
+      "type": "both"
     },
     {
-      "name": "金瑞矿业",
-      "open_times": 1,
-      "chg_pct": 5.97,
-      "turnover_yi": 4.33
+      "name": "北陆药业",
+      "net_yi": null,
+      "change": null,
+      "concepts": [],
+      "org_yi": null,
+      "hot_yi": null,
+      "type": "both"
     },
     {
-      "name": "长华集团",
-      "open_times": 3,
-      "chg_pct": 5.32,
-      "turnover_yi": 2.04
+      "name": "万向德农",
+      "net_yi": null,
+      "change": null,
+      "concepts": [],
+      "org_yi": null,
+      "hot_yi": null,
+      "type": "both"
     },
     {
-      "name": "华正新材",
-      "open_times": null,
-      "chg_pct": 5.1,
-      "turnover_yi": 46.32
+      "name": "*ST泉为",
+      "net_yi": null,
+      "change": null,
+      "concepts": [],
+      "org_yi": null,
+      "hot_yi": null,
+      "type": "both"
     },
     {
-      "name": "国机汽车",
-      "open_times": 3,
-      "chg_pct": 4.37,
-      "turnover_yi": 3.39
+      "name": "红棉股份",
+      "net_yi": null,
+      "change": null,
+      "concepts": [],
+      "org_yi": null,
+      "hot_yi": null,
+      "type": "both"
     },
     {
-      "name": "铭科精技",
-      "open_times": 1,
-      "chg_pct": 2.43,
-      "turnover_yi": 1.04
+      "name": "中关村",
+      "net_yi": null,
+      "change": null,
+      "concepts": [],
+      "org_yi": null,
+      "hot_yi": null,
+      "type": "both"
     },
     {
-      "name": "华盛昌",
-      "open_times": 1,
-      "chg_pct": 0.46,
-      "turnover_yi": 18.77
+      "name": "博汇股份",
+      "net_yi": null,
+      "change": null,
+      "concepts": [],
+      "org_yi": null,
+      "hot_yi": null,
+      "type": "both"
     },
     {
-      "name": "南京商旅",
-      "open_times": 1,
-      "chg_pct": -0.97,
-      "turnover_yi": 5.28
+      "name": "深中华A",
+      "net_yi": null,
+      "change": null,
+      "concepts": [],
+      "org_yi": null,
+      "hot_yi": null,
+      "type": "both"
     },
     {
-      "name": "速达股份",
-      "open_times": 3,
-      "chg_pct": -2.32,
-      "turnover_yi": 5.29
+      "name": "京粮控股",
+      "net_yi": null,
+      "change": null,
+      "concepts": [],
+      "org_yi": null,
+      "hot_yi": null,
+      "type": "both"
+    },
+    {
+      "name": "宇环数控",
+      "net_yi": null,
+      "change": null,
+      "concepts": [],
+      "org_yi": null,
+      "hot_yi": null,
+      "type": "both"
+    },
+    {
+      "name": "神农种业",
+      "net_yi": 1.17,
+      "change": null,
+      "concepts": [],
+      "org_yi": 1.17,
+      "hot_yi": null,
+      "type": "both"
+    },
+    {
+      "name": "福华尚纬",
+      "net_yi": null,
+      "change": null,
+      "concepts": [],
+      "org_yi": null,
+      "hot_yi": null,
+      "type": "both"
+    },
+    {
+      "name": "星网锐捷",
+      "net_yi": 1.38,
+      "change": null,
+      "concepts": [],
+      "org_yi": 1.38,
+      "hot_yi": null,
+      "type": "both"
+    },
+    {
+      "name": "神奇制药",
+      "net_yi": null,
+      "change": null,
+      "concepts": [],
+      "org_yi": null,
+      "hot_yi": null,
+      "type": "both"
     },
     {
       "name": "志邦家居",
-      "open_times": 1,
-      "chg_pct": -3.87,
-      "turnover_yi": 5.47
+      "net_yi": null,
+      "change": null,
+      "concepts": [],
+      "org_yi": null,
+      "hot_yi": null,
+      "type": "both"
+    },
+    {
+      "name": "中瓷电子",
+      "net_yi": 3.06,
+      "change": null,
+      "concepts": [],
+      "org_yi": 3.06,
+      "hot_yi": null,
+      "type": "both"
+    },
+    {
+      "name": "华大智造",
+      "net_yi": null,
+      "change": null,
+      "concepts": [],
+      "org_yi": null,
+      "hot_yi": null,
+      "type": "both"
+    },
+    {
+      "name": "键凯科技",
+      "net_yi": null,
+      "change": null,
+      "concepts": [],
+      "org_yi": null,
+      "hot_yi": null,
+      "type": "both"
     }
   ],
-  "break_rate_real": 25.0,
+  "limit_up": [],
+  "break_pool": [],
+  "break_rate_real": null,
   "fuyao_source": {
-    "limit_up_count": 54,
-    "break_count": 18,
-    "dragon_count": 12
+    "limit_up_count": null,
+    "break_count": null,
+    "dragon_count": 29
   },
   "sector_in": [
     {
       "name": "通信设备",
-      "val": "+76.34亿",
-      "val_yi": 76.34
-    },
-    {
-      "name": "通信网络设备及器件",
-      "val": "+70.76亿",
-      "val_yi": 70.76
+      "val": "+88.93亿",
+      "val_yi": 88.93
     },
     {
       "name": "元件",
-      "val": "+50.97亿",
-      "val_yi": 50.97
+      "val": "+46.84亿",
+      "val_yi": 46.84
     },
     {
-      "name": "印制电路板",
-      "val": "+41.23亿",
-      "val_yi": 41.23
-    },
-    {
-      "name": "贵金属",
-      "val": "+36.85亿",
-      "val_yi": 36.85
+      "name": "工业金属",
+      "val": "+44.43亿",
+      "val_yi": 44.43
     }
   ],
-  "sector_out": [],
+  "sector_out": [
+    {
+      "name": "食品饮料",
+      "val": "-1.19亿",
+      "val_yi": -1.19
+    }
+  ],
   "sector_chg": [
     {
-      "name": "房屋建筑业指数",
-      "chg_pct": 7.5
-    },
-    {
-      "name": "锂",
-      "chg_pct": 6.51
-    },
-    {
       "name": "贵金属",
-      "chg_pct": 5.34
-    },
-    {
-      "name": "钨",
-      "chg_pct": 4.9
+      "chg_pct": 4.64
     },
     {
       "name": "能源金属",
-      "chg_pct": 4.51
+      "chg_pct": 4.6
     },
     {
-      "name": "钼",
-      "chg_pct": 4.39
+      "name": "非金属材料Ⅱ",
+      "chg_pct": 3.03
     },
     {
-      "name": "铅锌",
-      "chg_pct": 3.83
+      "name": "通信设备",
+      "chg_pct": 2.98
     },
     {
-      "name": "黑色金属矿采选业指数",
-      "chg_pct": 3.59
+      "name": "元件",
+      "chg_pct": 2.8
     },
     {
-      "name": "有色金属矿采选业指数",
-      "chg_pct": 3.4
+      "name": "饰品",
+      "chg_pct": 2.52
     },
     {
-      "name": "铜",
-      "chg_pct": 3.24
+      "name": "肿瘤疫苗",
+      "chg_pct": 6.24
+    },
+    {
+      "name": "白银概念",
+      "chg_pct": 4.57
+    },
+    {
+      "name": "铅锌概念",
+      "chg_pct": 4.13
+    },
+    {
+      "name": "陶瓷基板",
+      "chg_pct": 3.8
+    },
+    {
+      "name": "锂矿",
+      "chg_pct": 3.77
+    },
+    {
+      "name": "有色(锑)",
+      "chg_pct": 3.63
     }
   ],
   "plate_leaders": [
     {
-      "type_name": "概念板块",
-      "plate_id": 69080270,
-      "name": "陶瓷基板",
-      "chg_pct": 3.41,
-      "fund_yi": 0.56,
-      "limit_up_cnt": 2,
-      "leaders": [
-        {
-          "name": "旭光电子",
-          "symbol": "600353.SS",
-          "chg_pct": 10.0
-        },
-        {
-          "name": "中瓷电子",
-          "symbol": "003031.SZ",
-          "chg_pct": 10.0
-        },
-        {
-          "name": "国瓷材料",
-          "symbol": "300285.SZ",
-          "chg_pct": 7.85
-        },
-        {
-          "name": "景旺电子",
-          "symbol": "603228.SS",
-          "chg_pct": 6.3
-        },
-        {
-          "name": "火炬电子",
-          "symbol": "603678.SS",
-          "chg_pct": 6.26
-        }
-      ]
+      "plate": "贵金属",
+      "name": "湖南白银",
+      "chg_pct": 10.03
     },
     {
-      "type_name": "概念板块",
-      "plate_id": 70199529,
-      "name": "氦气",
-      "chg_pct": 2.57,
-      "fund_yi": -3.12,
-      "limit_up_cnt": 2,
-      "leaders": [
-        {
-          "name": "水发燃气",
-          "symbol": "603318.SS",
-          "chg_pct": 10.03
-        },
-        {
-          "name": "和远气体",
-          "symbol": "002971.SZ",
-          "chg_pct": 10.01
-        },
-        {
-          "name": "ST洲际",
-          "symbol": "600759.SS",
-          "chg_pct": 2.79
-        },
-        {
-          "name": "华特气体",
-          "symbol": "688268.SS",
-          "chg_pct": 2.72
-        },
-        {
-          "name": "金宏气体",
-          "symbol": "688106.SS",
-          "chg_pct": 2.08
-        }
-      ]
+      "plate": "能源金属",
+      "name": "融捷股份",
+      "chg_pct": 10.0
     },
     {
-      "type_name": "概念板块",
-      "plate_id": 69803577,
-      "name": "电子树脂",
-      "chg_pct": 2.28,
-      "fund_yi": -1.22,
-      "limit_up_cnt": 0,
-      "leaders": [
-        {
-          "name": "银禧科技",
-          "symbol": "300221.SZ",
-          "chg_pct": 9.84
-        },
-        {
-          "name": "中化国际",
-          "symbol": "600500.SS",
-          "chg_pct": 8.25
-        },
-        {
-          "name": "世名科技",
-          "symbol": "300522.SZ",
-          "chg_pct": 7.7
-        },
-        {
-          "name": "呈和科技",
-          "symbol": "688625.SS",
-          "chg_pct": 3.25
-        },
-        {
-          "name": "圣泉集团",
-          "symbol": "605589.SS",
-          "chg_pct": 1.94
-        }
-      ]
+      "plate": "非金属材料Ⅱ",
+      "name": "金博股份",
+      "chg_pct": 14.54
     },
     {
-      "type_name": "概念板块",
-      "plate_id": 66814321,
-      "name": "碳化硅",
-      "chg_pct": 2.21,
-      "fund_yi": 3.07,
-      "limit_up_cnt": 4,
-      "leaders": [
-        {
-          "name": "金博股份",
-          "symbol": "688598.SS",
-          "chg_pct": 14.54
-        },
-        {
-          "name": "宇环数控",
-          "symbol": "002903.SZ",
-          "chg_pct": 10.01
-        },
-        {
-          "name": "中瓷电子",
-          "symbol": "003031.SZ",
-          "chg_pct": 10.0
-        },
-        {
-          "name": "士兰微",
-          "symbol": "600460.SS",
-          "chg_pct": 9.99
-        },
-        {
-          "name": "国星光电",
-          "symbol": "002449.SZ",
-          "chg_pct": 9.95
-        }
-      ]
+      "plate": "通信设备",
+      "name": "星网锐捷",
+      "chg_pct": 10.02
     },
     {
-      "type_name": "概念板块",
-      "plate_id": 94875777,
-      "name": "液冷服务器",
-      "chg_pct": 2.12,
-      "fund_yi": -2.34,
-      "limit_up_cnt": 3,
-      "leaders": [
-        {
-          "name": "博汇股份",
-          "symbol": "300839.SZ",
-          "chg_pct": 20.02
-        },
-        {
-          "name": "锦富技术",
-          "symbol": "300128.SZ",
-          "chg_pct": 12.5
-        },
-        {
-          "name": "飞龙股份",
-          "symbol": "002536.SZ",
-          "chg_pct": 10.0
-        },
-        {
-          "name": "金富科技",
-          "symbol": "003018.SZ",
-          "chg_pct": 10.0
-        },
-        {
-          "name": "朗威股份",
-          "symbol": "301202.SZ",
-          "chg_pct": 8.42
-        }
-      ]
+      "plate": "元件",
+      "name": "江海股份",
+      "chg_pct": 7.27
     },
     {
-      "type_name": "概念板块",
-      "plate_id": 63271937,
-      "name": "eSIM",
-      "chg_pct": 2.11,
-      "fund_yi": 2.09,
-      "limit_up_cnt": 2,
-      "leaders": [
-        {
-          "name": "东信和平",
-          "symbol": "002017.SZ",
-          "chg_pct": 9.99
-        },
-        {
-          "name": "楚天龙",
-          "symbol": "003040.SZ",
-          "chg_pct": 9.97
-        },
-        {
-          "name": "恒宝股份",
-          "symbol": "002104.SZ",
-          "chg_pct": 7.29
-        },
-        {
-          "name": "福日电子",
-          "symbol": "600203.SS",
-          "chg_pct": 2.76
-        },
-        {
-          "name": "思特奇",
-          "symbol": "300608.SZ",
-          "chg_pct": 1.3
-        }
-      ]
+      "plate": "饰品",
+      "name": "深中华A",
+      "chg_pct": 10.06
     },
     {
-      "type_name": "概念板块",
-      "plate_id": 19384882,
-      "name": "铜箔/覆铜板",
-      "chg_pct": 2.03,
-      "fund_yi": -0.93,
-      "limit_up_cnt": 1,
-      "leaders": [
-        {
-          "name": "诺德股份",
-          "symbol": "600110.SS",
-          "chg_pct": 10.04
-        },
-        {
-          "name": "银禧科技",
-          "symbol": "300221.SZ",
-          "chg_pct": 9.84
-        },
-        {
-          "name": "国瓷材料",
-          "symbol": "300285.SZ",
-          "chg_pct": 7.85
-        },
-        {
-          "name": "嘉元科技",
-          "symbol": "688388.SS",
-          "chg_pct": 5.66
-        },
-        {
-          "name": "生益科技",
-          "symbol": "600183.SS",
-          "chg_pct": 5.16
-        }
-      ]
+      "plate": "肿瘤疫苗",
+      "name": "康希诺",
+      "chg_pct": 20.01
     },
     {
-      "type_name": "概念板块",
-      "plate_id": 66232882,
-      "name": "头盔",
-      "chg_pct": 1.98,
-      "fund_yi": -2.72,
-      "limit_up_cnt": 1,
-      "leaders": [
-        {
-          "name": "*ST泉为",
-          "symbol": "300716.SZ",
-          "chg_pct": 17.61
-        },
-        {
-          "name": "沃特股份",
-          "symbol": "002886.SZ",
-          "chg_pct": 9.99
-        },
-        {
-          "name": "银禧科技",
-          "symbol": "300221.SZ",
-          "chg_pct": 9.84
-        },
-        {
-          "name": "拓斯达",
-          "symbol": "300607.SZ",
-          "chg_pct": 8.81
-        },
-        {
-          "name": "王子新材",
-          "symbol": "002735.SZ",
-          "chg_pct": 4.69
-        }
-      ]
+      "plate": "白银概念",
+      "name": "湖南白银",
+      "chg_pct": 10.03
     },
     {
-      "type_name": "概念板块",
-      "plate_id": 43539673,
-      "name": "培育钻石",
-      "chg_pct": 1.98,
-      "fund_yi": -5.42,
-      "limit_up_cnt": 0,
-      "leaders": [
-        {
-          "name": "中国黄金",
-          "symbol": "600916.SS",
-          "chg_pct": 5.85
-        },
-        {
-          "name": "曼卡龙",
-          "symbol": "300945.SZ",
-          "chg_pct": 2.91
-        },
-        {
-          "name": "四方达",
-          "symbol": "300179.SZ",
-          "chg_pct": 2.85
-        },
-        {
-          "name": "博云新材",
-          "symbol": "002297.SZ",
-          "chg_pct": 2.83
-        },
-        {
-          "name": "沃尔德",
-          "symbol": "688028.SS",
-          "chg_pct": 2.74
-        }
-      ]
+      "plate": "铅锌概念",
+      "name": "湖南白银",
+      "chg_pct": 10.03
     },
     {
-      "type_name": "概念板块",
-      "plate_id": 29448210,
-      "name": "宁德时代概念股",
-      "chg_pct": 1.97,
-      "fund_yi": -10.73,
-      "limit_up_cnt": 1,
-      "leaders": [
-        {
-          "name": "锦富技术",
-          "symbol": "300128.SZ",
-          "chg_pct": 12.5
-        },
-        {
-          "name": "诺德股份",
-          "symbol": "600110.SS",
-          "chg_pct": 10.04
-        },
-        {
-          "name": "银禧科技",
-          "symbol": "300221.SZ",
-          "chg_pct": 9.84
-        },
-        {
-          "name": "万润新能",
-          "symbol": "688275.SS",
-          "chg_pct": 8.64
-        },
-        {
-          "name": "天华新能",
-          "symbol": "300390.SZ",
-          "chg_pct": 7.68
-        }
-      ]
+      "plate": "陶瓷基板",
+      "name": "中瓷电子",
+      "chg_pct": 10.0
     },
     {
-      "type_name": "行业板块",
-      "plate_id": 54724617,
-      "name": "白银",
-      "chg_pct": 5.75,
-      "fund_yi": -2.63,
-      "limit_up_cnt": 3,
-      "leaders": [
-        {
-          "name": "湖南白银",
-          "symbol": "002716.SZ",
-          "chg_pct": 10.03
-        },
-        {
-          "name": "盛达资源",
-          "symbol": "000603.SZ",
-          "chg_pct": 10.01
-        },
-        {
-          "name": "白银有色",
-          "symbol": "601212.SS",
-          "chg_pct": 9.93
-        },
-        {
-          "name": "国城矿业",
-          "symbol": "000688.SZ",
-          "chg_pct": 8.19
-        },
-        {
-          "name": "赤峰黄金",
-          "symbol": "600988.SS",
-          "chg_pct": 7.22
-        }
-      ]
+      "plate": "锂矿",
+      "name": "*ST威领",
+      "chg_pct": 10.02
     },
     {
-      "type_name": "行业板块",
-      "plate_id": 16843401,
-      "name": "黄金",
-      "chg_pct": 4.41,
-      "fund_yi": 21.25,
-      "limit_up_cnt": 3,
-      "leaders": [
-        {
-          "name": "湖南白银",
-          "symbol": "002716.SZ",
-          "chg_pct": 10.03
-        },
-        {
-          "name": "盛达资源",
-          "symbol": "000603.SZ",
-          "chg_pct": 10.01
-        },
-        {
-          "name": "白银有色",
-          "symbol": "601212.SS",
-          "chg_pct": 9.93
-        },
-        {
-          "name": "晓程科技",
-          "symbol": "300139.SZ",
-          "chg_pct": 8.55
-        },
-        {
-          "name": "赤峰黄金",
-          "symbol": "600988.SS",
-          "chg_pct": 7.22
-        }
-      ]
-    },
-    {
-      "type_name": "行业板块",
-      "plate_id": 21731726,
-      "name": "有色 · 锌",
-      "chg_pct": 3.94,
-      "fund_yi": 7.17,
-      "limit_up_cnt": 4,
-      "leaders": [
-        {
-          "name": "湖南白银",
-          "symbol": "002716.SZ",
-          "chg_pct": 10.03
-        },
-        {
-          "name": "*ST威领",
-          "symbol": "002667.SZ",
-          "chg_pct": 10.02
-        },
-        {
-          "name": "盛达资源",
-          "symbol": "000603.SZ",
-          "chg_pct": 10.01
-        },
-        {
-          "name": "白银有色",
-          "symbol": "601212.SS",
-          "chg_pct": 9.93
-        },
-        {
-          "name": "国城矿业",
-          "symbol": "000688.SZ",
-          "chg_pct": 8.19
-        }
-      ]
-    },
-    {
-      "type_name": "行业板块",
-      "plate_id": 99898354,
-      "name": "锂矿/碳酸锂",
-      "chg_pct": 3.78,
-      "fund_yi": -1.34,
-      "limit_up_cnt": 2,
-      "leaders": [
-        {
-          "name": "*ST威领",
-          "symbol": "002667.SZ",
-          "chg_pct": 10.02
-        },
-        {
-          "name": "融捷股份",
-          "symbol": "002192.SZ",
-          "chg_pct": 10.0
-        },
-        {
-          "name": "天华新能",
-          "symbol": "300390.SZ",
-          "chg_pct": 7.68
-        },
-        {
-          "name": "大中矿业",
-          "symbol": "001203.SZ",
-          "chg_pct": 7.22
-        },
-        {
-          "name": "永杉锂业",
-          "symbol": "603399.SS",
-          "chg_pct": 7.04
-        }
-      ]
-    },
-    {
-      "type_name": "行业板块",
-      "plate_id": 20495569,
-      "name": "有色 · 钼",
-      "chg_pct": 3.56,
-      "fund_yi": -5.2,
-      "limit_up_cnt": 1,
-      "leaders": [
-        {
-          "name": "白银有色",
-          "symbol": "601212.SS",
-          "chg_pct": 9.93
-        },
-        {
-          "name": "国城矿业",
-          "symbol": "000688.SZ",
-          "chg_pct": 8.19
-        },
-        {
-          "name": "赤峰黄金",
-          "symbol": "600988.SS",
-          "chg_pct": 7.22
-        },
-        {
-          "name": "永杉锂业",
-          "symbol": "603399.SS",
-          "chg_pct": 7.04
-        },
-        {
-          "name": "中钨高新",
-          "symbol": "000657.SZ",
-          "chg_pct": 5.73
-        }
-      ]
-    },
-    {
-      "type_name": "行业板块",
-      "plate_id": 18963793,
-      "name": "有色 · 锑",
-      "chg_pct": 3.48,
-      "fund_yi": -5.42,
-      "limit_up_cnt": 1,
-      "leaders": [
-        {
-          "name": "湖南白银",
-          "symbol": "002716.SZ",
-          "chg_pct": 10.03
-        },
-        {
-          "name": "豫光金铅",
-          "symbol": "600531.SS",
-          "chg_pct": 6.19
-        },
-        {
-          "name": "兴业银锡",
-          "symbol": "000426.SZ",
-          "chg_pct": 6.02
-        },
-        {
-          "name": "华钰矿业",
-          "symbol": "601020.SS",
-          "chg_pct": 4.09
-        },
-        {
-          "name": "驰宏锌锗",
-          "symbol": "600497.SS",
-          "chg_pct": 3.79
-        }
-      ]
-    },
-    {
-      "type_name": "行业板块",
-      "plate_id": 95875609,
-      "name": "有色 · 铋",
-      "chg_pct": 3.37,
-      "fund_yi": -7.48,
-      "limit_up_cnt": 0,
-      "leaders": [
-        {
-          "name": "豫光金铅",
-          "symbol": "600531.SS",
-          "chg_pct": 6.19
-        },
-        {
-          "name": "兴业银锡",
-          "symbol": "000426.SZ",
-          "chg_pct": 6.02
-        },
-        {
-          "name": "中钨高新",
-          "symbol": "000657.SZ",
-          "chg_pct": 5.73
-        },
-        {
-          "name": "株冶集团",
-          "symbol": "600961.SS",
-          "chg_pct": 4.87
-        },
-        {
-          "name": "驰宏锌锗",
-          "symbol": "600497.SS",
-          "chg_pct": 3.79
-        }
-      ]
-    },
-    {
-      "type_name": "行业板块",
-      "plate_id": 22411474,
-      "name": "铁矿石",
-      "chg_pct": 2.82,
-      "fund_yi": -5.71,
-      "limit_up_cnt": 0,
-      "leaders": [
-        {
-          "name": "大中矿业",
-          "symbol": "001203.SZ",
-          "chg_pct": 7.22
-        },
-        {
-          "name": "兴业银锡",
-          "symbol": "000426.SZ",
-          "chg_pct": 6.02
-        },
-        {
-          "name": "中矿资源",
-          "symbol": "002738.SZ",
-          "chg_pct": 5.17
-        },
-        {
-          "name": "*ST正平",
-          "symbol": "603843.SS",
-          "chg_pct": 4.06
-        },
-        {
-          "name": "西部矿业",
-          "symbol": "601168.SS",
-          "chg_pct": 3.25
-        }
-      ]
-    },
-    {
-      "type_name": "行业板块",
-      "plate_id": 98353810,
-      "name": "有色 · 锡",
-      "chg_pct": 2.77,
-      "fund_yi": 6.78,
-      "limit_up_cnt": 0,
-      "leaders": [
-        {
-          "name": "兴业银锡",
-          "symbol": "000426.SZ",
-          "chg_pct": 6.02
-        },
-        {
-          "name": "翔鹭钨业",
-          "symbol": "002842.SZ",
-          "chg_pct": 5.59
-        },
-        {
-          "name": "盛屯矿业",
-          "symbol": "600711.SS",
-          "chg_pct": 3.95
-        },
-        {
-          "name": "XD紫金矿",
-          "symbol": "601899.SS",
-          "chg_pct": 2.69
-        },
-        {
-          "name": "华锡有色",
-          "symbol": "600301.SS",
-          "chg_pct": 0.78
-        }
-      ]
-    },
-    {
-      "type_name": "行业板块",
-      "plate_id": 19676882,
-      "name": "有色 · 钨",
-      "chg_pct": 2.71,
-      "fund_yi": -3.88,
-      "limit_up_cnt": 0,
-      "leaders": [
-        {
-          "name": "大中矿业",
-          "symbol": "001203.SZ",
-          "chg_pct": 7.22
-        },
-        {
-          "name": "中钨高新",
-          "symbol": "000657.SZ",
-          "chg_pct": 5.73
-        },
-        {
-          "name": "翔鹭钨业",
-          "symbol": "002842.SZ",
-          "chg_pct": 5.59
-        },
-        {
-          "name": "厦门钨业",
-          "symbol": "600549.SS",
-          "chg_pct": 4.3
-        },
-        {
-          "name": "章源钨业",
-          "symbol": "002378.SZ",
-          "chg_pct": 3.97
-        }
-      ]
-    },
-    {
-      "type_name": "风格板块",
-      "plate_id": 24898553,
-      "name": "ST股",
-      "chg_pct": 1.48,
-      "fund_yi": 2.25,
-      "limit_up_cnt": 3,
-      "leaders": [
-        {
-          "name": "*ST泉为",
-          "symbol": "300716.SZ",
-          "chg_pct": 17.61
-        },
-        {
-          "name": "*ST四通",
-          "symbol": "603838.SS",
-          "chg_pct": 10.05
-        },
-        {
-          "name": "*ST威领",
-          "symbol": "002667.SZ",
-          "chg_pct": 10.02
-        },
-        {
-          "name": "*ST英飞",
-          "symbol": "002528.SZ",
-          "chg_pct": 9.96
-        },
-        {
-          "name": "*ST集友",
-          "symbol": "603429.SS",
-          "chg_pct": 9.04
-        }
-      ]
-    },
-    {
-      "type_name": "风格板块",
-      "plate_id": 5433758,
-      "name": "业绩增长",
-      "chg_pct": 1.13,
-      "fund_yi": -5.6,
-      "limit_up_cnt": 1,
-      "leaders": [
-        {
-          "name": "盛达资源",
-          "symbol": "000603.SZ",
-          "chg_pct": 10.01
-        },
-        {
-          "name": "银禧科技",
-          "symbol": "300221.SZ",
-          "chg_pct": 9.84
-        },
-        {
-          "name": "招商轮船",
-          "symbol": "601872.SS",
-          "chg_pct": 7.15
-        },
-        {
-          "name": "中远海能",
-          "symbol": "600026.SS",
-          "chg_pct": 6.94
-        },
-        {
-          "name": "雅化集团",
-          "symbol": "002497.SZ",
-          "chg_pct": 4.73
-        }
-      ]
-    },
-    {
-      "type_name": "风格板块",
-      "plate_id": 17428174,
-      "name": "强势人气股",
-      "chg_pct": 1.11,
-      "fund_yi": -6.19,
-      "limit_up_cnt": 12,
-      "leaders": [
-        {
-          "name": "天洋新材",
-          "symbol": "603330.SS",
-          "chg_pct": 10.04
-        },
-        {
-          "name": "水发燃气",
-          "symbol": "603318.SS",
-          "chg_pct": 10.03
-        },
-        {
-          "name": "宿迁联盛",
-          "symbol": "603065.SS",
-          "chg_pct": 10.03
-        },
-        {
-          "name": "*ST威领",
-          "symbol": "002667.SZ",
-          "chg_pct": 10.02
-        },
-        {
-          "name": "越剑智能",
-          "symbol": "603095.SS",
-          "chg_pct": 10.02
-        }
-      ]
-    },
-    {
-      "type_name": "风格板块",
-      "plate_id": 93250001,
-      "name": "回购增持再贷款",
-      "chg_pct": 1.02,
-      "fund_yi": 3.88,
-      "limit_up_cnt": 0,
-      "leaders": [
-        {
-          "name": "福赛科技",
-          "symbol": "301529.SZ",
-          "chg_pct": 8.23
-        },
-        {
-          "name": "招商轮船",
-          "symbol": "601872.SS",
-          "chg_pct": 7.15
-        },
-        {
-          "name": "中远海能",
-          "symbol": "600026.SS",
-          "chg_pct": 6.94
-        },
-        {
-          "name": "东芯股份",
-          "symbol": "688110.SS",
-          "chg_pct": 5.58
-        },
-        {
-          "name": "中远海特",
-          "symbol": "600428.SS",
-          "chg_pct": 3.05
-        }
-      ]
-    },
-    {
-      "type_name": "风格板块",
-      "plate_id": 13492121,
-      "name": "筹码集中",
-      "chg_pct": 0.89,
-      "fund_yi": 3.94,
-      "limit_up_cnt": 0,
-      "leaders": [
-        {
-          "name": "金刚光伏",
-          "symbol": "300093.SZ",
-          "chg_pct": 8.86
-        },
-        {
-          "name": "艾艾精工",
-          "symbol": "603580.SS",
-          "chg_pct": 8.01
-        },
-        {
-          "name": "ST惠伦",
-          "symbol": "300460.SZ",
-          "chg_pct": 5.05
-        },
-        {
-          "name": "中广天择",
-          "symbol": "603721.SS",
-          "chg_pct": 4.64
-        },
-        {
-          "name": "工大科雅",
-          "symbol": "301197.SZ",
-          "chg_pct": 3.93
-        }
-      ]
-    },
-    {
-      "type_name": "风格板块",
-      "plate_id": 13011026,
-      "name": "高价股",
-      "chg_pct": 0.81,
-      "fund_yi": 1.91,
-      "limit_up_cnt": 1,
-      "leaders": [
-        {
-          "name": "中瓷电子",
-          "symbol": "003031.SZ",
-          "chg_pct": 10.0
-        },
-        {
-          "name": "麦格米特",
-          "symbol": "002851.SZ",
-          "chg_pct": 8.27
-        },
-        {
-          "name": "福赛科技",
-          "symbol": "301529.SZ",
-          "chg_pct": 8.23
-        },
-        {
-          "name": "东田微",
-          "symbol": "301183.SZ",
-          "chg_pct": 7.56
-        },
-        {
-          "name": "扬杰科技",
-          "symbol": "300373.SZ",
-          "chg_pct": 7.01
-        }
-      ]
-    },
-    {
-      "type_name": "风格板块",
-      "plate_id": 16920249,
-      "name": "股权转让",
-      "chg_pct": 0.38,
-      "fund_yi": -1.21,
-      "limit_up_cnt": 5,
-      "leaders": [
-        {
-          "name": "*ST泉为",
-          "symbol": "300716.SZ",
-          "chg_pct": 17.61
-        },
-        {
-          "name": "熙菱信息",
-          "symbol": "300588.SZ",
-          "chg_pct": 11.47
-        },
-        {
-          "name": "天洋新材",
-          "symbol": "603330.SS",
-          "chg_pct": 10.04
-        },
-        {
-          "name": "*ST威领",
-          "symbol": "002667.SZ",
-          "chg_pct": 10.02
-        },
-        {
-          "name": "通鼎互联",
-          "symbol": "002491.SZ",
-          "chg_pct": 10.02
-        }
-      ]
-    },
-    {
-      "type_name": "风格板块",
-      "plate_id": 14671841,
-      "name": "业绩爆雷",
-      "chg_pct": 0.25,
-      "fund_yi": 4.23,
-      "limit_up_cnt": 0,
-      "leaders": [
-        {
-          "name": "赣锋锂业",
-          "symbol": "002460.SZ",
-          "chg_pct": 5.56
-        },
-        {
-          "name": "中曼石油",
-          "symbol": "603619.SS",
-          "chg_pct": 4.54
-        },
-        {
-          "name": "*ST中岩",
-          "symbol": "002542.SZ",
-          "chg_pct": 4.4
-        },
-        {
-          "name": "欧菲光",
-          "symbol": "002456.SZ",
-          "chg_pct": 3.81
-        },
-        {
-          "name": "ST喜临门",
-          "symbol": "603008.SS",
-          "chg_pct": 2.38
-        }
-      ]
-    },
-    {
-      "type_name": "风格板块",
-      "plate_id": 15030162,
-      "name": "资产重组",
-      "chg_pct": 0.17,
-      "fund_yi": 15.55,
-      "limit_up_cnt": 6,
-      "leaders": [
-        {
-          "name": "概伦电子",
-          "symbol": "688206.SS",
-          "chg_pct": 10.8
-        },
-        {
-          "name": "水发燃气",
-          "symbol": "603318.SS",
-          "chg_pct": 10.03
-        },
-        {
-          "name": "湖南白银",
-          "symbol": "002716.SZ",
-          "chg_pct": 10.03
-        },
-        {
-          "name": "江钨装备",
-          "symbol": "600397.SS",
-          "chg_pct": 10.01
-        },
-        {
-          "name": "中瓷电子",
-          "symbol": "003031.SZ",
-          "chg_pct": 10.0
-        }
-      ]
-    },
-    {
-      "type_name": "风格板块",
-      "plate_id": 17290881,
-      "name": "ST摘帽",
-      "chg_pct": 0.13,
-      "fund_yi": 2.16,
-      "limit_up_cnt": 0,
-      "leaders": [
-        {
-          "name": "金刚光伏",
-          "symbol": "300093.SZ",
-          "chg_pct": 8.86
-        },
-        {
-          "name": "艾艾精工",
-          "symbol": "603580.SS",
-          "chg_pct": 8.01
-        },
-        {
-          "name": "智云股份",
-          "symbol": "300097.SZ",
-          "chg_pct": 5.47
-        },
-        {
-          "name": "中广天择",
-          "symbol": "603721.SS",
-          "chg_pct": 4.64
-        },
-        {
-          "name": "松发股份",
-          "symbol": "603268.SS",
-          "chg_pct": 3.75
-        }
-      ]
+      "plate": "有色(锑)",
+      "name": "湖南白银",
+      "chg_pct": 10.03
     }
   ],
-  "breadth_history": [],
-  "narrative": "【股往金来：8月24日（ 周一）晋级个股机会 各位股民朋友们大家好，今天咱们聊聊8月21日所有涨停、连板梯队，结合板块资金流向，预判明天8月24日哪些个股存在晋级机会，全程干货，建议点赞收藏。 先看大盘短线整体环境，周五指数走出缩量修复行情，创业板领涨，但市场分化极其严重，全天54只非ST涨停，跌停多达14家，炸板率72%，很明显高位题材负反馈持续存在，短线情绪偏弱，两市成交额1.89万亿，.】\n股往金来2026-08-23 12:38个股人气排名理财有风险，投资需谨慎8月24日（周一）晋级个股机会先看大盘短线整体环境，周五指数走出缩量修复行情，创业板领涨，但市场分化极其严重，全天54只非ST涨停，跌停多达14家，炸板率72%，很明显高位题材负反馈持续存在，短线情绪偏弱，两市成交额1.89万亿，相比前一日明显缩量，场外资金观望情绪浓厚。连板梯队出现明显断层，全市场最高空间板仅3连板，没有4板个股，中位2连板一共10只，首板分散在医药、光通信、机器人、液冷多个板块，无绝对主线，资金轮动速度加快，明天接力一定要严控仓位。\n首先拆解最高梯队3连板标的：汉森制药。作为当前市场唯一3板空间龙头，炒作逻辑是创新药+中药，全天一字封板，盘中没有任何换手，封单虽然稳定，但这种一字加速板利弊分明。利好在于板块有批量医药涨停支撑，题材逻辑很硬；风险点在于缺少换手，场内获利盘堆积，明天冲击4板压力极大。如果明天高开超过5个点，放量无法快速回封，极易出现大幅跳水，仅适合观望，不建议半路盲目接力；只有小幅高开，充分换手后资金承接有力，才存在晋级4板的可能性。\n【股往金来：8月24日（ 周一）晋级个股机会 各位股民朋友们大家好，今天咱们聊聊8月21日所有涨停、连板梯队，结合板块资金流向，预判明天8月24日哪些个股存在晋级机会，全程干货，建议点赞收藏。 先看大盘短线整体环境，周五指数走出缩量修复行情，创业板领涨，但市场分化极其严重，全天54只非ST涨停，跌停多达14家，炸板率72%，很明显高位题材负反馈持续存在，短线情绪偏弱，两市成交额1.89万亿，.】\n接下来是10只2连板中位梯队，分板块逐个解析：医药方向双鹭药业、贝瑞基因、近岸蛋白、键凯科技、康希诺，这五只全部属于创新药、CXO赛道，也是今天资金抱团最强的板块。医药连续两天批量涨停，板块持续性相对最优，明天2进3的晋级概率整体高于其他题材。其中康希诺疫苗催化充足，封板资金扎实，换手均匀，是医药2板里优先观察标的；反观双鹭药业尾盘才封板，筹码松动，晋级力度偏弱，谨慎参与。\n通信算力2连板：中关村、通鼎互联。光通信、算力线缆受益通信基建政策利好，通鼎互联日内分时承接流畅，叠加光模块板块多只趋势涨停，题材有政策加持，明天具备晋级潜力；中关村封板力度一般，板块跟风较少，优先作为备选观察。\n【股往金来：8月24日（ 周一）晋级个股机会 各位股民朋友们大家好，今天咱们聊聊8月21日所有涨停、连板梯队，结合板块资金流向，预判明天8月24日哪些个股存在晋级机会，全程干货，建议点赞收藏。 先看大盘短线整体环境，周五指数走出缩量修复行情，创业板领涨，但市场分化极其严重，全天54只非ST涨停，跌停多达14家，炸板率72%，很明显高位题材负反馈持续存在，短线情绪偏弱，两市成交额1.89万亿，.】\n高端制造机器人赛道2连板：科森科技、宇环数控。机器人板块全天11只个股涨停，板块效应最强，但板块内高低切换明显，高位趋势股哈森股份5天4板冲高回落，给中位股带来压力。科森科技叠加AI散热、消费电子多重概念，资金认可度更高；宇环数控纯机器人概念，辨识度略低，明天博弈2进3性价比一般。最后一只2板深中华A，属于老旧资产重组独立题材，没有板块联动，属于独立个股行情，没有板块助攻，明天断板概率很高，直接规避。除标准连板之外，还要重点关注多日趋势龙头：哈森股份5天4板机器人、旭光电子6天4板光通信、天洋新材8天5板光模块材料。这几只属于趋势趋势连板，没有标准连续一字涨停，但持续走趋势新高，适合低吸思路，不适合打板接力。尤其是天洋新材，光模块业绩持续超预期，资金中线布局明显，明天分歧低吸机会大于追高。再说说首板机会，明天重点筛选低位1进2潜力标的，优先光通信、创新药两大主线首板。液冷、电子特气板块首板持续性偏弱，仅适合短线套利，不适合重仓博弈连板。最后给大家总结明天实操纪律。\n【8.21复盘_易水121_淘股吧】\n8月21日，A股市场呈现典型的“指数微涨、个股普跌”的缩量震荡格局。三大指数早盘小幅冲高后全天维持窄幅震荡，最终集体收红，但市场赚钱效应较差。沪深两市成交额较前一日缩量约2000亿元，跌破2万亿元关口，显示出在存量资金博弈下，市场观望情绪浓厚，资金呈现明显的结构性抱团特征。\n核心盘面数据-上证指数：收报3905.20点，微涨0.04%。-深证成指：收报14094.17点，上涨0.87%。\n-创业板指：表现相对强势，收报3545.58点，上涨1.43%。\n-市场情绪：全天成交额约1.89万亿元，全市场超2800只个股下跌，呈现明显的“赚指数不赚钱”现象。\n领涨主线：避险情绪与AI算力共振在缩量环境下，资金高度集中于两大核心主线：1.\n贵金属与避险资产：受隔夜美股收跌、全球风险资产承压影响，避险情绪升温。现货黄金涨至4543美元/盎司上方，直接点燃A股贵金属板块。湖南白银盛达资源白银有色等多股涨停，深中华A实现2连板。\n2.\n【8.21 市场缩量高位股集体退潮下，低位连板机会要来了吗_Tengvincent_淘股吧】\n8.21周五复盘：[淘股吧]一、超短情绪：缩量退潮，高位股负反馈严重今日市场呈现缩量退潮特征，情绪从修复切换至分化周期。涨停家数：54-57只，较昨日83只明显减少跌停家数：14-15只，高位股批量跌停炸板率：25%（封板率75%），封板质量较昨日改善连板晋级率：25%，较昨日14%回升最高连板：3板（汉森制药），从4板降至3板成交额：1.88万亿，缩量2000亿，创4个月地量涨跌比：2505:2862，跌多涨少核心信号：成交额连续三天梯次缩量（2.51→2.08→1.88），高位股集体\"斩首\"：哈药股份跌停（71万手封单）、传智教育2连跌停、一鸣食品跌停，医药主线一日游证伪，市场进入退潮延续+地量等破局阶段。\n二、连板梯队分析：高度压缩，二板扩容3连板汉森制药医药一字板，全场最高板8天5板天洋新材光通信断板反包，换手28.84%6天4板旭光电子光通信换手12.33%，成交额37.83亿5天4板哈森股份机器人换手6.99%8天4板越剑智能机器人换手3.03%6天3板圣达生物中瓷电子医药/CPO换手6.30%/\n【8.21 市场缩量高位股集体退潮下，低位连板机会要来了吗_Tengvincent_淘股吧】\n4.74%2连板10只，梯队大幅扩容：键凯科技康希诺近岸蛋白通鼎互联深中华A贝瑞基因中关村双鹭药业宇环数控科森科技医药/光通信/贵金属/机器人一句话结论：4板以上全部断层，最高板只剩汉森制药一根独苗（一字买不进），但二板从3只暴增至10只，低位接力生态明显改善，市场从普涨切换为结构性行情。\n三、热点题材：光通信崛起，医药分化（光通信/CPO与贵金属接棒成为新热点，市场进入缩量分歧期）。光通信/CPO 11只8天5板主流题材，催化硬（SK海力士CPO论文），资金净流入90亿医药6只3连板题材强分化，前排存活、后排兑现，主力净流出73亿贵金属多只首板2连板支线题材，金价上行驱动，机构外资联手锂矿多只首板无连板支线题材，超跌反弹，持续性待观察农业退潮连板断板噪音，资金大规模撤离，回避一句话结论：光通信取代医药成为新核心主线，CPO概念净流入90亿，5G概念净流入96亿，直接把通信板块拉涨2.47%，催化逻辑硬（下一代光互连技术路线图）。\n四、龙头定位：无真龙，阶段板撑着空间板：汉森制药3连板，一字缩量，换手4.53%；一字买不进，三进四是大考。趋势龙头：天洋新材8天5板，换手28.84%，龙虎榜净买入\n【8/21复盘精选_圆方抄手_淘股吧】\n【A股短线复盘】2026-08-21（周五）大盘概况-上证3905.20（+0.04%）|深成指14094（+0.87%）|创业板3545.58（+1.43%）|科创50 1653.56（+0.04%）-两市成交1.88万亿，缩量约2000亿，创4个多月地量，连续3日缩量-️黄白线分化：权重护盘翻红，超2800只个股下跌，个股普跌市场情绪-涨停57家|跌停14家|封板率75%|晋级率仅25%-连板高度降至3板，高位股负反馈严重：一鸣食品红四方传智教育(2连跌停)、开开实业哈三联跌停-️情绪明显退潮，医药\"一日游\"重挫：昨日板块净流入115亿，今日净流出76亿，博腾、安科、莱美跌超10%连板梯队（最高3板）-3板：汉森制药创新药-2板：键凯科技/近岸蛋白/中关村/贝瑞基因/双鹭药业（医药）、通鼎互联（光纤）、科森科技机器人）、深中华A（黄金）-多波高标：天洋新材8天5板(CPO)、旭光电子6天4板、哈森股份5天4板(机器人/消费电子)、越剑智能8天4板、中瓷电子6天3板主线板块1.\n【8月21日复盘_北溟金戟_淘股吧】\n8/21市场情绪复盘：修复分歧日，医药成唯一主线情绪仪表盘指标8/21 8/20信号创业板指+1.43%+0.64%科技带动上涨/下跌2266/2586（46.7%）3745/1178跌多涨少涨停/跌停54/13 79/12涨停回落连板家数12（修复）4梯队回暖最高连板汉森制药3板金健米业4板高度压缩炸板率25.0%36.8%封板改善评分（中性）—指数修复延续但个股跌多涨少，典型的指数行情、赚钱效应分化。情绪周期8/19冰点(36/118)→8/20弱修复(79/12)→8/21分歧(54/13,指数涨但跌多涨少)核心矛盾：资金集中打权重科技（光模块/算力/新能源），普通个股被抽血。涨停从79回落到54，说明资金从普涨修复转向聚焦进攻。主线研判：医药确认主升汉森制药3板（一字）成为新高度锚5只医药2板：贝瑞基因双鹭药业近岸蛋白康希诺键凯科技→梯队完整、宽度充足，唯一确认的主线金健米业4板断板（-\n【2026年8月21日A股涨停复盘_腾讯新闻】\n2026年8月21日A股涨停复盘连板个股：3连板】汉森制药2连板】深中华A贝瑞基因、中关村、双鹭药业通鼎互联宇环数控科森科技哈森股份近岸蛋白康希诺键凯科技今日市场热点：【能源金属】相关个股：融捷股份、盛新锂能、永杉锂业消息面：美元指数走低驱动大宗商品价格走高，碳酸锂期货早盘涨超2%。正信期货指出，枧下窝矿复产进度不及预期，而需求环比维持增长，去库速度有所加速，强现实延续，预计锂价或震荡偏强运行。\n【贵金属】相关个股：湖南白银、赤峰黄金、西部黄金消息面：特朗普政府宣布对伊朗实施“史上最严厉”经济制裁,中东局势再度升温,地缘政治风险推升了黄金的避险需求。另外,美国财长贝森特暗示,可能进一步扩大长期国债回购规模,单次回购规模或超40亿美元。这一表态压制了美债收益率的上行空间,对无息资产黄金构成支撑。\n【油气开采及服务】相关个股：中曼石油、科力股份、新天然气消息面：据东兴证券819日研报，2026年第二季度布伦特原油均价飙升至97.6美元/桶，环比上涨45.87%，油价高位运行直接驱动油气开采板块盈利大幅提升。\n【8月21日涨跌停分析：57股涨停14股跌停，通信设备、专用设备表现活跃，汉森制药晋级3连板 - 今日头条Loading.】\n8月21日涨跌停分析：57股涨停14股跌停，通信设备、专用设备表现活跃，汉森制药晋级3连板2026-08-21 22:19·金融界8月21日，A股全天共有57股涨停、14股跌停。\n板块方面，通信设备概念掀起涨停潮，中瓷电子、楚天龙、瑞斯康达等6股强势封板；专用设备概念集中爆发，越剑智能、深科达、达意隆等5股封住涨停；化学制品概念表现活跃，圣达生物、宿迁联盛、日科化学涨停；消费电子概念强势崛起，可川科技、科森科技、共达电声封板；化学制药概念持续发酵，键凯科技、北陆药业、中关村强势封板。\n【2026年8月21日 复盘总结_玉衡辰星_淘股吧】\n科技方向：昨日光通信3只、PCB/芯片3-4只、机器人4只，今日光通信暴增至11只、液冷IDC新增4只、PCB 2只、芯片2只、消费电子4只、机器人4只，科技方向全面爆发合计超23只涨停，取代医药成为新主线，光通信出现通鼎互联2板+星网锐捷4.03亿大资金介入；5.\n黄金方向：昨日4只今日4只，深中华A晋级2板，湖南白银4.09亿+XD山东黄机构4.39亿，大资金持续介入，避险支线持续性较强。4.\n明日重点关注板块1.\n核心跟踪：光通信新主线持续性，观察11只涨停中是否有标的继续晋级连板，若通鼎互联晋级3板、星网锐捷等大资金标的继续强势则光通信主线延续，若批量断板则光通信为一日游超跌反弹；2.\n高度跟踪：全场最高3板仅剩汉森制药1只孤板且医药已退潮，3板晋级4板难度极大，观察汉森制药能否晋级，若断板则连板高度降至2板（10只2板），情绪可能再度回落，但若多只2板晋级3板则连板生态打开；3.\n医药退潮跟踪：观察誉衡药业、哈药股份、哈三联等大跌标的能否止跌，若医药继续杀跌则拖累市场情绪，若止跌企稳则资金可彻底转向科技；4.\n黄金避险跟踪：湖南白银4.09亿、XD山东黄机构\n【2026年8月21日 复盘总结_玉衡辰星_淘股吧】\n4.65%，昨日3只2板仅汉森制药1只晋级3板（速达股份志邦家居全部断板），昨日75只一板有10只晋级二板（近岸蛋白科森科技键凯科技、通鼎互联、深中华A、中关村哈森股份宇环数控双鹭药业贝瑞基因），连板梯队合计11家，高度下降但梯队大幅扩容，二板从3只暴增至10只，低位接力生态明显改善；-涨停封板率75%，昨日63%大幅回升12个百分点，缩量环境下炸板反而减少，封板稳定性大幅提升，资金打板更加聚焦核心标的，54只涨停中仅约四分之一盘中开板，封板质量优秀；-连板晋级率25%，昨日14%大幅回升11个百分点，高位接力生态显著改善，昨日2板晋级3板成功率33%（1/3），1板晋级2板成功率13.3%（10/75），低位晋级率大幅提升，连板生态开始修复；-综合情绪强度48，指数缩量微涨、涨停降至54、跌停13、封板率75%、连板晋级率25%、最高连板降至3板但二板扩容至10只，六大信号确认从昨日的缩量弱修复周期切换至缩量横盘分化周期，情绪从中等偏强回落至中性偏弱，但封板率和晋级率双升说明资金聚焦核心、杂毛退潮，市场从普涨",
-  "overseas": [
+  "breadth_history": [
     {
-      "name": "日经225",
-      "close": "66016.36",
-      "chg": "-0.3027%",
-      "cls": "negative"
-    },
-    {
-      "name": "韩国综合",
-      "close": "6912.95",
-      "chg": "+0.881%",
-      "cls": "positive"
-    },
-    {
-      "name": "道琼斯",
-      "close": "53277.01",
-      "chg": "+0.9814%",
-      "cls": "positive"
-    },
-    {
-      "name": "纳斯达克",
-      "close": "26180.46",
-      "chg": "+0.4346%",
-      "cls": "positive"
-    },
-    {
-      "name": "标普500",
-      "close": "7674.37",
-      "chg": "+0.4346%",
-      "cls": "positive"
+      "date": "",
+      "up": 2505,
+      "down": 2862,
+      "amount": "1.8793万亿"
     }
   ],
-  "margin": {
-    "finance": "1.271万亿",
-    "lending": "100.1亿",
-    "total": "1.281万亿"
-  },
-  "cross_check": {
-    "ok": true,
-    "dimensions": [
+  "overseas": [],
+  "margin": [],
+  "emotion": {
+    "raw_score": 23.0,
+    "adj_score": 29.09,
+    "dims": [
       {
-        "name": "板块主力资金流（东财 vs 问财）",
-        "matched": [
-          {
-            "eastmoney": "通信设备",
-            "emx_yi": 85.32,
-            "iwencai": 76.34,
-            "same_sign": true
-          },
-          {
-            "eastmoney": "有色金属",
-            "emx_yi": 88.29,
-            "iwencai": 34.49,
-            "same_sign": true
-          },
-          {
-            "eastmoney": "黄金",
-            "emx_yi": 13.78,
-            "iwencai": 36.85,
-            "same_sign": true
-          },
-          {
-            "eastmoney": "半导体",
-            "emx_yi": 6.23,
-            "iwencai": 20.66,
-            "same_sign": true
-          },
-          {
-            "eastmoney": "医药生物",
-            "emx_yi": -91.11,
-            "iwencai": null,
-            "same_sign": null
-          },
-          {
-            "eastmoney": "银行",
-            "emx_yi": -8.49,
-            "iwencai": null,
-            "same_sign": null
-          }
-        ],
-        "direction_consistent": true,
-        "uncovered": [
-          "医药生物",
-          "银行"
-        ],
-        "note": "口径不同(申万一级 vs 同花顺三级行业)，仅比对方向；问财未覆盖流出项：医药生物,银行"
+        "dim": "大小盘轮动",
+        "score": "5",
+        "status": "小盘主导(中证1000 > 沪深300 +8%)"
       },
       {
-        "name": "问财内部：资金流入Top vs 涨幅Top",
-        "flow_top": [
-          "元件",
-          "印制电路板",
-          "工业金属",
-          "消费电子",
-          "消费电子零部件及组装",
-          "贵金属",
-          "通信网络设备及器件",
-          "通信设备"
-        ],
-        "chg_top": [
-          "房屋建筑业指数",
-          "能源金属",
-          "贵金属",
-          "钨",
-          "钼",
-          "铅锌",
-          "锂",
-          "黑色金属矿采选业指数"
-        ],
-        "overlap": [
-          "贵金属"
-        ],
-        "overlap_count": 1
+        "dim": "行业轮动",
+        "score": "3",
+        "status": "温和分化(头部在涨,尾部在跌,头部尾部相差在2%~5%)"
       },
       {
-        "name": "个股维度：同花顺涨停池 抽样 vs 问财可查",
-        "samples": [
-          {
-            "name": "汉森制药",
-            "found": false
-          },
-          {
-            "name": "键凯科技",
-            "found": false
-          },
-          {
-            "name": "通鼎互联",
-            "found": false
-          },
-          {
-            "name": "科森科技",
-            "found": false
-          },
-          {
-            "name": "双鹭药业",
-            "found": false
-          }
-        ],
-        "all_found": false
+        "dim": "板块宽度",
+        "score": "3",
+        "status": "局部热点(上涨板块40~60%)"
       },
       {
-        "name": "龙虎榜（fuyao 官方 vs 同花顺 CLI）",
-        "fuyao_count": 12,
-        "hithink_count": 12,
-        "overlap": [
-          "山东黄金",
-          "沃森生物",
-          "湖南白银",
-          "星网锐捷",
-          "天洋新材",
-          "康希诺",
-          "诺德股份",
-          "北陆药业",
-          "华大智造",
-          "哈药股份",
-          "国仪公司",
-          "赤天化"
-        ],
-        "overlap_count": 12,
-        "same_direction": 12,
-        "direction_consistent": true
+        "dim": "情绪指标",
+        "score": "5",
+        "status": "情绪狂热(涨停>50只，或者涨股比>70%，两融周增>2% )"
       },
       {
-        "name": "涨停池（fuyao 官方 vs 同花顺 CLI）",
-        "fuyao_count": 54,
-        "hithink_count": 54,
-        "overlap_count": 54,
-        "consistent": true,
-        "real_break_rate": 25.0
+        "dim": "个股宽度",
+        "score": "5",
+        "status": "普涨(创新高>200只，或者破位<10只)"
       },
       {
-        "name": "选股宝板块（涨幅 vs 问财 + 领涨股 vs 涨停池）",
-        "matched": [],
-        "direction_consistent": null,
-        "leader_overlap": [
-          "陶瓷基板/旭光电子",
-          "陶瓷基板/中瓷电子",
-          "氦气/水发燃气",
-          "氦气/和远气体",
-          "碳化硅/宇环数控",
-          "碳化硅/中瓷电子",
-          "碳化硅/士兰微",
-          "碳化硅/国星光电",
-          "液冷服务器/博汇股份",
-          "液冷服务器/飞龙股份",
-          "液冷服务器/金富科技",
-          "eSIM/东信和平",
-          "eSIM/楚天龙",
-          "铜箔/覆铜板/诺德股份",
-          "头盔/沃特股份",
-          "宁德时代概念股/诺德股份",
-          "白银/湖南白银",
-          "白银/盛达资源",
-          "白银/白银有色",
-          "黄金/湖南白银",
-          "黄金/盛达资源",
-          "黄金/白银有色",
-          "有色 · 锌/湖南白银",
-          "有色 · 锌/盛达资源",
-          "有色 · 锌/白银有色",
-          "锂矿/碳酸锂/融捷股份",
-          "有色 · 钼/白银有色",
-          "有色 · 锑/湖南白银",
-          "业绩增长/盛达资源",
-          "强势人气股/天洋新材",
-          "强势人气股/水发燃气",
-          "强势人气股/宿迁联盛",
-          "强势人气股/越剑智能",
-          "高价股/中瓷电子",
-          "股权转让/天洋新材",
-          "股权转让/通鼎互联",
-          "资产重组/水发燃气",
-          "资产重组/湖南白银",
-          "资产重组/江钨装备",
-          "资产重组/中瓷电子"
-        ],
-        "leader_overlap_count": 40
+        "dim": "风格轮动",
+        "score": "3",
+        "status": "均衡(成长/价值差异 < ±2%)"
+      },
+      {
+        "dim": "技术指标",
+        "score": "3",
+        "status": "中性(MACD缠绕，或者RSI中性，或者布林中轨附近)"
+      },
+      {
+        "dim": "中长期趋势方向",
+        "score": "2",
+        "status": "弱势下跌(均线空头排列,或者短线下穿中线且距离中线以下距离较小)"
+      },
+      {
+        "dim": "中长期趋势强度",
+        "score": "3",
+        "status": "震荡"
+      },
+      {
+        "dim": "短期趋势方向",
+        "score": "4",
+        "status": "温和上涨(均线多头排列,或者短线上穿中线且距离中线以上距离较小)"
+      },
+      {
+        "dim": "短期趋势强度",
+        "score": "3",
+        "status": "震荡"
+      },
+      {
+        "dim": "估值水平",
+        "score": "4",
+        "status": "偏高区间(PE分位数70%~90%)"
+      },
+      {
+        "dim": "成交量能",
+        "score": "3",
+        "status": "缩量震荡(成交额90~110%均值)"
       }
     ]
   },
+  "cross_check": {
+    "ok": false,
+    "note": "westock 单源，跳过交叉校验",
+    "dimensions": []
+  },
   "source_log": [
-    "hithink.ladder ok",
-    "hithink.index ok",
-    "hithink.hot ok",
-    "hithink.dragon ok",
-    "hithink.pool ok(54只)",
-    "fuyao.pool ok",
-    "fuyao.dragon ok",
-    "fuyao.break ok",
-    "xuangubao.plates ok(30个)",
-    "mx-data.breadth FAIL",
-    "mx-data.sector FAIL",
-    "iwencai.market-query(flow-in) ok",
-    "iwencai.market-query(flow-out) FAIL",
-    "iwencai.sector-selector ok",
-    "mx-search.narrative ok",
-    "mx-data.overseas FAIL",
-    "mx-data.margin FAIL"
+    {
+      "src": "westock.changedist",
+      "ok": true,
+      "up": 2505,
+      "down": 2862,
+      "zt": 58,
+      "dt": 15,
+      "amount_yi": 1.8793
+    },
+    {
+      "src": "westock.indices",
+      "ok": true,
+      "count": 4
+    },
+    {
+      "src": "westock.sector",
+      "ok": true,
+      "in": 3,
+      "out": 1,
+      "chg": 12,
+      "leaders": 12
+    },
+    {
+      "src": "westock.lhb",
+      "ok": true,
+      "count": 29
+    },
+    {
+      "src": "westock.emotion",
+      "ok": true,
+      "raw": 23.0,
+      "adj": 29.09
+    },
+    {
+      "src": "hithink.limit-up-ladder",
+      "ok": true,
+      "two": 10,
+      "three": 1,
+      "space": 3,
+      "space_stock": "汉森制药"
+    }
   ]
 }
