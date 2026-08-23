@@ -15,3 +15,11 @@ _trash/
 _*/
 mx_data_*
 mx_search_*
+
+# 源码不入库：只推网站程序（index.html 等产物），源码留本地
+collect.py
+update.py
+xcheck.py
+gen_template.py
+make_template.py
+
