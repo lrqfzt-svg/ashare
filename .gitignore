@@ -1,9 +1,7 @@
 __pycache__/
 *.pyc
-# 模板版自身产物（由 make_template.py 生成，不入库）
+# 模板版历史存档（由 make_template.py 生成，不入库；站点入口 index.html 入库）
 收盘复盘模板版_*.html
-_tpl_share/
 # 网页版研判报告（Claw make_report.py 产出，绝不进 ashare）
 收盘复盘与明日研判_*.html
 收盘复盘与明日研判_*.pdf
-_tpl_share_web/
