@@ -707,7 +707,8 @@ def _portal_section(d):
     mout_rows = [{"name": x.get("name", ""), "val": _parse_yi(x.get("val", ""))}
                  for x in d.get("money_out", []) if x.get("name") not in ("—", "", None)]
     fund_rows = [{"name": r["name"], "val": r["val"], "out": False} for r in min_rows[:5]]
-    fund_rows += [{"name": r["name"], "val": -r["val"], "out": True} for r in mout_rows[:5]]
+    # money_out 里的 val 已经是带负号的(如 "-39.33亿"),直接用,不要再次取反
+    fund_rows += [{"name": r["name"], "val": r["val"], "out": True} for r in mout_rows[:5]]
     fund_rows = [r for r in fund_rows if r["name"]]
 
     # 连板梯队（从 jinji_rows 取档位与成功数）
@@ -767,13 +768,13 @@ def _portal_section(d):
         }} else {{
           // 缺失项：显示占位文字+上涨柱，绝不画失真饼
           var sUp = hasUp ? D.up : 0;
-          c1.setOption({{ grid:{{left:8,right:8,top:30,bottom:10,containLabel:true}},
+          c1.setOption({{ grid:{{left:8,right:40,top:30,bottom:10,containLabel:true}},
             title:{{text: hasUp ? '上涨 '+sUp+' 只（下跌数据缺失）' : '涨跌数据均缺失', left:'center', top:4, textStyle:{{color:SUB,fontSize:11,fontWeight:'normal'}}}},
-            xAxis:{{type:'value',axisLabel:{{color:SUB,fontSize:10}},splitLine:{{lineStyle:{{color:GRID}}}}}},
-            yAxis:{{type:'category',data:['上涨'],axisLabel:{{color:TXT,fontSize:12}}}},
-            series:[{{type:'bar',barMaxWidth:20,
+            xAxis:{{type:'value',min:0,axisLabel:{{color:SUB,fontSize:10}},splitLine:{{lineStyle:{{color:GRID}}}}}},
+            yAxis:{{type:'category',data:['上涨'],axisLabel:{{color:TXT,fontSize:13,fontWeight:'bold'}}}},
+            series:[{{type:'bar',barMaxWidth:24,
               data:[{{value:sUp,itemStyle:{{color:'#f85149'}}}}],
-              label:{{show:true,position:'right',color:'#ffffff',fontSize:12,fontWeight:'bold',formatter:'{{c}} 只'}}}}] }});
+              label:{{show:true,position:'insideEnd',color:'#ffffff',fontSize:12,fontWeight:'bold',formatter:'{{c}} 只'}}}}] }});
         }}
         var c2 = echarts.init(document.getElementById('chartFund'));
         var fdata = D.fund.slice().sort(function(a,b){{return a.val-b.val;}});

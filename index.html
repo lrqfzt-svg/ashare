@@ -182,7 +182,7 @@
   </div>
   <script>
   (function(){
-    var D = {"up": 2431.0, "down": null, "fund": [{"name": "通信设备（板块）", "val": 76.34, "out": false}, {"name": "半导体（板块）", "val": 15.19, "out": false}, {"name": "黄金（板块）", "val": 5.39, "out": false}, {"name": "全A合计", "val": 167.8, "out": false}, {"name": "医药生物（板块）", "val": 39.33, "out": true}], "ladder": [{"tier": "1进2", "succ": 10}, {"tier": "2进3", "succ": 1}, {"tier": "3进4", "succ": 0}, {"tier": "4进5", "succ": 0}]};
+    var D = {"up": 2431.0, "down": null, "fund": [{"name": "通信设备（板块）", "val": 76.34, "out": false}, {"name": "半导体（板块）", "val": 15.19, "out": false}, {"name": "黄金（板块）", "val": 5.39, "out": false}, {"name": "全A合计", "val": 167.8, "out": false}, {"name": "医药生物（板块）", "val": -39.33, "out": true}], "ladder": [{"tier": "1进2", "succ": 10}, {"tier": "2进3", "succ": 1}, {"tier": "3进4", "succ": 0}, {"tier": "4进5", "succ": 0}]};
     var TXT = '#e1e8ed', SUB='#8b949e', GRID='#21262d';
     function render(){
       try{
@@ -202,13 +202,13 @@
         } else {
           // 缺失项：显示占位文字+上涨柱，绝不画失真饼
           var sUp = hasUp ? D.up : 0;
-          c1.setOption({ grid:{left:8,right:8,top:30,bottom:10,containLabel:true},
+          c1.setOption({ grid:{left:8,right:40,top:30,bottom:10,containLabel:true},
             title:{text: hasUp ? '上涨 '+sUp+' 只（下跌数据缺失）' : '涨跌数据均缺失', left:'center', top:4, textStyle:{color:SUB,fontSize:11,fontWeight:'normal'}},
-            xAxis:{type:'value',axisLabel:{color:SUB,fontSize:10},splitLine:{lineStyle:{color:GRID}}},
-            yAxis:{type:'category',data:['上涨'],axisLabel:{color:TXT,fontSize:12}},
-            series:[{type:'bar',barMaxWidth:20,
+            xAxis:{type:'value',min:0,axisLabel:{color:SUB,fontSize:10},splitLine:{lineStyle:{color:GRID}}},
+            yAxis:{type:'category',data:['上涨'],axisLabel:{color:TXT,fontSize:13,fontWeight:'bold'}},
+            series:[{type:'bar',barMaxWidth:24,
               data:[{value:sUp,itemStyle:{color:'#f85149'}}],
-              label:{show:true,position:'right',color:'#ffffff',fontSize:12,fontWeight:'bold',formatter:'{c} 只'}}] });
+              label:{show:true,position:'insideEnd',color:'#ffffff',fontSize:12,fontWeight:'bold',formatter:'{c} 只'}}] });
         }
         var c2 = echarts.init(document.getElementById('chartFund'));
         var fdata = D.fund.slice().sort(function(a,b){return a.val-b.val;});
