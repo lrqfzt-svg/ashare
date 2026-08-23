@@ -565,61 +565,6 @@
   </div>
 </div>
 
-    <section class="block">
-      <h2>🔬 五源交叉验证（同花顺官方 fuyao / 同花顺 CLI / 东方财富 / 问财 / 选股宝）</h2>
-      <p class="sub">每日五源一致性校验：方向一致说明数据可靠；分化说明当日题材结构特征。</p>
-      <div class="cross-grid">
-        <div class="cross-card">
-          <div class="cross-title">① 板块主力资金流 · 方向一致性 <b style='color:#3fb950;'>一致</b></div>
-          <table class="cross-tbl">
-            <thead><tr><th>板块</th><th style="text-align:right">东财(亿)</th><th style="text-align:right">问财(亿)</th><th style="text-align:right">核验</th></tr></thead>
-            <tbody><tr><td>通信设备</td><td style='text-align:right'>+85.32亿</td><td style='text-align:right'>+76.34亿</td><td style='text-align:right'><span style="color:#3fb950;">方向一致 ✓</span></td></tr><tr><td>有色金属</td><td style='text-align:right'>+88.29亿</td><td style='text-align:right'>+34.49亿</td><td style='text-align:right'><span style="color:#3fb950;">方向一致 ✓</span></td></tr><tr><td>黄金</td><td style='text-align:right'>+13.78亿</td><td style='text-align:right'>+36.85亿</td><td style='text-align:right'><span style="color:#3fb950;">方向一致 ✓</span></td></tr><tr><td>半导体</td><td style='text-align:right'>+6.23亿</td><td style='text-align:right'>+20.66亿</td><td style='text-align:right'><span style="color:#3fb950;">方向一致 ✓</span></td></tr><tr><td>医药生物</td><td style='text-align:right'>-91.11亿</td><td style='text-align:right'>—</td><td style='text-align:right'><span style="color:#8b949e;">缺失</span></td></tr><tr><td>银行</td><td style='text-align:right'>-8.49亿</td><td style='text-align:right'>—</td><td style='text-align:right'><span style="color:#8b949e;">缺失</span></td></tr></tbody>
-          </table>
-          <div class="cross-note">口径不同(申万一级 vs 同花顺三级行业)，仅比对方向；问财未覆盖流出项：医药生物,银行</div>
-        </div>
-        <div class="cross-card">
-          <div class="cross-title">② 问财内部 · 资金流入Top vs 涨幅Top</div>
-          <div class="cross-sub">资金Top：元件、印制电路板、工业金属、消费电子、消费电子零部件及组装、贵金属、通信网络设备及器件、通信设备</div>
-          <div class="cross-sub">涨幅Top：房屋建筑业指数、能源金属、贵金属、钨、钼、铅锌、锂、黑色金属矿采选业指数</div>
-          <div class="cross-overlap">重叠 <b style="color:#58a6ff;">(1)</b>：贵金属</div>
-        </div>
-        <div class="cross-card">
-          <div class="cross-title">③ 个股维度 · 同花顺涨停池 vs 问财 <b style='color:#f85149;'>存在缺口</b></div>
-          <table class="cross-tbl">
-            <thead><tr><th>涨停股抽样</th><th style="text-align:right">问财可查</th></tr></thead>
-            <tbody><tr><td>汉森制药</td><td style='text-align:right'><span style="color:#f85149;">未查到</span></td></tr><tr><td>键凯科技</td><td style='text-align:right'><span style="color:#f85149;">未查到</span></td></tr><tr><td>通鼎互联</td><td style='text-align:right'><span style="color:#f85149;">未查到</span></td></tr><tr><td>科森科技</td><td style='text-align:right'><span style="color:#f85149;">未查到</span></td></tr><tr><td>双鹭药业</td><td style='text-align:right'><span style="color:#f85149;">未查到</span></td></tr></tbody>
-          </table>
-        </div>
-        <div class="cross-card">
-          <div class="cross-title">④ 龙虎榜 · fuyao官方 vs 同花顺CLI <b style='color:#3fb950;'>一致</b></div>
-          <div class="cross-sub">fuyao榜 12只 · 同花顺 12只</div>
-          <div class="cross-sub">重叠 <b style="color:#58a6ff;">(12)</b>：山东黄金、沃森生物、湖南白银、星网锐捷、天洋新材、康希诺、诺德股份、北陆药业等</div>
-          <div class="cross-overlap">净买同向 <b style="color:#3fb950;">12/12</b></div>
-        </div>
-        <div class="cross-card">
-          <div class="cross-title">⑤ 涨停池 · fuyao官方 vs 同花顺CLI <b style='color:#3fb950;'>一致</b></div>
-          <div class="cross-sub">fuyao涨停 54只 · 同花顺 54只</div>
-          <div class="cross-sub">重叠 <b style="color:#58a6ff;">(54)</b></div>
-          <div class="cross-overlap">真实炸板率（炸板池实测）：<b style="color:#d29922;">25.0%</b></div>
-        </div>
-        <div class="cross-card">
-          <div class="cross-title">⑥ 板块·选股宝 vs 问财 <b style='color:#8b949e;'>部分缺失</b></div>
-          <div class="cross-sub">领涨股命中涨停池 <b style="color:#3fb950;">(40)</b>：陶瓷基板/旭光电子、陶瓷基板/中瓷电子、氦气/水发燃气、氦气/和远气体、碳化硅/宇环数控、碳化硅/中瓷电子、碳化硅/士兰微、碳化硅/国星光电、液冷服务器/博汇股份、液冷服务器/飞龙股份等</div>
-          <div class="cross-note">选股宝公开板块涨幅/领涨股，交叉验证主线板块核心股是否进入涨停池。</div>
-        </div>
-      </div>
-    </section>
-    <style>
-      .cross-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:14px;}
-      .cross-card{background:#0d1117;border:1px solid #30363d;border-radius:12px;padding:16px;}
-      .cross-title{font-weight:700;color:#e1e8ed;margin-bottom:10px;font-size:15px;}
-      .cross-tbl{width:100%;border-collapse:collapse;font-size:13px;}
-      .cross-tbl th,.cross-tbl td{padding:5px 6px;border-bottom:1px solid #21262d;text-align:left;}
-      .cross-tbl th{color:#8b949e;font-weight:600;}
-      .cross-sub{font-size:12px;color:#c9d1d9;margin:6px 0;line-height:1.5;}
-      .cross-overlap{font-size:13px;color:#c9d1d9;margin-top:8px;padding-top:8px;border-top:1px solid #21262d;}
-      .cross-note{font-size:11px;color:#8b949e;margin-top:8px;}
-    </style>
-    
+
 </body>
 </html>
