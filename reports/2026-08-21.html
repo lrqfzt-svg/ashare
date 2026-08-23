@@ -98,8 +98,8 @@
   /* 资金风向 */
   .money-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #21262d; font-size: 13px; }
   .money-row .stock-name { font-weight: 600; }
-  .money-plus { color: #3fb950; }
-  .money-minus { color: #f85149; }
+  .money-plus { color: #f85149; }
+  .money-minus { color: #3fb950; }
 
   /* 通用网格类（替代内联 grid，便于手机断点覆盖） */
   .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
@@ -217,7 +217,7 @@
           xAxis:{type:'value',axisLabel:{color:SUB,fontSize:11},splitLine:{lineStyle:{color:GRID}}},
           yAxis:{type:'category',data:fdata.map(function(r){return r.name;}),axisLabel:{color:TXT,fontSize:11}},
           series:[{type:'bar',barMaxWidth:18,
-            data:fdata.map(function(r){return {value:r.val,itemStyle:{color:r.out?'#f85149':'#3fb950'}};}),
+            data:fdata.map(function(r){return {value:r.val,itemStyle:{color:r.out?'#3fb950':'#f85149'}};}),
             label:{show:true,position:function(p){return p.value<0?'left':'right';},color:TXT,fontSize:11,fontWeight:'bold',formatter:'{c}'}}] });
         var c3 = echarts.init(document.getElementById('chartLadder'));
         c3.setOption({ grid:{left:8,right:24,top:30,bottom:10,containLabel:true},
@@ -440,8 +440,8 @@
   <div class="section">
     <div class="section-title"><span class="icon">💹</span> 资金风向 · 主力净流入/流出 Top（板块）</div>
     <div class="two-col">
-      <div class="col"><h4 style="color:#3fb950;">✅ 今日主力净流入 Top</h4><div class="money-row"><span class="stock-name">通信设备（板块）</span><span class="money-plus">+76.34亿</span></div><div class="money-row"><span class="stock-name">通信网络设备及器件（板块）</span><span class="money-plus">+70.76亿</span></div><div class="money-row"><span class="stock-name">元件（板块）</span><span class="money-plus">+50.97亿</span></div><div class="money-row"><span class="stock-name">印制电路板（板块）</span><span class="money-plus">+41.23亿</span></div></div>
-      <div class="col"><h4 style="color:#f85149;">🚨 今日主力净流出 Top</h4></div>
+      <div class="col"><h4 style="color:#f85149;">✅ 今日主力净流入 Top</h4><div class="money-row"><span class="stock-name">通信设备（板块）</span><span class="money-plus">+76.34亿</span></div><div class="money-row"><span class="stock-name">通信网络设备及器件（板块）</span><span class="money-plus">+70.76亿</span></div><div class="money-row"><span class="stock-name">元件（板块）</span><span class="money-plus">+50.97亿</span></div><div class="money-row"><span class="stock-name">印制电路板（板块）</span><span class="money-plus">+41.23亿</span></div></div>
+      <div class="col"><h4 style="color:#3fb950;">🚨 今日主力净流出 Top</h4></div>
     </div>
   </div>
   <div class="section">
