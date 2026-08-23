@@ -139,7 +139,27 @@ TEMPLATE_CSS = """  * { box-sizing: border-box; margin: 0; padding: 0; }
 
   /* 炸板高亮 */
   .zhaban-high { background: #f8514915; border-left: 3px solid #f85149; }
-  .zhaban-low { background: #3fb95015; border-left: 3px solid #3fb950; }"""
+  .zhaban-low { background: #3fb95015; border-left: 3px solid #3fb950; }
+
+  /* 门户区（首页概览 + 图表 + 历史入口） */
+  .portal { background: linear-gradient(135deg, #161b22 0%, #0d1117 100%); border: 1px solid #2d333b; border-radius: 12px; padding: 24px; margin-bottom: 24px; }
+  .portal-head { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
+  .portal-head .ph-title { font-size: 16px; font-weight: 700; color: #e1e8ed; }
+  .portal-head .ph-updated { font-size: 12px; color: #8b949e; }
+  .portal-head .ph-updated b { color: #d29922; }
+  .portal-links { display: flex; gap: 10px; flex-wrap: wrap; }
+  .portal-links a { color: #58a6ff; text-decoration: none; font-size: 13px; padding: 4px 12px; border: 1px solid #2d333b; border-radius: 20px; background: #161b22; }
+  .portal-links a:hover { border-color: #58a6ff; }
+  .charts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .chart-box { background: #161b22; border: 1px solid #2d333b; border-radius: 10px; padding: 14px; }
+  .chart-box .cb-title { font-size: 13px; color: #8b949e; margin-bottom: 8px; text-align: center; }
+  .chart-box .echart { width: 100%; height: 220px; }
+  .portal-summary { margin-top: 16px; font-size: 13px; color: #8b949e; line-height: 1.8; }
+  .portal-summary b { color: #e1e8ed; }
+  @media (max-width: 768px) {
+    .charts { grid-template-columns: 1fr; }
+    .chart-box .echart { height: 200px; }
+  }"""
 
 # ============== 样例数据（8/21 收盘，全部字段） ==============
 SAMPLE_TEMPLATE_DATA = {
@@ -404,6 +424,7 @@ def build_template(d):
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{d['title']}</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
 <style>
 {TEMPLATE_CSS}
 </style>
@@ -418,6 +439,9 @@ def build_template(d):
     <div class="date">📅 {d['date']}</div>
     <div class="tags">{tags}</div>
   </div>""")
+
+    # 门户区（首页概览 + 图表 + 历史入口）
+    L.append(_portal_section(d))
 
     # 4 index cards
     cards = []
@@ -523,7 +547,7 @@ def build_template(d):
 
     # 主线深度
     chips = "".join(f'<span>{c}</span>' for c in d["main_line"]["chips"])
-    L.append(f"""  <div class="section">
+    L.append(f"""  <div class="section" id="sec-mainline">
     <div class="section-title"><span class="icon">🔶</span> {d['main_line']['title']}</div>
     <div style="background:#21262d;border-radius:8px;padding:16px;margin-bottom:12px;">
       <div style="display:flex;gap:20px;flex-wrap:wrap;font-size:13px;margin-bottom:12px;">{chips}</div>
@@ -566,7 +590,7 @@ def build_template(d):
   </div>""")
 
     # 短线策略
-    L.append(_strategy_section(d["strategy_title"], d["strategy_cols"]))
+    L.append(_strategy_section(d["strategy_title"], d["strategy_cols"], secid="sec-strategy"))
 
     # 行情回顾
     L.append(f"""  <div class="section">
@@ -663,7 +687,104 @@ def build_template(d):
 </html>""")
     return "\n".join(L)
 
-def _strategy_section(title, cols):
+def _portal_section(d):
+    """首页门户区：最新摘要 + 三张 ECharts 图（涨跌饼图/板块资金/连板梯队）+ 历史入口。"""
+    co = d.get("change_overview", {})
+    up = co.get("up", "0") or "0"
+    down = co.get("down", "0") or "0"
+    try:
+        up_n = float(str(up).replace(",", "").replace("~", "").replace("约", ""))
+    except Exception:
+        up_n = 0
+    try:
+        down_n = float(str(down).replace(",", "").replace("~", "").replace("约", ""))
+    except Exception:
+        down_n = 0
+
+    # 板块资金（从 money_in/money_out 解析数值，单位亿）
+    def _parse_yi(v):
+        if not v:
+            return 0
+        v = str(v).replace("亿", "").replace("+", "").replace(",", "").strip()
+        try:
+            return float(v)
+        except Exception:
+            return 0
+    min_rows = [{"name": x.get("name", ""), "val": _parse_yi(x.get("val", ""))}
+                for x in d.get("money_in", []) if x.get("name") not in ("—", "", None)]
+    mout_rows = [{"name": x.get("name", ""), "val": _parse_yi(x.get("val", ""))}
+                 for x in d.get("money_out", []) if x.get("name") not in ("—", "", None)]
+    fund_rows = [{"name": r["name"], "val": r["val"], "out": False} for r in min_rows[:5]]
+    fund_rows += [{"name": r["name"], "val": -r["val"], "out": True} for r in mout_rows[:5]]
+    fund_rows = [r for r in fund_rows if r["name"]]
+
+    # 连板梯队（从 jinji_rows 取档位与成功数）
+    ladder = [{"tier": r.get("tier", ""), "succ": r.get("success", "0")}
+              for r in d.get("jinji_rows", [])]
+    def _succ_num(s):
+        import re
+        m = re.search(r"(\d+)", str(s))
+        return int(m.group(1)) if m else 0
+    ladder = [{"tier": r["tier"], "succ": _succ_num(r["succ"])} for r in ladder]
+
+    # 最新摘要
+    core = d.get("main_line", {}).get("core_logic", "")
+    summary = core[:160] + "…" if len(core) > 160 else core
+
+    js = json.dumps({
+        "up": up_n, "down": down_n,
+        "fund": fund_rows,
+        "ladder": ladder,
+    }, ensure_ascii=False)
+
+    return f"""  <div class="portal">
+    <div class="portal-head">
+      <div class="ph-title">📡 实时概览 · 数据来源：本地实采（同花顺 / 东方财富）</div>
+      <div class="portal-links">
+        <a href="archive.html">📚 历史报告</a>
+        <a href="#sec-mainline">🔶 主线分析</a>
+        <a href="#sec-strategy">💡 策略</a>
+      </div>
+    </div>
+    <div class="charts">
+      <div class="chart-box"><div class="cb-title">涨跌家数分布</div><div class="echart" id="chartUpDown"></div></div>
+      <div class="chart-box"><div class="cb-title">板块主力资金净流入(亿)</div><div class="echart" id="chartFund"></div></div>
+      <div class="chart-box"><div class="cb-title">连板梯队（成功数）</div><div class="echart" id="chartLadder"></div></div>
+    </div>
+    <div class="portal-summary"><b>📌 最新复盘摘要：</b>{summary}</div>
+  </div>
+  <script>
+  (function(){{
+    var D = {js};
+    function render(){{
+      try{{
+        var c1 = echarts.init(document.getElementById('chartUpDown'));
+        c1.setOption({{ tooltip:{{trigger:'item'}}, series:[{{ type:'pie', radius:['45%','70%'],
+          data:[{{name:'上涨',value:D.up,itemStyle:{{color:'#f85149'}}}},{{name:'下跌',value:D.down,itemStyle:{{color:'#3fb950'}}}}],
+          label:{{color:'#e1e8ed',formatter:'{{b}}: {{c}}'}}, labelLine:{{lineStyle:{{color:'#8b949e'}}}} }}] }});
+        var c2 = echarts.init(document.getElementById('chartFund'));
+        var fdata = D.fund.slice().sort(function(a,b){{return a.val-b.val;}});
+        c2.setOption({{ grid:{{left:8,right:24,top:10,bottom:10,containLabel:true}},
+          tooltip:{{trigger:'axis',axisPointer:{{type:'shadow'}}}},
+          xAxis:{{type:'value',axisLabel:{{color:'#8b949e'}},splitLine:{{lineStyle:{{color:'#21262d'}}}}}},
+          yAxis:{{type:'category',data:fdata.map(function(r){{return r.name;}}),axisLabel:{{color:'#e1e8ed',fontSize:11}}}},
+          series:[{{type:'bar',data:fdata.map(function(r){{return {{value:r.val,itemStyle:{{color:r.out?'#f85149':'#3fb950'}}}};}}),
+            label:{{show:true,position:'right',color:'#8b949e',formatter:'{{c}}'}}}}] }});
+        var c3 = echarts.init(document.getElementById('chartLadder'));
+        c3.setOption({{ grid:{{left:8,right:24,top:10,bottom:10,containLabel:true}},
+          tooltip:{{trigger:'axis',axisPointer:{{type:'shadow'}}}},
+          xAxis:{{type:'category',data:D.ladder.map(function(r){{return r.tier;}}),axisLabel:{{color:'#e1e8ed',fontSize:11}}}},
+          yAxis:{{type:'value',axisLabel:{{color:'#8b949e'}},splitLine:{{lineStyle:{{color:'#21262d'}}}}}},
+          series:[{{type:'bar',data:D.ladder.map(function(r){{return r.succ;}}),itemStyle:{{color:'#58a6ff'}},
+            label:{{show:true,position:'top',color:'#8b949e'}}}}] }});
+        window.addEventListener('resize',function(){{c1.resize();c2.resize();c3.resize();}});
+      }}catch(e){{console.warn('chart err',e);}}
+    }}
+    if(window.echarts){{ render(); }} else {{ var t=setInterval(function(){{ if(window.echarts){{clearInterval(t);render();}} }},300); }}
+  }})();
+  </script>"""
+
+def _strategy_section(title, cols, secid=None):
     parts = []
     for c in cols:
         items = "".join(f"<li>{it}</li>" for it in c["items"])
@@ -671,7 +792,8 @@ def _strategy_section(title, cols):
         <h4 style="color:{c['cls']};">{c['title']}</h4>
         <ul>{items}</ul>
       </div>""")
-    return f"""  <div class="section">
+    sec_attr = f' id="{secid}"' if secid else ""
+    return f"""  <div class="section"{sec_attr}>
     <div class="section-title"><span class="icon">💡</span> {title}</div>
     <div class="strategy-cols">
 {chr(10).join(parts)}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>晚睡协会 · A股复盘报告 · 历史归档</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0b0e11; color: #e1e8ed; font-family: 'PingFang SC','Microsoft YaHei',sans-serif; line-height: 1.6; }
+  .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+  .header { background: linear-gradient(135deg, #1a1e24 0%, #0d1117 100%); border: 1px solid #2d333b; border-radius: 12px; padding: 28px; margin-bottom: 24px; text-align: center; }
+  .header h1 { font-size: 24px; color: #f85149; margin-bottom: 8px; }
+  .header .sub { color: #8b949e; font-size: 14px; }
+  .back { display: inline-block; margin-bottom: 16px; color: #58a6ff; text-decoration: none; font-size: 14px; }
+  .back:hover { text-decoration: underline; }
+  .list { display: flex; flex-direction: column; gap: 12px; }
+  .item { background: #161b22; border: 1px solid #2d333b; border-radius: 10px; padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; transition: border-color .15s; }
+  .item:hover { border-color: #58a6ff; }
+  .item .left { flex: 1; min-width: 240px; }
+  .item .date { font-size: 16px; font-weight: 700; color: #e1e8ed; }
+  .item .title { font-size: 13px; color: #8b949e; margin-top: 4px; }
+  .item .stats { display: flex; gap: 16px; margin-top: 8px; font-size: 13px; }
+  .item .stats .up { color: #f85149; }
+  .item .stats .down { color: #3fb950; }
+  .item .stats .amt { color: #d29922; }
+  .item .stats .zt { color: #58a6ff; }
+  .item a.view { color: #58a6ff; text-decoration: none; font-size: 14px; padding: 8px 18px; border: 1px solid #2d333b; border-radius: 20px; background: #0d1117; white-space: nowrap; }
+  .item a.view:hover { border-color: #58a6ff; background: #161b22; }
+  .empty { text-align: center; color: #8b949e; padding: 40px; }
+  .footer { text-align: center; padding: 20px; color: #6e7681; font-size: 12px; border-top: 1px solid #21262d; margin-top: 20px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <a class="back" href="index.html">← 返回最新报告</a>
+  <div class="header">
+    <h1>📚 A股复盘报告 · 历史归档</h1>
+    <div class="sub">数据来源：本地实采（同花顺 / 东方财富）· 每次采集生成一份留档，可回看</div>
+  </div>
+  <div class="list" id="list"></div>
+  <div class="footer">晚睡协会 · A股市场复盘报告归档站 · 内容随本地采集自动更新</div>
+</div>
+<script>
+fetch('archive.json').then(function(r){return r.json();}).then(function(arr){
+  var box = document.getElementById('list');
+  if(!arr || !arr.length){ box.innerHTML = '<div class="empty">暂无历史报告</div>'; return; }
+  var html = arr.map(function(r){
+    var up = r.up || '—', down = r.down || '—', amt = r.amount || '—', zt = r.zt || '—', dt = r.dt || '—';
+    return '<div class="item"><div class="left">'+
+      '<div class="date">'+r.date+'</div>'+
+      '<div class="title">'+(r.title||'')+'</div>'+
+      '<div class="stats"><span class="up">涨 '+up+'</span><span class="down">跌 '+down+'</span>'+
+      '<span class="amt">成交 '+amt+'</span><span class="zt">涨停 '+zt+' / 跌停 '+dt+'</span></div>'+
+      '</div><a class="view" href="reports/'+r.slug+'.html">查看报告 →</a></div>';
+  }).join('');
+  box.innerHTML = html;
+}).catch(function(e){
+  document.getElementById('list').innerHTML = '<div class="empty">加载历史失败：'+e+'</div>';
+});
+</script>
+</body>
+</html>
