@@ -177,13 +177,13 @@ SAMPLE_TEMPLATE_DATA = {
     {"label":"📊 涨停封板率","value":"93.1%","sub":"54/58 · 封板率偏高 打板友好","style":"#58a6ff44","vcolor":"#58a6ff"},
     {"label":"💥 炸板率","value":"6.9%","sub":"4/58 · 炸板率偏低 分歧小","style":"#f8514944","vcolor":"#3fb950"},
   ],
-  "change_overview": {"up":"2431","down":"~2520","ratio":"0.96","amount":"1.88万亿","amount_sub":"沪深总成交 ▼-2000亿缩量","amount_cls":"#3fb950"},
+  "change_overview": {"up":"2431","down":"—","ratio":"—","amount":"1.88万亿","amount_sub":"沪深总成交 ▼-2000亿缩量","amount_cls":"#3fb950"},
   "emotion_panorama": [
     {"label":"连板总数","value":"11","sub":"2板10只+3板1只 非ST","cls":""},
     {"label":"空间板","value":"3板","sub":"汉森制药 创新药+中药","cls":"#f85149"},
     {"label":"封板率","value":"93.1%","sub":"偏高 打板环境温和","cls":"#58a6ff"},
-    {"label":"昨板表现","value":"待披露","sub":"连板晋级率见下方统计","cls":"#d29922"},
-    {"label":"涨停/跌停","value":"54 / —","sub":"跌停家数当日接口未返回","cls":""},
+    {"label":"昨板表现","value":"—","sub":"连板晋级率见下方统计","cls":"#d29922"},
+    {"label":"涨停/跌停","value":"54 / 15","sub":"跌停15家","cls":""},
   ],
   "emotion_monitor": [
     {"label":"炸板率","value":"6.9%","sub":"偏低！仅4只炸板，打板风险小","cls":"#3fb950"},
@@ -204,17 +204,11 @@ SAMPLE_TEMPLATE_DATA = {
     {"name":"通信设备","dir":"资金强","flow":"+76.34亿 🔥"},
     {"name":"半导体","dir":"资金强","flow":"+15.19亿"},
     {"name":"黄金","dir":"避险强","flow":"+5.39亿"},
-    {"name":"有色金属（用户复盘领涨）","dir":"领涨","flow":"待披露"},
-    {"name":"能源（用户复盘领涨）","dir":"领涨","flow":"待披露"},
   ],
   "sector_top_out": [
     {"name":"医药生物","dir":"领跌","flow":"-39.33亿 🚨"},
-    {"name":"医疗服务/化学制药（用户复盘领跌）","dir":"领跌","flow":"待披露"},
-    {"name":"—","dir":"—","flow":"—"},
-    {"name":"—","dir":"—","flow":"—"},
-    {"name":"—","dir":"—","flow":"—"},
   ],
-  "sector_footnote": "* 板块涨跌幅逐板精确值当日接口未返回，此处以\"主力净流入/流出方向\"标注强弱（东财实测）；用户盘后复盘提及领涨贵金属/有色/能源、领跌医疗服务/化学制药，已并列标注。",
+  "sector_footnote": "* 板块主力净流入/流出为当日采集（东方财富）。其余板块以\"—\"标注缺失项。",
   "overseas": [
     {"region":"日本","name":"日经225","close":"66016.36","chg":"-0.3027%","cls":"negative"},
     {"region":"韩国","name":"韩国综合","close":"6912.95","chg":"0.881%","cls":"positive"},
@@ -316,23 +310,17 @@ SAMPLE_TEMPLATE_DATA = {
   "amount_footnote": "* 当日个股精确成交额接口未返回，此处以同花顺\"市场活跃度(热度)\"排名替代，反映资金关注度而非精确成交额。",
   "risk_rank": [
     {"name":"医药生物","dir":"领跌","flow":"-39.33亿","risk":"🚨 主力大幅流出，医疗服务/化学制药跌幅居前，坚决规避"},
-    {"name":"医疗服务/化学制药","dir":"领跌","flow":"待披露","risk":"⚠ 用户复盘明确提及跌幅居前"},
     {"name":"高位无业绩题材","dir":"承压","flow":"—","risk":"美债高压下高估值承压"},
   ],
-  "risk_footnote": "* 当日精确个股跌幅榜接口未返回，以\"主力净流出方向+用户复盘领跌板块\"标注风险。",
+  "risk_footnote": "* 风险项以当日主力净流出方向标注，缺失项以\"—\"表示。",
   "money_in": [
     {"name":"通信设备（板块）","val":"+76.34亿"},
     {"name":"半导体（板块）","val":"+15.19亿"},
     {"name":"黄金（板块）","val":"+5.39亿"},
     {"name":"全A合计","val":"+167.8亿"},
-    {"name":"有色金属（用户复盘领涨）","val":"方向强"},
   ],
   "money_out": [
     {"name":"医药生物（板块）","val":"-39.33亿"},
-    {"name":"医疗服务/化学制药","val":"方向弱"},
-    {"name":"—","val":"—"},
-    {"name":"—","val":"—"},
-    {"name":"—","val":"—"},
   ],
   "core_stocks": [
     {"name":"汉森制药","badge":"空间板","badge_cls":"badge-hot","change":"+10.0% · 3连板","change_cls":"up","info":"全场最高板，创新药+中药+中报预增，3进4关键战","info_cls":""},
@@ -345,7 +333,7 @@ SAMPLE_TEMPLATE_DATA = {
     {"label":"融资余额","value":"1.271万亿","sub":"杠杆资金小幅回落","sub_cls":"#f85149"},
     {"label":"融券余额","value":"100.1亿","sub":"融券规模低位","sub_cls":""},
     {"label":"两融合计","value":"1.381万亿","sub":"缩量日两融平稳","sub_cls":""},
-    {"label":"杠杆占比","value":"~2.3%","sub":"中性区间 风控可控","sub_cls":"#d29922"},
+    {"label":"杠杆占比","value":"—","sub":"中性区间 风控可控","sub_cls":"#d29922"},
   ],
   "track_rows": [
     {"code":"002412","name":"汉森制药","chg":"+10.0%","chg_cls":"positive","status":"3连板 全场最高","badge":"封板✅","badge_cls":"badge-seal","turnover":"—","strategy":"3进4关键战 持有","strategy_cls":"#3fb950"},
@@ -403,7 +391,7 @@ SAMPLE_TEMPLATE_DATA = {
       "📄 同花顺涨停池复盘：54只涨停·汉森制药3板·封板率93.1%",
     ]},
   ],
-  "disclaimer": "⚠️ <b>免责声明：</b>本报告仅供参考，不构成投资建议。A股市场有风险，投资需谨慎。部分板块涨跌幅、个股精确成交额、跌停家数及前日连板基数当日接口未返回，已以\"—\"或方向性口径标注并加脚注说明。",
+  "disclaimer": "⚠️ <b>免责声明：</b>本报告仅供参考，不构成投资建议。A股市场有风险，投资需谨慎。数据以交易日采集为准，缺失项以\"—\"标注。",
   "generated": "📊 A股市场复盘报告 · 2026-08-22",
   "source_footer": "",
 }
@@ -467,7 +455,7 @@ def build_template(d):
     <div class="section-title"><span class="icon">📈</span> 涨跌家数概览</div>
     <div class="grid-4" style="text-align:center;">
       <div><div style="font-size:36px;font-weight:700;color:#f85149;">{co['up']}</div><div style="font-size:13px;color:#8b949e;">上涨家数</div></div>
-      <div><div style="font-size:36px;font-weight:700;color:#3fb950;">{co['down']}</div><div style="font-size:13px;color:#8b949e;">下跌家数（估算）</div></div>
+      <div><div style="font-size:36px;font-weight:700;color:#3fb950;">{co['down']}</div><div style="font-size:13px;color:#8b949e;">下跌家数</div></div>
       <div><div style="font-size:36px;font-weight:700;color:#d29922;">{co['ratio']}</div><div style="font-size:13px;color:#8b949e;">涨跌比</div></div>
       <div><div style="font-size:36px;font-weight:700;color:#d29922;">{co['amount']}</div><div style="font-size:13px;color:{co['amount_cls']};">{co['amount_sub']}</div></div>
     </div>
@@ -675,10 +663,13 @@ def build_template(d):
     # 操作建议
     L.append(_strategy_section("操作建议 & 盘后资料", d["opcheck_cols"]))
 
-    # footer
+    # footer —— 页脚日期必须与报告交易日(title)一致，禁止写生成日期造成对不上
+    import re as _re
+    _m = _re.search(r"(\d{4}-\d{2}-\d{2})", str(d.get("title", "")))
+    _rpt_date = _m.group(1) if _m else str(d.get("generated", ""))
     L.append(f"""  <div class="footer">
     <div class="disclaimer">{d['disclaimer']}</div>
-    <div>{d['generated']}</div>
+    <div>📊 A股市场复盘报告 · {_rpt_date}</div>
   </div>
 </div>
 </body>
