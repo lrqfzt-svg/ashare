@@ -1,32 +1,32 @@
 {
-  "trade_date": "2026-08-21",
-  "up": 1137,
-  "down": 4297,
-  "flat": 115,
-  "total": 5434,
-  "amount_yi": 1.3711,
-  "zt": 41,
-  "dt": 9,
+  "trade_date": "2026-08-24",
+  "up": 1460,
+  "down": 3965,
+  "flat": 124,
+  "total": 5425,
+  "amount_yi": 2.0075,
+  "zt": 48,
+  "dt": 14,
   "indices": [
     {
       "name": "上证指数",
-      "value": "3905.20",
-      "chg_pct": "+0.04%"
+      "value": "3882.01",
+      "chg_pct": "-0.59%"
     },
     {
       "name": "深证成指",
-      "value": "14094.17",
-      "chg_pct": "+0.87%"
+      "value": "13794.29",
+      "chg_pct": "-2.13%"
     },
     {
       "name": "创业板指",
-      "value": "3545.58",
-      "chg_pct": "+1.43%"
+      "value": "3431.89",
+      "chg_pct": "-3.21%"
     },
     {
       "name": "科创50",
-      "value": "1599.65",
-      "chg_pct": "-3.26%"
+      "value": "1602.34",
+      "chg_pct": "-3.10%"
     }
   ],
   "ladder": {
@@ -35,10 +35,12 @@
       "天洋新材",
       "新华百货",
       "楚天龙",
+      "湖南白银",
       "白银有色"
     ],
     "3": [
       "中 关 村",
+      "哈森股份",
       "深中华A"
     ]
   },
@@ -50,144 +52,144 @@
       "name": "山东黄金",
       "code": "sh600547",
       "net_yi": 4.11,
-      "change": -1.78,
+      "change": null,
       "concepts": [],
       "org_yi": 4.11,
       "hot_yi": null,
       "type": "both",
-      "chg_pct": "-1.78%"
+      "chg_pct": null
     },
     {
       "name": "沃森生物",
       "code": "sz300142",
       "net_yi": 2.75,
-      "change": -7.83,
+      "change": -7.45,
       "concepts": [],
       "org_yi": 2.75,
       "hot_yi": null,
       "type": "both",
-      "chg_pct": "-7.83%"
+      "chg_pct": "-7.45%"
     },
     {
       "name": "誉衡药业",
       "code": "sz002437",
       "net_yi": null,
-      "change": -8.74,
+      "change": -9.43,
       "concepts": [],
       "org_yi": null,
       "hot_yi": null,
       "type": "both",
-      "chg_pct": "-8.74%"
+      "chg_pct": "-9.43%"
     },
     {
       "name": "通鼎互联",
       "code": "sz002491",
       "net_yi": 1.13,
-      "change": -2.22,
+      "change": -1.84,
       "concepts": [],
       "org_yi": 1.13,
       "hot_yi": null,
       "type": "both",
-      "chg_pct": "-2.22%"
+      "chg_pct": "-1.84%"
     },
     {
       "name": "湖南白银",
       "code": "sz002716",
       "net_yi": 1.66,
-      "change": 8.54,
+      "change": 9.98,
       "concepts": [],
       "org_yi": 1.66,
       "hot_yi": null,
       "type": "both",
-      "chg_pct": "+8.54%"
+      "chg_pct": "+9.98%"
     },
     {
       "name": "国仪公司",
       "code": "sh688828",
       "net_yi": null,
-      "change": 0.71,
+      "change": 8.27,
       "concepts": [],
       "org_yi": null,
       "hot_yi": null,
       "type": "both",
-      "chg_pct": "+0.71%"
+      "chg_pct": "+8.27%"
     },
     {
       "name": "日科化学",
       "code": "sz300214",
       "net_yi": null,
-      "change": -5.89,
+      "change": -4.88,
       "concepts": [],
       "org_yi": null,
       "hot_yi": null,
       "type": "both",
-      "chg_pct": "-5.89%"
+      "chg_pct": "-4.88%"
     },
     {
       "name": "永安药业",
       "code": "sz002365",
       "net_yi": null,
-      "change": -5.55,
+      "change": -8.92,
       "concepts": [],
       "org_yi": null,
       "hot_yi": null,
       "type": "both",
-      "chg_pct": "-5.55%"
+      "chg_pct": "-8.92%"
     },
     {
       "name": "欣天科技",
       "code": "sz300615",
       "net_yi": null,
-      "change": -1.18,
+      "change": 4.02,
       "concepts": [],
       "org_yi": null,
       "hot_yi": null,
       "type": "both",
-      "chg_pct": "-1.18%"
+      "chg_pct": "+4.02%"
     },
     {
       "name": "哈三联",
       "code": "sz002900",
       "net_yi": null,
-      "change": 1.67,
+      "change": 2.76,
       "concepts": [],
       "org_yi": null,
       "hot_yi": null,
       "type": "both",
-      "chg_pct": "+1.67%"
+      "chg_pct": "+2.76%"
     },
     {
       "name": "盛达资源",
       "code": "sz000603",
       "net_yi": 2.52,
-      "change": 6.88,
+      "change": 8.88,
       "concepts": [],
       "org_yi": 2.52,
       "hot_yi": null,
       "type": "both",
-      "chg_pct": "+6.88%"
+      "chg_pct": "+8.88%"
     },
     {
       "name": "肯特股份",
       "code": "sz301591",
       "net_yi": null,
-      "change": -1.54,
+      "change": -0.64,
       "concepts": [],
       "org_yi": null,
       "hot_yi": null,
       "type": "both",
-      "chg_pct": "-1.54%"
+      "chg_pct": "-0.64%"
     },
     {
       "name": "北陆药业",
       "code": "sz300016",
       "net_yi": null,
-      "change": -5.65,
+      "change": -6.7,
       "concepts": [],
       "org_yi": null,
       "hot_yi": null,
       "type": "both",
-      "chg_pct": "-5.65%"
+      "chg_pct": "-6.70%"
     },
     {
       "name": "万向德农",
@@ -204,23 +206,23 @@
       "name": "*ST泉为",
       "code": "sz300716",
       "net_yi": null,
-      "change": 4.89,
+      "change": 4.57,
       "concepts": [],
       "org_yi": null,
       "hot_yi": null,
       "type": "both",
-      "chg_pct": "+4.89%"
+      "chg_pct": "+4.57%"
     },
     {
       "name": "红棉股份",
       "code": "sz000523",
       "net_yi": null,
-      "change": -0.31,
+      "change": -3.46,
       "concepts": [],
       "org_yi": null,
       "hot_yi": null,
       "type": "both",
-      "chg_pct": "-0.31%"
+      "chg_pct": "-3.46%"
     },
     {
       "name": "中关村",
@@ -237,12 +239,12 @@
       "name": "博汇股份",
       "code": "sz300839",
       "net_yi": null,
-      "change": -3.13,
+      "change": 13.23,
       "concepts": [],
       "org_yi": null,
       "hot_yi": null,
       "type": "both",
-      "chg_pct": "-3.13%"
+      "chg_pct": "+13.23%"
     },
     {
       "name": "深中华A",
@@ -259,56 +261,56 @@
       "name": "京粮控股",
       "code": "sz000505",
       "net_yi": null,
-      "change": 1.04,
+      "change": -1.19,
       "concepts": [],
       "org_yi": null,
       "hot_yi": null,
       "type": "both",
-      "chg_pct": "+1.04%"
+      "chg_pct": "-1.19%"
     },
     {
       "name": "宇环数控",
       "code": "sz002903",
       "net_yi": null,
-      "change": -5.9,
+      "change": -3.14,
       "concepts": [],
       "org_yi": null,
       "hot_yi": null,
       "type": "both",
-      "chg_pct": "-5.90%"
+      "chg_pct": "-3.14%"
     },
     {
       "name": "神农种业",
       "code": "sz300189",
       "net_yi": 1.17,
-      "change": 6.98,
+      "change": 4.47,
       "concepts": [],
       "org_yi": 1.17,
       "hot_yi": null,
       "type": "both",
-      "chg_pct": "+6.98%"
+      "chg_pct": "+4.47%"
     },
     {
       "name": "福华尚纬",
       "code": "sh603333",
       "net_yi": null,
-      "change": -1.73,
+      "change": -3.45,
       "concepts": [],
       "org_yi": null,
       "hot_yi": null,
       "type": "both",
-      "chg_pct": "-1.73%"
+      "chg_pct": "-3.45%"
     },
     {
       "name": "星网锐捷",
       "code": "sz002396",
       "net_yi": 1.38,
-      "change": -3.95,
+      "change": -3.29,
       "concepts": [],
       "org_yi": 1.38,
       "hot_yi": null,
       "type": "both",
-      "chg_pct": "-3.95%"
+      "chg_pct": "-3.29%"
     },
     {
       "name": "神奇制药",
@@ -325,45 +327,45 @@
       "name": "志邦家居",
       "code": "sh603801",
       "net_yi": null,
-      "change": 1.44,
+      "change": 0.0,
       "concepts": [],
       "org_yi": null,
       "hot_yi": null,
       "type": "both",
-      "chg_pct": "+1.44%"
+      "chg_pct": "+0.00%"
     },
     {
       "name": "中瓷电子",
       "code": "sz003031",
       "net_yi": 3.06,
-      "change": -5.98,
+      "change": -5.24,
       "concepts": [],
       "org_yi": 3.06,
       "hot_yi": null,
       "type": "both",
-      "chg_pct": "-5.98%"
+      "chg_pct": "-5.24%"
     },
     {
       "name": "华大智造",
       "code": "sh688114",
       "net_yi": null,
-      "change": -4.39,
+      "change": -5.66,
       "concepts": [],
       "org_yi": null,
       "hot_yi": null,
       "type": "both",
-      "chg_pct": "-4.39%"
+      "chg_pct": "-5.66%"
     },
     {
       "name": "键凯科技",
       "code": "sh688356",
       "net_yi": null,
-      "change": 16.44,
+      "change": 15.52,
       "concepts": [],
       "org_yi": null,
       "hot_yi": null,
       "type": "both",
-      "chg_pct": "+16.44%"
+      "chg_pct": "+15.52%"
     }
   ],
   "limit_up": [],
@@ -377,85 +379,85 @@
   "sector_in": [
     {
       "name": "工业金属",
-      "val": "+11.34亿",
-      "val_yi": 11.34
-    },
-    {
-      "name": "保险Ⅱ",
-      "val": "+4.73亿",
-      "val_yi": 4.73
+      "val": "+13.16亿",
+      "val_yi": 13.16
     },
     {
       "name": "煤炭开采",
-      "val": "+3.83亿",
-      "val_yi": 3.83
+      "val": "+5.46亿",
+      "val_yi": 5.46
+    },
+    {
+      "name": "化学原料",
+      "val": "+4.23亿",
+      "val_yi": 4.23
     }
   ],
   "sector_out": [
     {
       "name": "通信设备",
-      "val": "-293.77亿",
-      "val_yi": -293.77
+      "val": "-355.93亿",
+      "val_yi": -355.93
     },
     {
       "name": "半导体",
-      "val": "-150.97亿",
-      "val_yi": -150.97
+      "val": "-180.66亿",
+      "val_yi": -180.66
     },
     {
       "name": "通信设备二级",
-      "val": "-107.15亿",
-      "val_yi": -107.15
+      "val": "-139.53亿",
+      "val_yi": -139.53
     }
   ],
   "sector_chg": [
     {
       "name": "焦炭Ⅱ",
-      "chg_pct": 5.02
+      "chg_pct": 5.39
     },
     {
       "name": "保险Ⅱ",
-      "chg_pct": 3.01
-    },
-    {
-      "name": "种植业",
-      "chg_pct": 2.45
-    },
-    {
-      "name": "白酒Ⅱ",
-      "chg_pct": 2.23
+      "chg_pct": 2.58
     },
     {
       "name": "煤炭开采",
-      "chg_pct": 1.94
+      "chg_pct": 2.17
+    },
+    {
+      "name": "种植业",
+      "chg_pct": 2.06
     },
     {
       "name": "农商行Ⅱ",
-      "chg_pct": 1.78
+      "chg_pct": 2.03
+    },
+    {
+      "name": "白酒Ⅱ",
+      "chg_pct": 1.73
     },
     {
       "name": "黄酒概念",
-      "chg_pct": 2.72
+      "chg_pct": 3.34
     },
     {
       "name": "昨日连板",
-      "chg_pct": 2.14
+      "chg_pct": 2.4
     },
     {
-      "name": "转基因",
-      "chg_pct": 1.69
+      "name": "有色(锑)",
+      "chg_pct": 1.78
     },
     {
-      "name": "玉米",
-      "chg_pct": 1.55
+      "name": "白银概念",
+      "chg_pct": 1.58
     },
     {
-      "name": "河南自贸区",
-      "chg_pct": 1.3
+      "name": "铅锌概念",
+      "chg_pct": 1.44
     },
     {
-      "name": "粮食概念",
-      "chg_pct": 1.28
+      "name": "中非合作",
+      "chg_pct": 1.41
     }
   ],
   "plate_leaders": [
@@ -467,17 +469,7 @@
     {
       "plate": "保险Ⅱ",
       "name": "中国平安",
-      "chg_pct": 3.41
-    },
-    {
-      "plate": "种植业",
-      "name": "登海种业",
-      "chg_pct": 10.04
-    },
-    {
-      "plate": "白酒Ⅱ",
-      "name": "贵州茅台",
-      "chg_pct": 3.02
+      "chg_pct": 2.94
     },
     {
       "plate": "煤炭开采",
@@ -485,47 +477,57 @@
       "chg_pct": 10.02
     },
     {
+      "plate": "种植业",
+      "name": "登海种业",
+      "chg_pct": 10.04
+    },
+    {
       "plate": "农商行Ⅱ",
       "name": "渝农商行",
-      "chg_pct": 3.08
+      "chg_pct": 3.38
+    },
+    {
+      "plate": "白酒Ⅱ",
+      "name": "贵州茅台",
+      "chg_pct": 2.5
     },
     {
       "plate": "黄酒概念",
       "name": "会稽山",
-      "chg_pct": 6.65
+      "chg_pct": 8.31
     },
     {
       "plate": "昨日连板",
       "name": "键凯科技",
-      "chg_pct": 16.44
+      "chg_pct": 15.52
     },
     {
-      "plate": "转基因",
-      "name": "登海种业",
-      "chg_pct": 10.04
+      "plate": "有色(锑)",
+      "name": "湖南白银",
+      "chg_pct": 9.98
     },
     {
-      "plate": "玉米",
-      "name": "登海种业",
-      "chg_pct": 10.04
+      "plate": "白银概念",
+      "name": "湖南白银",
+      "chg_pct": 9.98
     },
     {
-      "plate": "河南自贸区",
-      "name": "中粮资本",
-      "chg_pct": 4.79
+      "plate": "铅锌概念",
+      "name": "白银有色",
+      "chg_pct": 10.02
     },
     {
-      "plate": "粮食概念",
-      "name": "登海种业",
-      "chg_pct": 10.04
+      "plate": "中非合作",
+      "name": "北方国际",
+      "chg_pct": 10.03
     }
   ],
   "breadth_history": [
     {
       "date": "",
-      "up": 1137,
-      "down": 4297,
-      "amount": "1.3711万亿"
+      "up": 1460,
+      "down": 3965,
+      "amount": "2.0075万亿"
     }
   ],
   "overseas": [],
@@ -599,7 +601,8 @@
         "score": "3",
         "status": "缩量震荡(成交额90~110%均值)"
       }
-    ]
+    ],
+    "tdate": "2026-08-21"
   },
   "cross_check": {
     "ok": false,
@@ -610,11 +613,11 @@
     {
       "src": "westock.changedist",
       "ok": true,
-      "up": 1137,
-      "down": 4297,
-      "zt": 41,
-      "dt": 9,
-      "amount_yi": 1.3711
+      "up": 1460,
+      "down": 3965,
+      "zt": 48,
+      "dt": 14,
+      "amount_yi": 2.0075
     },
     {
       "src": "westock.indices",
@@ -633,19 +636,20 @@
       "src": "westock.lhb",
       "ok": true,
       "count": 29,
-      "chg_filled": 29
+      "chg_filled": 28
     },
     {
       "src": "westock.emotion",
       "ok": true,
       "raw": 23.0,
-      "adj": 29.09
+      "adj": 29.09,
+      "tdate": "2026-08-21"
     },
     {
       "src": "hithink.limit-up-ladder",
       "ok": true,
-      "two": 5,
-      "three": 2,
+      "two": 6,
+      "three": 3,
       "space": 4,
       "space_stock": "汉森制药"
     }
