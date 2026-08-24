@@ -470,8 +470,14 @@ def build_template(d):
     emo = "".join(
         f'<div style="background:#21262d;border-radius:8px;padding:14px;"><div style="font-size:12px;color:#8b949e;">{x["label"]}</div><div style="font-size:24px;font-weight:700;color:{x["cls"] or "#e1e8ed"};margin-top:4px;">{x["value"]}</div><div style="font-size:11px;color:#8b949e;">{x["sub"]}</div></div>'
         for x in d["emotion_panorama"])
+    _emo_date = d.get("emotion_tdate")
+    _emo_note = ""
+    if _emo_date and _emo_date != d.get("date"):
+        _emo_note = (f'<div style="font-size:12px;color:#d29922;margin:-6px 0 12px;">'
+                     f'⚠ 情绪评分数据截至 {_emo_date}（数据源滞后，非当日实时）</div>')
     L.append(f"""  <div class="section">
     <div class="section-title"><span class="icon">⚡</span> 短线情绪全景</div>
+    {_emo_note}
     <div class="grid-5" style="text-align:center;margin-bottom:16px;">
       {emo}
     </div>

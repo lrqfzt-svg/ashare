@@ -196,63 +196,33 @@ def collect_indices(src_log):
     """三大指数 + 科创50，返回 (indices 列表, 数据日期)。"""
     indices = []
     tdate = None
-    # 三大指数（market-overview trade）
-    rc, out = run(["market-overview", "--type", "trade"])
-    if rc == 0 and out:
-        m = re.search(r"数据日期\s*`?(\d{4}-\d{2}-\d{2})`?", out)
-        if m:
-            tdate = m.group(1)
-        tables = parse_tables(out)
-        # 第一个表：| 指标 | 上证指数 | 深证成指 | 创业板指 |
-        # 行序：涨跌幅 / 收盘 / 开盘 / 最低 / 最高
-        if tables:
-            headers, rows = tables[0]
-            name_idx = {h: i for i, h in enumerate(headers)}
-            colmap = {}
-            for h in ("上证指数", "深证成指", "创业板指"):
-                if h in name_idx:
-                    colmap[h] = name_idx[h]
-            # 找收盘行（第二行，index 1）与涨跌幅行（第一行，index 0）
-            def get_cell(row_i, h):
-                ci = colmap.get(h)
-                if ci is None or row_i >= len(rows):
-                    return None
-                return rows[row_i][ci]
-            for h in ("上证指数", "深证成指", "创业板指"):
-                chg = get_cell(0, h)
-                close = get_cell(1, h)
-                if chg is not None:
+    # 统一用 kline 实时算（market-overview trade 后端数据日期滞后，不实时）
+    idx_codes = [("上证指数", "sh000001"), ("深证成指", "sz399001"),
+                 ("创业板指", "sz399006"), ("科创50", KCB_CODE)]
+    for name, code in idx_codes:
+        rc2, out2 = run(["kline", code, "--period", "day", "--limit", "2"])
+        if rc2 == 0 and out2:
+            tables = parse_tables(out2)
+            for headers, rows in tables:
+                if "last" in headers and "date" in headers:
                     try:
-                        chg_f = float(chg)
-                    except ValueError:
-                        chg_f = None
-                    indices.append({
-                        "name": h,
-                        "value": close or "",
-                        "chg_pct": (f"+{chg_f:.2f}%" if (chg_f is not None and chg_f >= 0)
-                                    else (f"{chg_f:.2f}%" if chg_f is not None else "")),
-                    })
-    else:
-        src_log.append({"src": "westock.market-overview.trade", "ok": False})
-    # 科创50 用 kline 补（kline 无 chg_pct 列，用近2日 last 自算）
-    rc2, out2 = run(["kline", KCB_CODE, "--period", "day", "--limit", "2"])
-    if rc2 == 0 and out2:
-        tables = parse_tables(out2)
-        for headers, rows in tables:
-            if "last" in headers and "date" in headers:
-                try:
-                    l_i = headers.index("last")
-                    if len(rows) >= 2:
-                        v0 = float(rows[0][l_i])
-                        v1 = float(rows[1][l_i])
-                        chg_f = round((v0 - v1) / v1 * 100, 2)
-                        indices.append({"name": "科创50", "value": rows[0][l_i],
-                                        "chg_pct": (f"+{chg_f:.2f}%" if chg_f >= 0
-                                                    else f"{chg_f:.2f}%")})
-                except (ValueError, IndexError):
-                    pass
-    else:
-        src_log.append({"src": "westock.kline.kcb", "ok": False})
+                        l_i = headers.index("last")
+                        d_i = headers.index("date")
+                        if len(rows) >= 2:
+                            v0 = float(rows[0][l_i])
+                            v1 = float(rows[1][l_i])
+                            chg_f = round((v0 - v1) / v1 * 100, 2)
+                            tdate = rows[0][d_i]  # 当日行日期
+                            indices.append({
+                                "name": name,
+                                "value": rows[0][l_i],
+                                "chg_pct": (f"+{chg_f:.2f}%" if chg_f >= 0
+                                            else f"{chg_f:.2f}%"),
+                            })
+                    except (ValueError, IndexError):
+                        pass
+        else:
+            src_log.append({"src": f"westock.kline.{code}", "ok": False})
     src_log.append({"src": "westock.indices", "ok": len(indices) > 0, "count": len(indices)})
     return indices, tdate
 
@@ -263,7 +233,7 @@ def collect_sector(src_log):
     sector_out = []
     sector_chg = []
     plate_leaders = []
-    # 1) sector ranking
+    # 1) sector ranking（行业资金流入 Top5 + 行业/概念涨幅排名，当日实时）
     rc, out = run(["sector", "ranking"])
     if rc == 0 and out:
         tables = parse_tables(out)
@@ -452,12 +422,16 @@ def collect_dragons(src_log):
 
 
 def collect_emotion(src_log):
-    """市场情绪 14 维评分（market-overview summary）。"""
-    rc, out = run(["market-overview"])
+    """市场情绪 14 维评分（market-overview summary，数据日期可能滞后）。"""
+    rc, out = run(["market-overview", "--type", "summary"])
     if rc != 0 or not out:
         src_log.append({"src": "westock.market-overview.summary", "ok": False})
         return None
-    emotion = {"raw_score": None, "adj_score": None, "dims": []}
+    emotion = {"raw_score": None, "adj_score": None, "dims": [], "tdate": None}
+    # 数据日期（后端实际数据日期，可能滞后于请求日）
+    dm = re.search(r"数据日期\s*`?(\d{4}-\d{2}-\d{2})`?", out)
+    if dm:
+        emotion["tdate"] = dm.group(1)
     # 总评
     m = re.search(r"原始评分\s*\*\*\s*([\d.]+)\s*\*\*\s*/\s*调整评分\s*\*\*\s*([\d.]+)\s*\*\*", out)
     if m:
@@ -477,7 +451,8 @@ def collect_emotion(src_log):
                     "status": r[sti] if sti is not None else "",
                 })
     src_log.append({"src": "westock.emotion", "ok": len(emotion["dims"]) > 0,
-                    "raw": emotion["raw_score"], "adj": emotion["adj_score"]})
+                    "raw": emotion["raw_score"], "adj": emotion["adj_score"],
+                    "tdate": emotion["tdate"]})
     return emotion
 
 
