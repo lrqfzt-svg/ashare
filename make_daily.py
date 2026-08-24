@@ -67,10 +67,8 @@ def main():
     with open(COLLECTED, "w", encoding="utf-8") as f:
         f.write(r.stdout)
     c = json.loads(r.stdout)
-    # 2) 渲染
+    # 2) 渲染（index.html = 当日完整报告）
     subprocess.run([sys.executable, os.path.join(BASE, "gen_report.py")], check=True)
-    # 2.5) 门户首页
-    subprocess.run([sys.executable, os.path.join(BASE, "gen_index.py")], check=True)
     # 3) 归档
     update_archive(c)
     # 4) 推送（默认）

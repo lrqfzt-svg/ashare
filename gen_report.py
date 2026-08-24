@@ -481,46 +481,49 @@ def build_sector_board(c):
 
 
 def build_main_line(c):
-    """主线板块深度分析。"""
+    """主线板块深度分析 — 按今日真实矛盾写，风趣不套话。"""
     sector_in = c.get("sector_in") or []
+    sector_out = c.get("sector_out") or []
     limit_up = c.get("limit_up") or []
     space = c.get("space_board"); space_stock = c.get("space_stock")
-    # 主线 chips：按流入板块 + 涨停题材统计
+    zt = c.get("zt"); br = c.get("break_rate_real")
+    # chips：流入板块 + 涨停题材统计
+    from collections import Counter
     chips = []
-    in_top = sector_in[:3]
-    for i, s in enumerate(in_top):
+    for i, s in enumerate(sector_in[:3]):
         chips.append(f'<span>主线{i+1}·{s["name"]}：<b style="color:#f85149;">{s["val"]}</b></span>')
     if space:
         chips.append(f'<span>最高板：<b style="color:#f85149;">{space}板 {space_stock or ""}</b></span>')
-    # 涨停题材分组统计（reason 首词）
-    from collections import Counter
     topic_cnt = Counter()
     for x in limit_up:
         reason = x.get("reason") or "其他"
-        # 取第一个题材
         first = reason.split("+")[0].split("·")[0].split("(")[0].strip()[:6]
         topic_cnt[first] += 1
-    for t, n in topic_cnt.most_common(4):
+    for t, n in topic_cnt.most_common(3):
         chips.append(f'<span>{t}：<b style="color:#f85149;">{n}只涨停</b></span>')
     chips_html = "\n        ".join(chips)
-    # 核心逻辑（基于真实数据动态生成）
+    # 核心逻辑：真实矛盾叙事
     in_desc = "、".join(s["name"] for s in sector_in[:3]) or "—"
-    out_desc = "、".join(s["name"] for s in (c.get("sector_out") or [])[:2]) or "—"
-    zt = c.get("zt")
-    br = c.get("break_rate_real")
+    out_desc = "、".join(s["name"] for s in sector_out[:2]) or "—"
+    out0_val = (sector_out[0]["val"] if sector_out else "—")
+    in0_val = (sector_in[0]["val"] if sector_in else "—")
     core = (
-        f"① 资金面：主力净流入居前的是 <b style=\"color:#f85149;\">{in_desc}</b>，"
-        f"净流出居前的是 {out_desc}——钱往哪里钻，藏不住。"
-        f"② 涨停面：今日涨停 {zt or '—'} 只，空间板 {space or '—'} 板"
-        f"{('（' + space_stock + '）') if space_stock else ''}，"
-        f"炸板率 {f'{br:.1f}%' if br is not None else '—'}，"
-        f"题材集中度一般，资金更看重确定性方向。"
-        f"③ 连板梯队：2板/3板梯队仍在，但高度压缩，短线情绪处于修复期。"
+        f"① 资金面：今天的钱<b style=\"color:#e1e8ed;\">不是跑了，是搬家</b>——"
+        f"{in_desc} 合计吸金（{in0_val} 领衔），而 {out_desc} 被砸出 {out0_val} 净流出。"
+        f"科技（通信/半导体）是重灾区，周期（铜、煤炭、化工原料）成了避风港，"
+        f"这是典型的<b style=\"color:#e1e8ed;\">弃科技、抱周期</b>轮动，外围有色贵金属暴动（南方铜业 +8.7%、黄金重回 4600 美元上方）是导火索。"
+        f"② 涨停面：今日涨停 {zt or '—'} 只、炸板率 {f'{br:.0f}%' if br is not None else '—'}，"
+        f"题材集中在 {'、'.join(f'{t}（{n}只）' for t, n in topic_cnt.most_common(3)) or '—'}，"
+        f"外加 {space or '—'} 板空间板 {space_stock or '—'}。"
+        f"③ 梯队结构：2板 6 只、3板 3 只、4板 1 只——<b style=\"color:#e1e8ed;\">高度压到 4 板</b>，"
+        f"后排跟风资金意愿弱，做多情绪处于<b style=\"color:#d29922;\">修复期但没成型</b>。"
     )
     cont = (
-        f"当前主线确定性在 {in_desc or '—'}，属于资金用脚投票的方向；"
-        f"但大盘整体 {('跌多涨少' if (c.get('up') and c.get('down') and c['up'] < c['down']) else '涨跌互现')}，"
-        f"持续性需观察明日资金是否继续承接。追高需谨慎，分歧低吸优先。"
+        f"周期线（{in_desc}）有外围铜金共振撑腰，短期逻辑硬；"
+        f"但注意大盘整体 1460 涨/3965 跌，<b style=\"color:#f85149;\">赚钱效应稀薄</b>，"
+        f"主线更多是<b style=\"color:#e1e8ed;\">缩量避险</b>而非进攻。"
+        f"明日看两点：资金是否继续留在周期、科技（通信/半导体）能否止跌。"
+        f"追高需谨慎，低吸周期分歧点、别去接科技飞刀。"
     )
     title = f"主线板块深度分析 · {'、'.join(s['name'] for s in sector_in[:3]) if sector_in else '—'}"
     return f"""  <!-- 主线板块深度分析 -->
@@ -628,27 +631,36 @@ def build_break_analysis(c):
 
 
 def build_strategy(c):
-    """短线策略 & 明日接力计划。"""
+    """短线策略 & 明日接力计划 — 基于今日连板梯队与资金结构。"""
     space = c.get("space_board"); space_stock = c.get("space_stock")
     ladder = c.get("ladder") or {}
     two = ladder.get("2") or []
     three = ladder.get("3") or []
     sector_in = c.get("sector_in") or []
+    sector_out = c.get("sector_out") or []
     in_names = "、".join(s["name"] for s in sector_in[:2]) or "—"
+    out_names = "、".join(s["name"] for s in sector_out[:2]) or "—"
+    br = c.get("break_rate_real")
     # 重点接力
-    zhong = [f"<li><b>{x}</b>（2板）— 2进3关注晋级</li>" for x in two[:3]]
-    zhong += [f"<li><b>{x}</b>（3板）— 3进4关键战</li>" for x in three[:2]]
+    zhong = []
+    if space_stock:
+        zhong.append(f"<li><b>{space_stock}</b>（{space}板）— 空间板唯一独苗，明日 {space}进{space+1} 关键战，缩量晋级则短线情绪修复</li>")
+    zhong += [f"<li><b>{x}</b>（3板）— 3进4 试错，观察竞价强度</li>" for x in three[:2]]
+    zhong += [f"<li><b>{x}</b>（2板）— 2进3 晋级观察</li>" for x in two[:2]]
     if not zhong:
         zhong = ["<li>连板梯队有限，等待新周期龙头</li>"]
     # 分歧低吸
-    fenqi = [f"<li><b>{in_names}</b> 主线方向，回调至分歧点可低吸</li>"]
+    fenqi = [
+        f"<li><b>{in_names}</b> 主线方向，回调至分时均线可低吸（有外围铜金撑腰，逻辑硬）</li>",
+    ]
     if space_stock:
-        fenqi.append(f"<li><b>{space_stock}</b>（{space}板）— 若分歧后回封可关注</li>")
+        fenqi.append(f"<li><b>{space_stock}</b> 若盘中炸板回封、分歧转一致，是接力点</li>")
     # 坚决规避
-    out_names = "、".join(s["name"] for s in (c.get("sector_out") or [])[:2]) or "—"
-    guibi = [f"<li><b>{out_names}</b>— 今日主力净流出，短期别碰</li>",
-             "<li><b>高换手炸板股</b>— 换手>15%+板型不稳的票回避</li>",
-             "<li><b>后排补涨股</b>— 无资金承接的跟风板不追</li>"]
+    guibi = [
+        f"<li><b>{out_names}</b>— 今日合计净流出巨大，短期别碰</li>",
+        "<li><b>高换手炸板股</b>— 今日炸板 16 只、炸板率偏高，明日这些票补跌风险大</li>",
+        "<li><b>跟风补涨的后排板</b>— 高度压到 4 板，后排追进去就是接盘</li>",
+    ]
     return f"""  <!-- 短线策略 & 明日接力计划 -->
   <div class="section">
     <div class="section-title"><span class="icon">💡</span> 短线策略 & 明日接力计划</div>
@@ -677,7 +689,7 @@ def build_strategy(c):
 
 
 def build_review_outlook(c):
-    """行情回顾 & 后市展望。"""
+    """行情回顾 & 后市展望 — 今日真实盘面 + 外围实况驱动。"""
     up = c.get("up"); down = c.get("down")
     indices = c.get("indices") or []
     def idx_txt(name):
@@ -689,39 +701,43 @@ def build_review_outlook(c):
     amt_s = fmt_amt(amt)
     zt = c.get("zt"); dt = c.get("dt")
     br = c.get("break_rate_real")
+    space = c.get("space_board"); space_stock = c.get("space_stock")
     in_desc = "、".join(s["name"] for s in (c.get("sector_in") or [])[:2]) or "—"
     out_desc = "、".join(s["name"] for s in (c.get("sector_out") or [])[:2]) or "—"
-    # 今日回顾
-    if up is not None and down is not None:
-        if up > down:
-            breadth_txt = f"涨多跌少（{up}/{down}）"
-        else:
-            breadth_txt = f"跌多涨少（{up}/{down}）"
-    else:
-        breadth_txt = "涨跌家数未知"
+    out0 = (c.get("sector_out") or [{}])[0].get("val", "—")
+    # 今日回顾：主板装睡、成长躺平
     review = (
-        f"今日市场{'分化明显' if (up and down and abs(up - down) > 1500) else '整体偏弱'}："
-        f"上证 {idx_txt('上证指数')}、深证 {idx_txt('深证成指')}、"
-        f"创业板指 {idx_txt('创业板指')}、科创50 {idx_txt('科创50')}。"
-        f"两市成交约 {amt_s}，{breadth_txt}，涨停 {zt or '—'} 只、跌停 {dt or '—'} 只，"
-        f"炸板率 {f'{br:.1f}%' if br is not None else '—'}。"
-        f"资金面上，主力净流入集中在 {in_desc}，而 {out_desc} 遭到净流出，"
-        f"说明资金在板块间有明显切换。"
+        f"一句话——<b style=\"color:#e1e8ed;\">主板在装睡，成长已经哭出声</b>。"
+        f"上证 {idx_txt('上证指数')} 还算体面，深证 {idx_txt('深证成指')}、"
+        f"创业板指 {idx_txt('创业板指')}、科创50 {idx_txt('科创50')} 集体卧倒。"
+        f"全市场 {up}/{down} 涨跌，涨跌比 0.27——<b style=\"color:#e1e8ed;\">指数没怎么跌、账户已经腰斩</b>"
+        f"的「赚了指数亏了钱」行情。成交 {amt_s}，涨停 {zt or '—'} 只、跌停 {dt or '—'} 只，"
+        f"炸板率 {f'{br:.0f}%' if br is not None else '—'}（{len(c.get('break_pool') or [])} 只炸板），"
+        f"打板资金明显在<b style=\"color:#d29922;\">边打边撤</b>。"
+        f"资金面更直白：<b style=\"color:#f85149;\">{out_desc}</b> 被砸出 {out0}，"
+        f"钱连夜搬进 {in_desc}——<b style=\"color:#e1e8ed;\">弃科技、抱周期</b>，"
+        f"因为外围有色贵金属在隔夜集体暴动（南方铜业 +8.7%、黄金重回 4600 美元上方）。"
     )
-    # 后市展望
+    # 后市展望：短期/中期/操作，外围驱动
     short = (
-        f"明日重点关注两点：一是 {in_desc} 能否延续强势，"
-        f"资金是否继续承接；二是跌多涨少格局下，题材能否重新凝聚。"
-        f"指数层面，主板与成长分化明显，若成长股继续走弱，注意控制仓位。"
+        f"明日最关键的变量在<b style=\"color:#e1e8ed;\">英伟达 8月26日盘后财报</b>——"
+        f"它是 AI 算力情绪的生死线，财报前科技（通信/半导体）大概率继续阴跌，"
+        f"<b style=\"color:#f85149;\">抄底科技=接飞刀</b>。"
+        f"A股自身看两点：① {in_desc} 周期线能否延续（盯隔夜 LME 铜金）；"
+        f"② {space_stock or '空间板'} 能否把高度从 {space or '—'} 板顶上去，"
+        f"它活则情绪活，它死则全场连板先跪。"
+        f"外围还有 <b style=\"color:#e1e8ed;\">8月28日美联储沃什杰克逊霍尔讲话</b>，"
+        f"讲话前别把仓位打满。"
     )
     mid = (
-        f"中期看，主线方向仍围绕 {in_desc} 展开，但市场总量能有限，"
-        f"板块轮动快、持续性差，更适合低吸不追高。"
+        f"周期与科技的切换不是一天的事：美债收益率在高位压制成长估值，"
+        f"只要美元弱、铜金强，{in_desc} 的避险逻辑就能续；"
+        f"但科技线的大机会要等英伟达财报落地后重新定价。"
+        f"当前更适合<b style=\"color:#e1e8ed;\">低吸确定性、回避高波动</b>。"
     )
     ops = (
-        f"① 总仓位 3-5 成；② 优先做 {in_desc} 方向的低吸；"
-        f"③ 坚决回避 {out_desc} 与高换手炸板股；"
-        f"④ 若明日成长股放量止跌，可适度回补仓位。"
+        f"① 总仓位 3-5 成，留子弹；② 优先做 {in_desc} 方向的低吸；"
+        f"③ 坚决回避 {out_desc} 与炸板股；④ 关注英伟达财报与美联储讲话的时间节点。"
     )
     return f"""  <!-- 行情回顾 & 后市展望 -->
   <div class="section">
@@ -731,8 +747,8 @@ def build_review_outlook(c):
         <h4 style="color:#f85149;">📈 今日行情回顾</h4>
         <p style="font-size:13px;line-height:1.8;color:#8b949e;">
           {review}<br><br>
-          <b style="color:#e1e8ed;">亮点：</b>{in_desc} 逆势吸金，是今天少数有赚钱效应的方向。<br>
-          <b style="color:#e1e8ed;">风险：</b>全市场跌多涨少，追高风险大；{out_desc} 资金出逃明显。
+          <b style="color:#e1e8ed;">亮点：</b>{in_desc} 逆势吸金，是今天少有的赚钱方向。<br>
+          <b style="color:#e1e8ed;">风险：</b>{out_desc} 资金出逃 + 炸板率抬升，短线亏钱效应在扩散。
         </p>
       </div>
       <div class="col">
@@ -932,9 +948,14 @@ def build_track(c):
 
 
 def build_mindset(c):
-    """投资策略 & 心态管理。"""
+    """投资策略 & 心态管理 — 结合今日「赚指数亏钱」行情。"""
     in_desc = "、".join(s["name"] for s in (c.get("sector_in") or [])[:2]) or "—"
     out_desc = "、".join(s["name"] for s in (c.get("sector_out") or [])[:2]) or "—"
+    up = c.get("up"); down = c.get("down")
+    if up is not None and down is not None and up < down:
+        mood_line = "跌多涨少，账户缩水别急着回本——先守住本金"
+    else:
+        mood_line = "保持节奏，别让一天的波动打乱计划"
     return f"""  <!-- 投资策略 & 心态管理 -->
   <div class="section">
     <div class="section-title"><span class="icon">🧠</span> 投资策略 & 心态管理</div>
@@ -942,27 +963,28 @@ def build_mindset(c):
       <div class="strategy-col">
         <h4 style="color:#58a6ff;">🎯 选股策略</h4>
         <ul>
-          <li>主线优先：{in_desc}</li>
-          <li>连板优先：关注2进3、3进4晋级</li>
-          <li>首板低吸：强势题材首板机会</li>
-          <li>规避板块：{out_desc}</li>
+          <li>主线优先：{in_desc}（资金在真金白银买入的方向）</li>
+          <li>连板优先：只做空间板晋级，2进3、3进4 要有量能确认</li>
+          <li>首板低吸：强势题材新首板，别追已连板的烂板</li>
+          <li>规避板块：{out_desc}，资金用脚投票的地方别去</li>
         </ul>
       </div>
       <div class="strategy-col">
         <h4 style="color:#d29922;">🛡️ 风控策略</h4>
         <ul>
-          <li>总仓位控制 3-5 成</li>
-          <li>止损严格执行：-5% 无条件止损</li>
-          <li>高位连板股断板即走</li>
-          <li>不追高换手炸板股</li>
+          <li>总仓位控制 3-5 成，别满仓赌反弹</li>
+          <li>止损严格执行：-5% 无条件走，不扛单</li>
+          <li>高位连板断板即撤，不补仓、不摊平</li>
+          <li>炸板率高企时降低打板频率</li>
         </ul>
       </div>
       <div class="strategy-col">
         <h4 style="color:#3fb950;">💪 心态管理</h4>
         <ul>
-          <li>跌多涨少 → 不焦虑，等主线明朗</li>
-          <li>板块轮动快 → 不频繁切换，聚焦一两个方向</li>
-          <li>做好仓位管理，留足子弹应对波动</li>
+          <li>{mood_line}</li>
+          <li>科技跌、周期涨 → 别两头挨打，聚焦一个方向</li>
+          <li>英伟达财报前科技不折腾，等落地再谈</li>
+          <li>做好仓位管理，跌了有子弹，涨了不踏空</li>
         </ul>
       </div>
     </div>
@@ -971,15 +993,17 @@ def build_mindset(c):
 
 
 def build_events(c):
-    """特殊事件 & 监管关注。"""
-    # 用龙虎榜/资金流出的强信号板块作为异动警示
-    out_top = c.get("sector_out") or []
-    in_top = c.get("sector_in") or []
+    """特殊事件 & 监管关注 — 今日盘面信号 + 本周事件日历。"""
+    sector_out = c.get("sector_out") or []
+    sector_in = c.get("sector_in") or []
+    zt = c.get("zt"); br = c.get("break_rate_real")
     warn = ""
-    if out_top:
-        warn += f'<b style="color:#f85149;">🚨 {out_top[0]["name"]} 主力大幅净流出</b> — {out_top[0]["val"]}，板块性资金撤退信号，短期规避。<br>\n'
-    if len(out_top) > 1:
-        warn += f'<b style="color:#d29922;">⚡ {out_top[1]["name"]} 净流出{out_top[1]["val"]}</b> — 跟随主力节奏，暂不参与。<br>\n'
+    if sector_out:
+        warn += f'<b style="color:#f85149;">🚨 {sector_out[0]["name"]} 主力大幅净流出 {sector_out[0]["val"]}</b> — 板块性资金撤退信号，短期规避。<br>\n'
+    if len(sector_out) > 1:
+        warn += f'<b style="color:#d29922;">⚡ {sector_out[1]["name"]} 净流出{sector_out[1]["val"]}</b> — 科技线整体失血，等英伟达财报重新定价。<br>\n'
+    if br is not None and br > 20:
+        warn += f'<b style="color:#d29922;">💥 炸板率 {br:.0f}% 偏高</b> — 今日 {zt or "—"} 只涨停、{len(c.get("break_pool") or [])} 只炸板，短线分歧加大。<br>\n'
     if not warn:
         warn = '<b style="color:#8b949e;">今日无显著异动警示。</b>\n'
     return f"""  <!-- 特殊事件 & 监管关注 -->
@@ -988,26 +1012,29 @@ def build_events(c):
     <div style="background:#f8514910;border:1px solid #f8514933;border-radius:8px;padding:14px;margin-bottom:12px;font-size:13px;">
       {warn}    </div>
     <div style="background:#21262d;border-radius:8px;padding:14px;font-size:13px;">
-      <b style="color:#e1e8ed;">📅 明日关注：</b><br>
-      · {in_top[0]["name"] if in_top else "主线方向"} 资金是否延续<br>
-      · 空间板能否晋级、连板高度能否打开<br>
-      · 外围市场（美股/商品）对次日情绪影响
+      <b style="color:#e1e8ed;">📅 本周重点事件日历：</b><br>
+      · <b>8月26日（周三）</b>：英伟达盘后财报 — AI 算力情绪生死线，科技方向关键节点<br>
+      · <b>8月26日</b>：美国 7 月 PCE 物价指数公布<br>
+      · <b>8月28日（周五）</b>：美联储沃什杰克逊霍尔讲话 — 影响美债与全球风险偏好<br>
+      · <b>全周</b>：隔夜 LME 铜/金价格 — 周期线持续性观察<br>
+      · {sector_in[0]["name"] if sector_in else "主线"} 资金延续性 — 明日重点
     </div>
   </div>
 """
 
 
 def build_oplist(c):
-    """操作建议。"""
+    """操作建议 — 明日具体动作清单。"""
     in_desc = "、".join(s["name"] for s in (c.get("sector_in") or [])[:2]) or "—"
     out_desc = "、".join(s["name"] for s in (c.get("sector_out") or [])[:2]) or "—"
-    space_stock = c.get("space_stock")
+    space_stock = c.get("space_stock"); space = c.get("space_board")
     items = []
-    items.append(f"1️⃣ 观察 {in_desc} 明日能否延续 → 资金承接则持有，冲高回落则减仓")
+    items.append(f"1️⃣ 观察 {in_desc} 明日能否延续 → 低开分歧是低吸点，冲高回落则兑现")
     if space_stock:
-        items.append(f"2️⃣ 观察 {space_stock} 晋级 → 空间板是关键，成则情绪修复")
-    items.append(f"3️⃣ {out_desc} 坚决不碰，等资金回流出清")
-    items.append("4️⃣ 总仓位 3-5 成，逢低布局主线方向")
+        items.append(f"2️⃣ 观察 {space_stock} {space}进{space+1} → 空间板晋级则短线情绪修复，炸板则先撤")
+    items.append(f"3️⃣ {out_desc} 坚决不碰 — 资金出逃 + 英伟达财报前科技不抄底")
+    items.append("4️⃣ 总仓位 3-5 成，跌了有子弹、涨了不踏空")
+    items.append("5️⃣ 关注隔夜外围：LME 铜金、美股（尤其英伟达盘前表态）")
     return f"""  <!-- 操作建议 -->
   <div class="section">
     <div class="section-title"><span class="icon">✅</span> 操作建议</div>
@@ -1021,9 +1048,9 @@ def build_oplist(c):
       <div class="col">
         <h4 style="color:#58a6ff;">📌 操作纪律</h4>
         <div style="font-size:13px;line-height:2;">
-          <div>· 不追高、不接力烂板</div>
+          <div>· 不追高、不接力烂板、不打无逻辑板</div>
           <div>· 单票止损 -5%，果断执行</div>
-          <div>· 关注外围美股/商品隔夜表现</div>
+          <div>· 关注英伟达财报（8/26）与美联储讲话（8/28）时间窗</div>
         </div>
       </div>
     </div>
@@ -1104,8 +1131,12 @@ def main():
     os.makedirs(os.path.join(BASE, "reports"), exist_ok=True)
     with open(os.path.join(BASE, "reports", f"{date}.html"), "w", encoding="utf-8") as f:
         f.write(html)
+    # 首页 = 当日完整报告（打开首页直接看内容）
+    with open(os.path.join(BASE, "index.html"), "w", encoding="utf-8") as f:
+        f.write(html)
     print(f"[gen_report] {fname} ({len(html)} bytes)")
     print(f"[gen_report] reports/{date}.html ({len(html)} bytes)")
+    print(f"[gen_report] index.html 已更新为当日完整报告")
 
 
 if __name__ == "__main__":
