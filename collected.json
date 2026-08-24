@@ -744,7 +744,7 @@
     }
   ],
   "break_pool": [],
-  "break_rate_real": null,
+  "break_rate_real": 0.0,
   "fuyao_source": {
     "limit_up_count": 46,
     "break_count": 0,
@@ -904,8 +904,31 @@
       "amount": "2.0075万亿"
     }
   ],
-  "overseas": [],
-  "margin": [],
+  "overseas": [
+    {
+      "name": "日经225",
+      "close": "-",
+      "chg": "-0.3027%",
+      "cls": "negative"
+    },
+    {
+      "name": "纳斯达克",
+      "close": "26180.455点",
+      "chg": "0.4346%",
+      "cls": "positive"
+    },
+    {
+      "name": "标普500",
+      "close": "7674.37点",
+      "chg": "0.4346%",
+      "cls": "positive"
+    }
+  ],
+  "margin": {
+    "finance": "2.512万亿",
+    "lending": "184.4亿",
+    "total": "2.53万亿"
+  },
   "emotion": {
     "raw_score": 23.0,
     "adj_score": 29.09,
