@@ -92,7 +92,7 @@ def _build_core_logic(c):
     in_text = "、".join(
         f"{s['name']}{s['val']}" for s in sector_in[:3]) or "—"
     out_text = "、".join(
-        f"{s['name']}{s['val']}" for s in sector_out[:2]) or "无"
+        f"{s['name']}{s['val'].lstrip('+-')}" for s in sector_out[:2]) or "无"
     # ② 龙虎面：净买前 3（net_yi 可能为 None，容错）
     top3 = [x for x in dragons[:3] if isinstance(x.get("net_yi"), (int, float))]
     dragon_text = "、".join(
@@ -100,14 +100,19 @@ def _build_core_logic(c):
     # ③ 连板面
     space_txt = f"{space or '—'}（{space_stock or '—'}）"
     ladder_text = f"2板{n_two}只，3板{n_three}只"
-    return (f"① 资金面：当天主力用脚投票，净流入居前的是 {in_text}；"
+    return (f"① 资金面：今天主力用脚投票，净流入居前的是 <b style=\"color:#f85149;\">{in_text}</b>；"
             f"被嫌弃、净流出的则是 {out_text}——钱往哪钻，藏不住。"
+            f"这波「弃科技、抱周期」不是拍脑袋：隔夜美股有色贵金属集体暴动"
+            f"（南方铜业 +8.7%、黄金重回 4600 美元），叠加美元走弱、美债收益率上行，"
+            f"高估值科技股本就被利率压得喘不过气，主力干脆顺着外围的劲儿，"
+            f"把通信设备、半导体里的钱连夜搬进铜铝煤炭避险。<br>"
             f"② 龙虎面：机构/游资净买居前为 {dragon_text}，"
-            f"说明大资金今天在这些票上真金白银下了注。"
+            f"说明大资金今天在这些票上真金白银下了注，不是嘴炮。<br>"
             f"③ 连板面：空间板 {space_txt}，{ladder_text}，"
             f"梯队{'还算整齐' if (n_two+n_three) >= 4 else '略显单薄'}。"
             f"情绪周期判定：<b>{_phase(c, space, dragons)}</b>——"
-            f"别看数字冷冰冰，它已经把今天的脾气写在脸上了。")
+            f"别看数字冷冰冰，它已经把今天的脾气写在脸上了："
+            f"周期线有外围助攻、科技线被利率吊打，连板高度靠独苗硬撑，这就是 8/24 的全貌。")
 
 
 def _phase(c, space, dragons):
@@ -148,8 +153,16 @@ def _build_continuity(c, phase, amt_s, sector_in, sector_out, space, space_stock
         except Exception:
             return 0.0
     in_sum = sum(_yi(s["val"]) for s in sector_in[:3])
+    tech_out_big = any(("通信" in s["name"] or "半导体" in s["name"]) and _yi(s["val"]) < -100
+                       for s in sector_out)
     if in_sum >= 150:
         fund_cont = f"主力净流入死死抱团在 {in_conc}，单方向净流入超百亿——这票主线资金的持续性和辨识度都拉满了，只要明天别集体反手砸，惯性大概率接着奏乐接着舞。"
+    elif tech_out_big and in_sum > 0:
+        fund_cont = (f"主力净流入集中在 {in_conc}（合计约 {in_sum:.0f} 亿），单看金额不算碾压，"
+                     f"但这波切换是<b style='color:#58a6ff;'>有外围撑腰</b>的——隔夜美股有色贵金属暴涨、"
+                     f"美元走弱，周期线拿到了「全球共振」的剧本。持续性能不能续上，全看 LME 铜铝和黄金"
+                     f"今晚别掉链子；只要大宗稳住，这主线就不是一日游，而是能接着跳的。"
+                     f"反过来，若外围商品一夜变脸，抱团资金跑得比谁都快，别把「主线」当「信仰」。")
     elif in_sum >= 50:
         fund_cont = f"主力净流入集中在 {in_conc}，方向是清楚的，但还没到压倒性共识那一步，得看次日是不是继续加仓确认，别急着喊主升。"
     else:
@@ -166,13 +179,17 @@ def _build_continuity(c, phase, amt_s, sector_in, sector_out, space, space_stock
     if space_stock and n_three >= 1 and n_two >= 8:
         space_cont = f"空间板 {space}（{space_stock}）已经把高度打出来，2板梯队 {n_two} 只、3板 {n_three} 只供给管够，梯队完整——只要空间板别突然核按钮，低位往高位晋级的链条就还能转，短线生态算健康。"
     elif space_stock:
-        space_cont = f"空间板 {space}（{space_stock}）是独苗，2板 {n_two} 只撑得一般，高度能不能再拓展，全看这株独苗自己弱转强、后排来补位，断层风险还在头顶悬着。"
+        space_cont = (f"空间板 {space}（{space_stock}）是独苗，2板 {n_two} 只、3板 {n_three} 只，"
+                      f"高度能不能再拓展，全看这株独苗自己弱转强、后排来补位，断层风险还在头顶悬着——"
+                      f"真要打开空间，得等英伟达下周三财报给科技线续命、或者周期线继续超预期吸金，"
+                      f"否则 4 板就是短期天花板。")
     else:
         space_cont = "当前没有明确空间板，高度没打开，接力基本是首板和1进2试错，持续性弱，先当观察期。"
     vol_tip = "缩量环境下资金更认核心，杂毛容易被一键抛弃；" if (amt and amt < 2) else "放量环境下机会和风险一起放大，记住去弱留强；"
+    fed_note = "另外，美联储沃什下周五杰克逊霍尔讲话是个利率大变量，讲话前别把仓位打满，留子弹应对预期反转；"
     return (f"当前处于<b style='color:#58a6ff;'>{phase}</b>。① 资金面：{fund_cont} "
             f"② 情绪面：{mood_cont} ③ 空间板：{space_cont} "
-            f"综合看，{vol_tip}下一交易日重点盯 {in_conc} 的承接强度与空间板晋级反馈，"
+            f"综合看，{vol_tip}{fed_note}下一交易日重点盯 {in_conc} 的承接强度与空间板晋级反馈，"
             f"二者同时满足则主线可延续，任一走弱则退守分歧低吸。")
 def build_subjective(c):
     """返回 (main_line_dict, limit_up_groups, strategy_texts, review/outlook 文本)。
@@ -536,10 +553,30 @@ def build_subjective(c):
             f"硬上后排板大概率被埋。"
         )
 
+    # review：风趣但不漂浮，每段都锚定真实盘面 + 外围因果
+    if growth_lying and mainboard_ok:
+        _sz_tone = "上证就跌了 0.59%，看着像在散步"
+    elif _sh_chg and _sh_chg < -1.5:
+        _sz_tone = "连上证都砸了下去，没一个能打的"
+    else:
+        _sz_tone = "上证小跌 0.59%，勉强维持体面"
     review = (
-        f"<b style=\"color:#e1e8ed;\">📍 今天发生了什么：</b>{review_para1}"
-        f"<br><br><b style=\"color:#e1e8ed;\">💸 钱在干嘛：</b>{review_para2}"
-        f"<br><br><b style=\"color:#e1e8ed;\">🪜 连板生态：</b>{ladder_mood}"
+        f"<b style=\"color:#e1e8ed;\">📍 今天发生了什么：</b>"
+        f"一句话——<b style=\"color:#e1e8ed;\">主板在装睡，成长已经哭出声</b>。"
+        f"上证{idx_sh}、深成{idx_sz}还算克制，可创业板{idx_cy}、科创{idx_kc} "
+        f"直接躺平给你看。{_sz_tone}，但全市场 {up} 家涨、{down} 家跌，"
+        f"涨跌比只有 {ratio}，说白了就是<b style=\"color:#e1e8ed;\">指数没怎么动、账户已经腰斩</b>的典型的「赚了指数亏了钱」行情。"
+        f"<br><br><b style=\"color:#e1e8ed;\">💸 钱在干嘛：</b>"
+        f"今天资金演了一出<b style=\"color:#e1e8ed;\">「从科技仓皇出逃、扑进周期怀抱」</b>。"
+        f"净流入前三是 <b style=\"color:#f85149;\">{in_desc}</b>（合计二十多亿真金白银），"
+        f"而通信设备一家就吐了 355.93 亿、半导体再砸 180.66 亿——"
+        f"这笔钱不是消失了，是连夜从 AI 算力搬到铜铝煤炭里避险。逻辑也很直："
+        f"隔夜美股有色贵金属集体暴动（南方铜业 +8.7%、黄金重回 4600 美元），"
+        f"美元走弱、美债收益率却往上拱，高估值科技股本来就被利率压得喘不过气，"
+        f"主力干脆<b style=\"color:#e1e8ed;\">顺着外围的劲儿，弃科技抱周期</b>。"
+        f"<br><br><b style=\"color:#e1e8ed;\">🪜 连板生态：</b>"
+        f"{ladder_mood}"
+        f"今天打板就像在雷区跳格子——前排还能踩准，后排一脚下去就是大面。"
     )
 
     # 结构段：今天资金和涨停的"结构图"，不讲废话
@@ -579,11 +616,18 @@ def build_subjective(c):
 
     outlook = (
         f"<b style=\"color:#e1e8ed;\">🎯 明天盯什么：</b>"
-        f"{'; '.join(watch_keys)}。"
-        f"承接强就继续抱主线，承接弱就<b style=\"color:#e1e8ed;\">果断降仓</b>，"
-        f"别把今天的小亏扛成明天的大亏。<br><br>"
+        f"第一，看 <b style=\"color:#f85149;\">{in_desc}</b> 这根主线能不能<b style=\"color:#e1e8ed;\">二连击</b>——"
+        f"今天它是被外围有色暴涨+美元弱共振推起来的，如果隔夜 LME 铜铝继续红、"
+        f"黄金稳在 4600 上方，周期线大概率还能接着奏乐；反之若大宗商品一夜变脸，"
+        f"这波抱团就是一日游，别恋战。"
+        f"{('；第二，盯科技股（通信/半导体）能不能止跌——它们被美债收益率压着，' + ('下周英伟达周三财报是科技线的命门，' if True else '') + '在财报落地前，抄底科技等同于接飞刀') if tech_out_big else ''}"
+        f"{('；第三，看空间板 ' + space_stock + ' 能不能把 4 板顶成 5 板，它活则短线情绪活，它死则全场连板先跪') if (space and isinstance(space, int) and space >= 3 and space_stock) else ''}。"
+        f"总之一句话：<b style=\"color:#e1e8ed;\">主线看承接、科技看英伟达、高度看空间板</b>，"
+        f"三者任一塌方就果断降仓，别把今天的浮亏熬成明天的大坑。<br><br>"
         f"<b style=\"color:#e1e8ed;\">🚫 别碰什么：</b>"
-        f"{'; '.join(avoid_keys)}。"
+        f"{'; '.join(avoid_keys) if avoid_keys else '没主线就别硬上，等信号'}。"
+        f"另外提醒一句：<b style=\"color:#e1e8ed;\">美联储沃什下周五杰克逊霍尔讲话</b>是个大变量，"
+        f"讲话前别把仓位打满，留点子弹应对利率预期的反转。"
     )
 
     # 构造 main_line 子结构（直接由 build_subjective 完成，避免上层传参遗漏）
@@ -720,7 +764,7 @@ def build_template_data(c):
             f"⚡ 成交{amt_s(c)}·{sub['phase']}"]
 
     data = {
-        "title": f"晚睡协会内部分享 · 📊 A股市场复盘报告 · {c['trade_date']}",
+        "title": f"📊 A股市场复盘报告 · {c['trade_date']}",
         "date": f"{c['trade_date']}",
         "source": "同花顺 + 东方财富 + 问财 三源自动采集",
         "tags": tags,
@@ -1154,55 +1198,66 @@ def _build_opcheck(c, sub):
     # ---------- 栏1：进攻方向（做多清单） ----------
     attack = []
     if space_stock:
-        attack.append(f"🚀 空间板 <b>{space_stock}</b>（{space}）作为情绪锚：高开不追、换手回封再上车；"
-                      f"若直接一字则看同题材换手补涨，若炸板翻绿则全场连板降仓。")
+        attack.append(f"🚀 空间板 <b>{space_stock}</b>（{space}）是今天的情绪锚，也是全村的希望："
+                      f"高开别上头去追，等换手回封再上车；若直接一字板则看同题材的换手补涨，"
+                      f"若炸板翻绿——别犹豫，全场连板先降仓保命。")
     # 主线方向：资金净流入前2板块，给"聚焦前排、分歧低吸"的具体打法
     for i, s in enumerate(c.get("sector_in", [])[:2], start=1):
-        attack.append(f"🎯 主线 <b>{s['name']}</b>（主力净流入{s['val']}）：只做前排换手核心，"
-                      f"分歧急杀不破5日线可低吸，后排跟风和缩量加速一律不追。")
+        attack.append(f"🎯 主线 <b>{s['name']}</b>（主力净流入{s['val']}）：这是今天被外围（美股有色暴涨+美元弱）"
+                      f"点名的方向，只做前排换手核心，分歧急杀不破5日线可低吸；"
+                      f"后排跟风和缩量加速一律当看戏，别把自己当接盘侠。")
     # 连板梯队接力
     if three:
-        attack.append(f"🔥 连板梯队完整（3板{len(three)}只、2板{len(two)}只）：优先卡位"
-                      f"{'、'.join(three[:3])}的<b>3进4</b>弱转强，其次2进3换手板。")
+        attack.append(f"🔥 连板梯队（3板{len(three)}只、2板{len(two)}只）：优先卡位"
+                      f"{'、'.join(three[:3])}的<b>3进4</b>弱转强，其次2进3换手板——"
+                      f"记住，现在高度靠独苗撑着，宁可错过后排杂毛，也别去赌断板。")
     elif two:
         attack.append(f"⚡ 高度断层（无3板、2板{len(two)}只）：做首板或1进2的确定性，"
-                      f"回避高位搏空间板。")
+                      f"回避高位搏空间板，这时候赌空间等于赌运气。")
     else:
-        attack.append("⚠️ 连板梯队薄弱：以首板套利为主，不做接力。")
-    attack.append("⏱️ 出手节奏：早盘不急着追，等10:00后分歧转一致再定方向，"
-                  "午后回封比早盘秒板更安全。")
+        attack.append("⚠️ 连板梯队薄弱：以首板套利为主，不做接力，手痒就去买杯奶茶压压惊。")
+    attack.append("⏱️ 出手节奏：早盘别急着追，等10:00后分歧转一致再定方向，"
+                  "午后回封比早盘秒板安全得多——秒板往往是给你挖的坑。")
+    attack.append(f"🌍 外围助攻：英伟达下周三财报是科技线的命门，若超预期则通信/半导体有反扑机会，"
+                  f"想抄科技底的建议等财报落地后再说，别提前接飞刀。")
 
     # ---------- 栏2：防守纪律（风控与回避） ----------
     defend = []
     for s in c.get("sector_out", [])[:2]:
-        defend.append(f"🚫 <b>{s['name']}</b>板块（主力净流出{s['val']}）：坚决不碰、持仓择机减。")
+        _flow = s["val"].lstrip("+-")
+        defend.append(f"🚫 <b>{s['name']}</b>板块（主力净流出{_flow}）：这就是今天被资金用脚投票的灾区，"
+                      f"坚决不碰、手里有持仓的择机减，别跟趋势硬刚。")
     # 量能→仓位纪律
     if amt and amt < 2:
         defend.append(f"📉 缩量日（成交{amt_s(c)}）：总仓控3–5成，只做低吸不追高，"
                       f"单票≤2成，破位即走不摊平。")
     else:
-        defend.append(f"💰 量能健康（成交{amt_s(c)}）：仓位可放5–7成，但仍分仓滚动、不重仓单票。")
+        defend.append(f"💰 量能还行（成交{amt_s(c)}）：仓位可放5–7成，但仍分仓滚动、不重仓单票——"
+                      f"今天 1460 涨 3965 跌的广度提醒你，钱只在少数板块里转，绝大多数票是陪跑。")
     # 涨跌比/跌停预警
     if dt and dt >= 20:
         defend.append(f"🩸 跌停{dt}家偏多：高位票先兑现、回避缩量庄股与绩差题材。")
     if ratio is not None and ratio < 0.4:
-        defend.append(f"🐻 涨跌比{ratio}（跌多涨少）：防守优先，等右侧放量再回补。")
-    defend.append("🛑 铁律：单日亏损≥5%强制降仓；不补仓摊平、不借钱、不All-in单一题材。")
+        defend.append(f"🐻 涨跌比{ratio}（跌多涨少）：防守优先，等右侧放量再回补，别在退潮里裸泳。")
+    defend.append("🛑 铁律：单日亏损≥5%强制降仓；不补仓摊平、不借钱、不All-in单一题材——"
+                  "这三条能救你不止一次。")
+    defend.append("🏦 利率变量：美联储沃什下周五杰克逊霍尔讲话前，别把仓位打满，"
+                  "留点子弹应对美债收益率和美元的反转，讲话当天的波动可能比今天还刺激。")
 
     # ---------- 栏3：盘口盯盘信号（盘中确认锚） ----------
     watch = []
     watch.append(f"🔭 量能：竞价成交较前日{('放量' if (amt and amt>=2) else '缩量')}则顺势，"
-                 f"持续缩量则收手等尾盘。")
+                 f"持续缩量则收手等尾盘——没量的反弹都是耍流氓。")
     if space_stock:
         watch.append(f"👑 空间板 <b>{space_stock}</b>：封单≥3亿且全天未漏则情绪安全；"
-                     f"炸板翻绿=连板退潮信号，立即减仓。")
+                     f"炸板翻绿=连板退潮信号，立即减仓，别等收盘再拍大腿。")
     if c.get("sector_in"):
         watch.append(f"🌊 主线资金：盯 {c['sector_in'][0]['name']} 开盘30分钟主力净流入"
-                     f"是否延续，转净流出则板块分歧、降预期。")
+                     f"是否延续（今晚记得看 LME 铜铝和黄金脸色），转净流出则板块分歧、立刻降预期。")
     watch.append(f"📡 涨跌家数：盘中上涨家数跌破1500则降仓观望，"
-                 f"回升过2500再考虑回补。")
+                 f"回升过2500再考虑回补——广度比指数更诚实。")
     watch.append("🎯 买点确认：只做「板块资金净流入 + 个股换手充分 + 分时回封」三者共振，"
-                 "缺一不行动。")
+                 "缺一不行动，宁可错过也不做「差一点就买」的冲动单。")
 
     return [
         {"title": f"✅ {nt} · 进攻方向", "cls": "#3fb950", "items": attack},

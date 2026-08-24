@@ -426,7 +426,7 @@ def build_template(d):
     # Header
     tags = "".join(f'<span class="tag">{t}</span>' for t in d["tags"])
     L.append(f"""  <div class="header">
-    <h1>晚睡协会内部分享 · 📊 A股市场复盘报告</h1>
+    <h1>📊 A股市场复盘报告</h1>
     <div class="date">📅 {d['date']}</div>
     <div class="tags">{tags}</div>
   </div>""")
