@@ -16,11 +16,11 @@ _*/
 mx_data_*
 mx_search_*
 
-# 源码不入库：只推网站程序（index.html 等产物），源码留本地
-collect.py
-collect_westock.py
-update.py
-xcheck.py
-gen_template.py
-make_template.py
+# 源码入库说明：网站程序全部 .py 源码入库（collect_westock.py / update.py /
+# gen_template.py / collect.py / xcheck.py / make_template.py），保证可复现。
+# 仅忽略编译产物与本地临时/假数据：
+#   *.pyc / __pycache__  —— 编译缓存
+#   _*/  _trash/  mx_data_*  mx_search_*  —— 本地探测/日志/中间产物（绝不入库）
+#   _bench/  —— 本地基准测试残留（如需要可取消此行）
+_bench/
 
