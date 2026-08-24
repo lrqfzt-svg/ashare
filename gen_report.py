@@ -66,10 +66,43 @@ def fmt_seal_yi(x):
 
 
 # ---------- 模板 CSS（原样提取，模板锁定） ----------
+MOBILE_CSS = """
+  /* 移动端适配（增强）：表格横向滚动 + 网格单列 */
+  @media (max-width: 768px) {
+    .container { padding: 12px; }
+    .header { padding: 20px 14px; }
+    .header h1 { font-size: 22px; }
+    .cards { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .card { padding: 14px 10px; }
+    .card .value { font-size: 20px; }
+    .two-col { grid-template-columns: 1fr; gap: 14px; }
+    .strategy-cols { grid-template-columns: 1fr; gap: 12px; }
+    .sentiment-grid { grid-template-columns: 1fr; gap: 10px; }
+    .section { padding: 16px 12px; }
+    .section-title { font-size: 15px; }
+    /* 表格：窄屏横向滚动，避免撑破布局 */
+    table, .jinji-table { display: block; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; }
+    th, td { padding: 6px 8px; font-size: 12px; }
+    /* 涨停复盘网格单列 */
+    div[style*="grid-template-columns:repeat(2,1fr)"] { grid-template-columns: 1fr !important; }
+    /* 4大数字卡片单列 */
+    div[style*="grid-template-columns:repeat(4,1fr)"] { grid-template-columns: repeat(2, 1fr) !important; gap: 10px; }
+    div[style*="grid-template-columns:repeat(5,1fr)"] { grid-template-columns: repeat(2, 1fr) !important; gap: 10px; }
+    .money-row { font-size: 12px; }
+    .stock-item { padding: 10px; }
+    .footer { padding: 14px; }
+  }
+  @media (max-width: 420px) {
+    .cards { grid-template-columns: 1fr; }
+    div[style*="grid-template-columns:repeat(4,1fr)"] { grid-template-columns: 1fr 1fr !important; }
+  }
+"""
+
+
 def load_css():
     html = open(TEMPLATE, encoding="utf-8").read()
     m = re.search(r"<style>(.*?)</style>", html, re.S)
-    return m.group(1) if m else ""
+    return (m.group(1) if m else "") + MOBILE_CSS
 
 
 # ---------- 模块构建 ----------
@@ -340,63 +373,98 @@ def build_emotion_monitor(c):
 
 
 def build_jinji(c):
-    """连板梯队 & 晋级率统计。"""
+    """连板梯队 & 晋级率统计 — 用近30日 ladder_history 计算真实晋级率。"""
     ladder = c.get("ladder") or {}
+    hist = c.get("ladder_history") or []
     two = ladder.get("2") or []
     three = ladder.get("3") or []
     four = ladder.get("4") or []
+    five = ladder.get("5") or []
+    # 历史数据：hist[0]=今日、hist[1]=昨日、hist[2]=前日...
+    today = hist[0] if hist else {}
+    yest = hist[1] if len(hist) > 1 else {}
+    # 晋级率 = 今日 N 板数 / 昨日 (N-1) 板数（昨日本无 N-1 板则 —）
+    def rate(today_n, yest_base):
+        if yest_base is None or yest_base <= 0:
+            return None
+        return round(today_n / yest_base * 100, 0) if today_n > 0 else 0.0
+
+    def rate_html(today_n, yest_base):
+        r = rate(today_n, yest_base)
+        if r is None:
+            return '<span class="jinji-rate">—</span>'
+        if r == 0:
+            return f'<span class="jinji-rate jinji-zero">{r:.0f}% ⚠ 全灭</span>'
+        cls = "jinji-high" if r >= 50 else "jinji-low"
+        return f'<span class="jinji-rate {cls}">{r:.0f}%</span>'
+
+    def sig_html(today_n, yest_base, name):
+        r = rate(today_n, yest_base)
+        if r is None:
+            return f'<td style="color:#8b949e;">昨日前日基数为0，无晋级数据</td>'
+        if r == 0:
+            return f'<td style="color:#f85149;font-weight:600;">🚨 {name} 全部晋级失败！</td>'
+        if r >= 50:
+            return f'<td style="color:#3fb950;">晋级顺畅，{name} 赚钱效应强</td>'
+        return f'<td style="color:#d29922;">{name} 晋级率偏低，前排关注</td>'
+
     rows = ""
-    # 1进2：2板家数（前日基数未知留—）
+    # 1进2：今日2板 / 昨日首板基数（昨日涨停总数 - 昨日连板数，从历史反推近似）
+    # 昨日首板基数 = 昨日 total 涨停 - (昨日 n2+n3+n4+n5+...)。无昨日涨停总数时留—
+    yest_total_zt = None  # 无直接来源，留"—"
+    n2_today = len(two)
     rows += f"""        <tr>
           <td style="font-weight:600;">1进2</td>
           <td>—</td>
-          <td>{len(two)}只</td>
-          <td><span class="jinji-rate jinji-low">—</span></td>
+          <td>{n2_today}只</td>
+          <td><span class="jinji-rate">—</span></td>
           <td>{'、'.join(two[:5]) if two else '—'}{' 等' if len(two) > 5 else ''}</td>
-          <td style="color:#d29922;">晋级率数据未返回</td>
+          <td style="color:#8b949e;">首板基数数据未返回，晋级率按已连板梯队统计</td>
         </tr>
 """
+    # 2进3：今日3板 / 昨日2板
+    n3_today = len(three)
+    base2 = yest.get("n2")
     rows += f"""        <tr>
           <td style="font-weight:600;">2进3</td>
-          <td>—</td>
-          <td>{len(three)}只</td>
-          <td><span class="jinji-rate jinji-low">—</span></td>
+          <td>{base2 if base2 is not None else '—'}只</td>
+          <td>{n3_today}只</td>
+          <td>{rate_html(n3_today, base2)}</td>
           <td>{'、'.join(three[:5]) if three else '—'}</td>
-          <td style="color:#d29922;">晋级率数据未返回</td>
+          {sig_html(n3_today, base2, '2板→3板')}
         </tr>
 """
-    if four:
-        rows += f"""        <tr>
+    # 3进4：今日4板 / 昨日3板
+    n4_today = len(four)
+    base3 = yest.get("n3")
+    rows += f"""        <tr>
           <td style="font-weight:600;">3进4</td>
-          <td>—</td>
-          <td>{len(four)}只</td>
-          <td><span class="jinji-rate">—</span></td>
-          <td>{'、'.join(four[:5])}</td>
-          <td style="color:#d29922;">晋级率数据未返回</td>
+          <td>{base3 if base3 is not None else '—'}只</td>
+          <td>{n4_today}只</td>
+          <td>{rate_html(n4_today, base3)}</td>
+          <td>{'、'.join(four[:5]) if four else '—'}</td>
+          {sig_html(n4_today, base3, '3板→4板')}
         </tr>
 """
-    else:
-        rows += """        <tr>
-          <td style="font-weight:600;">3进4</td>
-          <td>—</td>
-          <td>0只</td>
-          <td><span class="jinji-rate jinji-zero">0%</span></td>
-          <td>—</td>
-          <td style="color:#8b949e;">暂无4板个股</td>
-        </tr>
-"""
-    rows += """        <tr>
+    # 4进5：今日5板 / 昨日4板
+    n5_today = len(five)
+    base4 = yest.get("n4")
+    rows += f"""        <tr>
           <td style="font-weight:600;">4进5</td>
-          <td>—</td>
-          <td>0只</td>
-          <td>—</td>
-          <td>—</td>
-          <td style="color:#8b949e;">暂无5板个股</td>
+          <td>{base4 if base4 is not None else '—'}只</td>
+          <td>{n5_today}只</td>
+          <td>{rate_html(n5_today, base4)}</td>
+          <td>{'、'.join(five[:5]) if five else '—'}</td>
+          {sig_html(n5_today, base4, '4板→5板')}
         </tr>
 """
     space = c.get("space_board"); space_stock = c.get("space_stock")
     if space and space_stock:
-        obs = f"<strong>核心观察：</strong>当前空间板为 <strong>{space}板（{space_stock}）</strong>，连板梯队 2板 {len(two)} 只、3板 {len(three)} 只。市场高度尚在压缩阶段，接力需聚焦龙头。"
+        obs = (f"<strong>核心观察：</strong>当前空间板为 <strong>{space}板（{space_stock}）</strong>，"
+               f"连板梯队 2板 {len(two)} 只、3板 {len(three)} 只、4板 {len(four)} 只。"
+               f"晋级率按昨日基数为 {('2进3 ' + str(rate(n3_today, base2)) + '%' if rate(n3_today, base2) is not None else '2进3 —')}、"
+               f"{('3进4 ' + str(rate(n4_today, base3)) + '%' if rate(n4_today, base3) is not None else '3进4 —')}，"
+               f"高度压缩，接力需聚焦龙头。")
     else:
         obs = "<strong>核心观察：</strong>连板梯队数据有限，市场高度压缩，短线接力需谨慎。"
     return f"""  <!-- 连板梯队 & 晋级率统计 -->
@@ -765,12 +833,24 @@ def build_review_outlook(c):
 
 
 def build_amount_rank(c):
-    """成交额排行 Top10（名称来自当日热门股榜，其余字段数据源未返回时留—）。"""
-    hot = c.get("hot") or []
+    """成交额排行 Top10（问财真实成交额数据）。"""
+    rank = c.get("amount_rank") or []
     rows = ""
-    for i, h in enumerate(hot[:10]):
-        rank = i + 1
-        rows += f'      <tr><td>{rank}</td><td>—</td><td><b>{h.get("name", "—")}</b></td><td class="down">—</td><td>—</td><td style="color:#d29922;">—</td><td>—</td><td class="down">—</td></tr>\n'
+    for x in rank[:10]:
+        chg = x.get("chg")
+        chg_cls = "positive" if (chg is not None and chg >= 0) else "negative"
+        chg_s = f"{chg:+.2f}%" if chg is not None else "—"
+        price = x.get("price")
+        price_s = f"{price}" if price not in (None, "") else "—"
+        amt = x.get("amount")
+        amt_s = f"{amt:.1f}亿" if amt is not None else "—"
+        tr = x.get("turnover")
+        tr_s = f"{tr:.2f}%" if tr is not None else "—"
+        rows += (f'      <tr><td>{x.get("rank", "—")}</td><td>{x.get("code", "—")}</td>'
+                 f'<td><b>{x.get("name", "—")}</b></td>'
+                 f'<td class="{chg_cls}">{chg_s}</td><td>{price_s}</td>'
+                 f'<td style="color:#d29922;">{amt_s}</td><td>{tr_s}</td>'
+                 f'<td class="down">—</td></tr>\n')
     if not rows:
         rows = '      <tr><td colspan="8" style="color:#8b949e;">成交额排行数据未返回</td></tr>\n'
     return f"""  <!-- 成交额排行 Top10 -->

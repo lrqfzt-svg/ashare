@@ -224,10 +224,13 @@ def parse_fuyao_dragon(data):
 
 
 def parse_ladder(ladder):
-    """hithink 连板梯队 → (ladder_map, space, space_stock, tdate)。"""
+    """hithink 连板梯队 → (ladder_map, space, space_stock, tdate, history)。
+
+    history: [{date, n2, n3, n4, n5, n6, n7}] 近30日连板计数，用于晋级率计算。
+    """
     items = (ladder or {}).get("data", {}).get("item", [])
     if not items:
-        return {}, None, None, None
+        return {}, None, None, None, []
     latest = items[0]
     tdate = latest.get("date")
     boards = latest.get("boards", {})
@@ -248,7 +251,23 @@ def parse_ladder(ladder):
         space_stock = result[str(maxn)][0] if result[str(maxn)] else None
     else:
         space, space_stock = None, None
-    return result, space, space_stock, tdate
+    # 历史（近30日连板计数）
+    history = []
+    for it in items[:30]:
+        b = it.get("boards") or {}
+        cnt = {}
+        for k, v in b.items():
+            base = re.sub(r"_board$", "", k)
+            n = word2num.get(base)
+            if n is None:
+                m = re.search(r"(\d+)", k)
+                n = int(m.group(1)) if m else None
+            if n is not None:
+                cnt[n] = len(v) if isinstance(v, list) else (int(v) if v else 0)
+        history.append({"date": it.get("date"), "n2": cnt.get(2, 0), "n3": cnt.get(3, 0),
+                        "n4": cnt.get(4, 0), "n5": cnt.get(5, 0),
+                        "n6": cnt.get(6, 0), "n7": cnt.get(7, 0)})
+    return result, space, space_stock, tdate, history
 
 
 def parse_tables(md):
@@ -398,13 +417,47 @@ def collect_sector(src_log):
     return sector_in, sector_out, sector_chg
 
 
+def collect_amount_rank(src_log):
+    """问财：沪深A股成交额 Top10（真实成交额/涨跌幅/最新价/换手率）。"""
+    script = "C:/Users/Administrator/.iwencai-skillhub/skills/hithink-market-query/scripts/cli.py"
+    query = "沪深A股成交额排名前10的股票 涨跌幅 最新价 成交额 换手率"
+    try:
+        env = dict(os.environ)
+        r = subprocess.run([sys.executable, script, "--query", query, "--limit", "10"],
+                           capture_output=True, encoding="utf-8", env=env, timeout=60)
+        if r.returncode != 0 or not r.stdout.strip().startswith("{"):
+            src_log.append({"src": "iwencai.amount-rank", "ok": False})
+            return []
+        d = json.loads(r.stdout)
+        out = []
+        for it in (d.get("datas") or [])[:10]:
+            chg_key = next((k for k in it if "涨跌幅" in k and "[" in k), "最新涨跌幅")
+            amt_key = next((k for k in it if "成交额" in k and "[" in k), None)
+            tr_key = next((k for k in it if "换手率" in k and "[" in k), None)
+            out.append({
+                "rank": len(out) + 1,
+                "code": str(it.get("股票代码") or "—").split(".")[0],
+                "name": it.get("股票简称") or "—",
+                "chg": round(float(it.get(chg_key) or 0), 2),
+                "price": it.get("最新价"),
+                "amount": round(float(it.get(amt_key) or 0) / 1e8, 2) if amt_key else None,  # 亿元
+                "turnover": round(float(it.get(tr_key) or 0), 2) if tr_key else None,
+            })
+        src_log.append({"src": "iwencai.amount-rank", "ok": bool(out), "count": len(out)})
+        return out
+    except Exception as e:
+        log(f"iwencai amount-rank except: {e}")
+        src_log.append({"src": "iwencai.amount-rank", "ok": False})
+        return []
+
+
 def main():
     log("=== 开始采集 ===")
     src_log = []
 
     # 交易日推算：用 hithink 连板梯队返回的最近交易日
     ladder_raw = run_hithink(["special", "limit-up-ladder", "--format", "json"])
-    ladder, space, space_stock, tdate = parse_ladder(ladder_raw)
+    ladder, space, space_stock, tdate, ladder_history = parse_ladder(ladder_raw)
     src_log.append({"src": "hithink.limit-up-ladder", "ok": ladder_raw is not None,
                     "two": len(ladder.get("2") or []), "three": len(ladder.get("3") or []),
                     "space": space, "space_stock": space_stock})
@@ -458,6 +511,9 @@ def main():
     breadth, indices = collect_westock_core(src_log)
     sector_in, sector_out, sector_chg = collect_sector(src_log)
 
+    # 成交额排行 Top10（问财）
+    amount_rank = collect_amount_rank(src_log)
+
     # 涨停/跌停：westock changedist 若无 zt/dt，用涨停池数兜底（宁缺毋假：无则 None）
     zt = breadth["zt"]
     dt = breadth["dt"]
@@ -506,9 +562,11 @@ def main():
         "limit_up": limit_up,
         "break_pool": break_pool,
         "break_rate_real": break_rate_real,
-        "ladder": ladder, "space_board": space, "space_stock": space_stock,
+        "ladder": ladder, "ladder_history": ladder_history,
+        "space_board": space, "space_stock": space_stock,
         "dragons": dragons,
         "hot": hot,
+        "amount_rank": amount_rank,
         "sector_in": sector_in, "sector_out": sector_out, "sector_chg": sector_chg,
         "overseas": overseas, "margin": margin,
         "source_log": src_log,
