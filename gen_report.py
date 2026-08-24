@@ -67,34 +67,63 @@ def fmt_seal_yi(x):
 
 # ---------- 模板 CSS（原样提取，模板锁定） ----------
 MOBILE_CSS = """
-  /* 移动端适配（增强）：表格横向滚动 + 网格单列 */
+  /* 移动端适配：紧凑、易读、不撑破 */
   @media (max-width: 768px) {
-    .container { padding: 12px; }
-    .header { padding: 20px 14px; }
-    .header h1 { font-size: 22px; }
-    .cards { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    body { font-size: 14px; }
+    .container { padding: 12px; max-width: 100%; }
+    .header { padding: 18px 12px; margin-bottom: 16px; border-radius: 10px; }
+    .header h1 { font-size: 20px; margin-bottom: 6px; }
+    .header .date { font-size: 13px; margin-bottom: 10px; }
+    .header .tags { gap: 6px; }
+    .header .tag { padding: 3px 10px; font-size: 11px; }
+    /* 4张指数卡 → 2x2 网格，更易读 */
+    .cards { grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 16px; }
     .card { padding: 14px 10px; }
-    .card .value { font-size: 20px; }
-    .two-col { grid-template-columns: 1fr; gap: 14px; }
-    .strategy-cols { grid-template-columns: 1fr; gap: 12px; }
-    .sentiment-grid { grid-template-columns: 1fr; gap: 10px; }
-    .section { padding: 16px 12px; }
-    .section-title { font-size: 15px; }
-    /* 表格：窄屏横向滚动，避免撑破布局 */
-    table, .jinji-table { display: block; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; }
-    th, td { padding: 6px 8px; font-size: 12px; }
-    /* 涨停复盘网格单列 */
-    div[style*="grid-template-columns:repeat(2,1fr)"] { grid-template-columns: 1fr !important; }
-    /* 4大数字卡片单列 */
+    .card .label { font-size: 11px; margin-bottom: 6px; }
+    .card .value { font-size: 22px; }
+    .card .sub { font-size: 11px; }
+    /* 4/5 数字卡片（涨停家数/短线情绪等）→ 2列 */
     div[style*="grid-template-columns:repeat(4,1fr)"] { grid-template-columns: repeat(2, 1fr) !important; gap: 10px; }
-    div[style*="grid-template-columns:repeat(5,1fr)"] { grid-template-columns: repeat(2, 1fr) !important; gap: 10px; }
-    .money-row { font-size: 12px; }
+    div[style*="grid-template-columns:repeat(5,1fr)"] { grid-template-columns: repeat(2, 1fr) !important; gap: 8px; }
+    /* 2列布局（板块/资金/策略）→ 1列堆叠 */
+    .two-col { grid-template-columns: 1fr !important; gap: 14px !important; }
+    .three-col { grid-template-columns: 1fr !important; gap: 12px; }
+    .strategy-cols { grid-template-columns: 1fr; gap: 10px; }
+    .sentiment-grid { grid-template-columns: 1fr; gap: 10px; }
+    .sentiment-item { padding: 12px; }
+    .sentiment-item .s-value { font-size: 18px; }
+    /* section 更紧凑 */
+    .section { padding: 14px 12px; margin-bottom: 14px; border-radius: 8px; }
+    .section-title { font-size: 15px; padding-bottom: 8px; margin-bottom: 12px; }
+    .section-title .icon { font-size: 18px; }
+    /* 表格：横向滚动 + 字号 13px 略大 + 行高紧凑 */
+    table, .jinji-table { display: block; overflow-x: auto; white-space: nowrap;
+                          -webkit-overflow-scrolling: touch; font-size: 13px; }
+    th, td { padding: 7px 8px; }
+    .jinji-table td, .jinji-table th { padding: 7px 6px; }
+    /* 涨停复盘网格 → 单列 + 紧凑 */
+    div[style*="grid-template-columns:repeat(2,1fr)"] { grid-template-columns: 1fr !important; gap: 12px; }
     .stock-item { padding: 10px; }
-    .footer { padding: 14px; }
+    .stock-item .name { font-size: 13px; }
+    .stock-item .change { font-size: 14px; }
+    .stock-item .info { font-size: 11px; }
+    .money-row { padding: 7px 0; font-size: 13px; }
+    /* 主观文字段落（行情回顾/策略） */
+    p { font-size: 13px !important; line-height: 1.7 !important; }
+    /* 操作建议数字行 */
+    div[style*="line-height:2"] { line-height: 1.8 !important; font-size: 13px !important; }
+    /* 标题区 tags 换行 */
+    .tags { flex-wrap: wrap; }
+    /* footer 紧凑 */
+    .footer { padding: 14px 8px; font-size: 12px; }
   }
   @media (max-width: 420px) {
-    .cards { grid-template-columns: 1fr; }
-    div[style*="grid-template-columns:repeat(4,1fr)"] { grid-template-columns: 1fr 1fr !important; }
+    .container { padding: 8px; }
+    .header { padding: 14px 10px; }
+    .header h1 { font-size: 18px; }
+    .section { padding: 12px 10px; }
+    .card { padding: 12px 8px; }
+    .card .value { font-size: 19px; }
   }
 """
 
@@ -115,28 +144,28 @@ def build_header(c):
         date_cn = f"{y}年{m}月{d}日（{weekday}）"
     except Exception:
         date_cn = date
-    # 市场概况 tag：根据涨跌家数/指数判断
+    # 市场概况 tag：基于真实盘面（涨跌家数比/涨停/跌停/空间板/炸板率综合判断）
     up = c.get("up"); down = c.get("down")
     zt = c.get("zt"); dt = c.get("dt")
-    if up is not None and down is not None:
-        if up > down * 2 and zt and zt >= 60:
-            tag = "🔥 全面暴涨"
-            tag_color = "#3fb950"
-        elif up > down:
-            tag = "📈 普涨格局"
-            tag_color = "#3fb950"
-        elif zt and zt >= 50 and dt and dt < 10:
-            tag = "🔥 涨停潮·指数分化"
-            tag_color = "#d29922"
-        elif zt and zt >= 30:
-            tag = "⚡ 涨停潮"
-            tag_color = "#d29922"
+    br = c.get("break_rate_real")  # 炸板率 %
+    space = c.get("space_board")  # 空间板 N
+    if up is not None and down is not None and (up + down) > 0:
+        ratio = up / (up + down)
+        # 维度1：涨跌比 维度2：涨停数 维度3：炸板率 维度4：空间板
+        if ratio >= 0.7 and zt and zt >= 60 and (br is None or br <= 15) and space and space >= 5:
+            tag, tag_color = "🔥 全面暴涨", "#3fb950"
+        elif ratio >= 0.55 and zt and zt >= 50 and (br is None or br <= 20):
+            tag, tag_color = "📈 普涨·赚钱效应", "#3fb950"
+        elif ratio < 0.4 and zt and zt >= 30 and (br is None or br >= 20):
+            tag, tag_color = "💥 分歧加大", "#d29922"  # 涨停多但炸板率高
+        elif ratio < 0.4:
+            tag, tag_color = "📉 跌多涨少", "#f85149"
+        elif ratio >= 0.55 and (br is None or br <= 20):
+            tag, tag_color = "📈 普涨格局", "#3fb950"
         else:
-            tag = "📉 跌多涨少"
-            tag_color = "#f85149"
+            tag, tag_color = "⚡ 震荡分化", "#d29922"
     else:
-        tag = "—"
-        tag_color = "#8b949e"
+        tag, tag_color = "—", "#8b949e"
     tags = ["今日复盘", "A股市场", "短线情绪", "数据已更新"]
     tags_html = "".join(f'<span class="tag">{t}</span>' for t in tags)
     tag5 = f'<span class="tag" style="border-color:{tag_color};color:{tag_color};">{tag}</span>'

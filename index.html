@@ -112,34 +112,63 @@
   .zhaban-high { background: #f8514915; border-left: 3px solid #f85149; }
   .zhaban-low { background: #3fb95015; border-left: 3px solid #3fb950; }
 
-  /* 移动端适配（增强）：表格横向滚动 + 网格单列 */
+  /* 移动端适配：紧凑、易读、不撑破 */
   @media (max-width: 768px) {
-    .container { padding: 12px; }
-    .header { padding: 20px 14px; }
-    .header h1 { font-size: 22px; }
-    .cards { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    body { font-size: 14px; }
+    .container { padding: 12px; max-width: 100%; }
+    .header { padding: 18px 12px; margin-bottom: 16px; border-radius: 10px; }
+    .header h1 { font-size: 20px; margin-bottom: 6px; }
+    .header .date { font-size: 13px; margin-bottom: 10px; }
+    .header .tags { gap: 6px; }
+    .header .tag { padding: 3px 10px; font-size: 11px; }
+    /* 4张指数卡 → 2x2 网格，更易读 */
+    .cards { grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 16px; }
     .card { padding: 14px 10px; }
-    .card .value { font-size: 20px; }
-    .two-col { grid-template-columns: 1fr; gap: 14px; }
-    .strategy-cols { grid-template-columns: 1fr; gap: 12px; }
-    .sentiment-grid { grid-template-columns: 1fr; gap: 10px; }
-    .section { padding: 16px 12px; }
-    .section-title { font-size: 15px; }
-    /* 表格：窄屏横向滚动，避免撑破布局 */
-    table, .jinji-table { display: block; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; }
-    th, td { padding: 6px 8px; font-size: 12px; }
-    /* 涨停复盘网格单列 */
-    div[style*="grid-template-columns:repeat(2,1fr)"] { grid-template-columns: 1fr !important; }
-    /* 4大数字卡片单列 */
+    .card .label { font-size: 11px; margin-bottom: 6px; }
+    .card .value { font-size: 22px; }
+    .card .sub { font-size: 11px; }
+    /* 4/5 数字卡片（涨停家数/短线情绪等）→ 2列 */
     div[style*="grid-template-columns:repeat(4,1fr)"] { grid-template-columns: repeat(2, 1fr) !important; gap: 10px; }
-    div[style*="grid-template-columns:repeat(5,1fr)"] { grid-template-columns: repeat(2, 1fr) !important; gap: 10px; }
-    .money-row { font-size: 12px; }
+    div[style*="grid-template-columns:repeat(5,1fr)"] { grid-template-columns: repeat(2, 1fr) !important; gap: 8px; }
+    /* 2列布局（板块/资金/策略）→ 1列堆叠 */
+    .two-col { grid-template-columns: 1fr !important; gap: 14px !important; }
+    .three-col { grid-template-columns: 1fr !important; gap: 12px; }
+    .strategy-cols { grid-template-columns: 1fr; gap: 10px; }
+    .sentiment-grid { grid-template-columns: 1fr; gap: 10px; }
+    .sentiment-item { padding: 12px; }
+    .sentiment-item .s-value { font-size: 18px; }
+    /* section 更紧凑 */
+    .section { padding: 14px 12px; margin-bottom: 14px; border-radius: 8px; }
+    .section-title { font-size: 15px; padding-bottom: 8px; margin-bottom: 12px; }
+    .section-title .icon { font-size: 18px; }
+    /* 表格：横向滚动 + 字号 13px 略大 + 行高紧凑 */
+    table, .jinji-table { display: block; overflow-x: auto; white-space: nowrap;
+                          -webkit-overflow-scrolling: touch; font-size: 13px; }
+    th, td { padding: 7px 8px; }
+    .jinji-table td, .jinji-table th { padding: 7px 6px; }
+    /* 涨停复盘网格 → 单列 + 紧凑 */
+    div[style*="grid-template-columns:repeat(2,1fr)"] { grid-template-columns: 1fr !important; gap: 12px; }
     .stock-item { padding: 10px; }
-    .footer { padding: 14px; }
+    .stock-item .name { font-size: 13px; }
+    .stock-item .change { font-size: 14px; }
+    .stock-item .info { font-size: 11px; }
+    .money-row { padding: 7px 0; font-size: 13px; }
+    /* 主观文字段落（行情回顾/策略） */
+    p { font-size: 13px !important; line-height: 1.7 !important; }
+    /* 操作建议数字行 */
+    div[style*="line-height:2"] { line-height: 1.8 !important; font-size: 13px !important; }
+    /* 标题区 tags 换行 */
+    .tags { flex-wrap: wrap; }
+    /* footer 紧凑 */
+    .footer { padding: 14px 8px; font-size: 12px; }
   }
   @media (max-width: 420px) {
-    .cards { grid-template-columns: 1fr; }
-    div[style*="grid-template-columns:repeat(4,1fr)"] { grid-template-columns: 1fr 1fr !important; }
+    .container { padding: 8px; }
+    .header { padding: 14px 10px; }
+    .header h1 { font-size: 18px; }
+    .section { padding: 12px 10px; }
+    .card { padding: 12px 8px; }
+    .card .value { font-size: 19px; }
   }
 </style>
 </head>
@@ -152,7 +181,7 @@
     <div class="date">📅 2026年08月24日（周一）</div>
     <div class="tags">
       <span class="tag">今日复盘</span><span class="tag">A股市场</span><span class="tag">短线情绪</span><span class="tag">数据已更新</span>
-      <span class="tag" style="border-color:#d29922;color:#d29922;">⚡ 涨停潮</span>
+      <span class="tag" style="border-color:#d29922;color:#d29922;">💥 分歧加大</span>
     </div>
   </div>
 
@@ -736,7 +765,7 @@
     <div class="disclaimer">
       ⚠️ <b>免责声明：</b>本报告仅供参考，不构成投资建议。A股市场有风险，投资需谨慎。数据截至2026-08-24收盘。
     </div>
-    <div>📊 A股市场复盘报告 · 生成于 2026-08-24 18:25</div>
+    <div>📊 A股市场复盘报告 · 生成于 2026-08-24 18:33</div>
   </div>
 
 </div>
