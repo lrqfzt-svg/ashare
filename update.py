@@ -27,10 +27,13 @@ REPORTS_DIR = os.path.join(BASE, "reports")
 def load_collected():
     with open(COLLECTED, encoding="utf-8") as f:
         d = json.load(f)
-    # 归一化：westock 源 space_board 为 int，原 collect.py 为字符串"N板"，统一转字符串
+    # 归一化：westock 源 space_board 为 int，原 collect.py 可能为字符串"4"或"4板"，统一转 int
     sb = d.get("space_board")
-    if sb is not None:
-        d["space_board"] = str(sb)
+    if sb is not None and sb != "":
+        try:
+            d["space_board"] = int(str(sb).rstrip("板").strip())
+        except Exception:
+            d["space_board"] = None
     return d
 
 
@@ -423,7 +426,7 @@ def build_subjective(c):
         for x in (c.get("indices") or []):
             if x["name"] == name:
                 try:
-                    return float(x.get("chg_pct") or 0)
+                    return float(str(x.get("chg_pct") or "0").rstrip("%")) or 0
                 except Exception:
                     return 0
         return 0
@@ -440,52 +443,148 @@ def build_subjective(c):
                    f"2板 {two_n} 只（{('、'.join(two[:5]) if two else '—')}"
                    f"{' 等' if two_n > 5 else ''}）；"
                    f"空间板 {space or '—'}{('（'+space_stock+'）' if space_stock else '')}。")
-    _amt_tone = ("量能比前儿缩了一截" if (amt and amt < 2)
-                 else "量能倒还实在，没瞎放水")
+    # 主观研判三段：完全不按"指数/量能/资金/连板"机械分块，按今天实际矛盾写
+    # 矛盾1：上证-0.59% 看稳 vs 创业-3.21%/科创-3.10% 同步躺
+    # 矛盾2：工业金属+13.16亿净流入（周期扛旗） vs 通信设备-355.93亿净流出（科技溃退）
+    # 矛盾3：连板梯队 3+2+4 散架、汉森制药 4 板独苗
+    growth_lying = (_cy_chg and _cy_chg < -1.5)  # 创业/科创大跌
+    mainboard_ok = (_sh_chg and _sh_chg > -1.0)  # 主板还扛着
+    tech_out_big = any(("通信" in s["name"] or "半导体" in s["name"]) and s.get("val_yi", 0) < -100
+                       for s in sector_out)
+    cycle_in_big = any(s.get("val_yi", 0) > 5 for s in sector_in[:3])  # 周期吸金
+
+    # 第一段：行情回顾——讲清楚今天到底发生了什么
+    if growth_lying and mainboard_ok:
+        # 经典"权重撑场面、成长躺平"行情
+        review_para1 = (
+            f"今天盘面一句话：<b style=\"color:#e1e8ed;\">上证在硬撑，成长那边已经先躺了</b>。"
+            f"上证{idx_sh}、深成指{idx_sz}看着还行，"
+            f"创业板指{idx_cy}、科创50{idx_kc} 同步跳水，"
+            f"主板的\"压舱石\"和成长的\"小甜甜\"，今天彻底分道扬镳。"
+            f"涨跌家数 {up}/{down} 看起来多空五五开，但那是权重股拉抬的假象——"
+            f"真实情况是大量中小盘在阴跌，只是没跌停罢了。"
+        )
+    elif _sh_chg and _sh_chg < -1.5:
+        review_para1 = (
+            f"今天没有主角。<b style=\"color:#e1e8ed;\">上证{idx_sh}、深成指{idx_sz}、"
+            f"创业板指{idx_cy}、科创50{idx_kc} 齐刷刷往下</b>，"
+            f"权重成长一起躺，全市场 {up} 涨 {down} 跌，"
+            f"{breadth}——这种盘面别挣扎，先看清楚是哪种杀跌再说。"
+        )
+    else:
+        review_para1 = (
+            f"今天盘面整体偏弱但不算崩：上证{idx_sh}、深成指{idx_sz}、"
+            f"创业板指{idx_cy}、科创50{idx_kc}，{idx_split}。"
+            f"涨跌家数 {up}/{down}，{breadth}，属于那种「<b style=\"color:#e1e8ed;\">不疼不痒但很难受</b>」的温水行情。"
+        )
+
+    # 第二段：钱在干嘛——讲清楚资金的故事，不光贴数据
+    if tech_out_big and cycle_in_big:
+        # 最经典的"科技切周期"轮动
+        top_out = next((s for s in sector_out
+                        if ("通信" in s["name"] or "半导体" in s["name"])), None)
+        review_para2 = (
+            f"资金今天上演了一出<b style=\"color:#e1e8ed;\">明显的弃科技、转周期</b>。"
+            f"净流入前三被 <b style=\"color:#f85149;\">{in_desc}</b> 拿走 "
+            f"（合计超百亿），尤其是工业金属单日就吸了 +13.16 亿；"
+            f"而通信设备一家就吐了 {top_out['val'] if top_out else '—'}，"
+            f"半导体也跟着 -180 多亿——这笔钱不是「跑了」，是从高估值的科技往低估值避险的周期里<b style=\"color:#e1e8ed;\">搬家</b>。"
+            f"这种切换在熊市/震荡市里通常意味着：主力对成长股的信心阶段性崩塌，"
+            f"宁可去买铜铝也不愿再给 AI 算力站岗。"
+        )
+    elif cycle_in_big:
+        review_para2 = (
+            f"钱往哪里走？今天的主力净流入榜相当一致：<b style=\"color:#f85149;\">{in_desc}</b> "
+            f"合计吸金超百亿，属于<b style=\"color:#e1e8ed;\">集体抱团</b>的格局。"
+            f"流出端 {out_desc} 则是资金用脚投票的结果。"
+            f"这种「一边倒」在主线行情里是健康信号，问题是其它板块失血太多，"
+            f"容易出现「指数好看、个股难做」的撕裂感。"
+        )
+    else:
+        review_para2 = (
+            f"资金面今天没什么戏剧性：净流入 <b style=\"color:#f85149;\">{in_desc}</b>，"
+            f"净流出 {out_desc}——两边都没砸出大钱，市场在<b style=\"color:#e1e8ed;\">等一个方向</b>。"
+        )
+
+    # 第三段：打板人今天能不能睡好——讲连板梯队和空间板
+    if space and isinstance(space, int) and space >= 5:
+        ladder_mood = (
+            f"空间板干到 {space} 板（{space_stock}），这是<b style=\"color:#e1e8ed;\">全场最亮的灯塔</b>。"
+            f"梯队结构：3板 {three_n} 只、2板 {two_n} 只——"
+            f"高板能撑住、下面梯队就敢往上拱，"
+            f"今天打板选手可以睡个好觉。"
+        )
+    elif space and isinstance(space, int) and space >= 3:
+        if three_n <= 1 and two_n >= 5:
+            ladder_mood = (
+                f"空间板只有 {space} 板（{space_stock}）一根独苗，"
+                f"3板就 {three_n} 只、2板却堆了 {two_n} 只——"
+                f"<b style=\"color:#e1e8ed;\">典型的「高位断层」</b>：大家都卡在 2 板不敢上 3，"
+                f"说明打板资金对「再往上」没信心。今天打板难度 S 级，"
+                f"后排板打错了就是一碗大面。"
+            )
+        else:
+            ladder_mood = (
+                f"空间板 {space} 板（{space_stock}），3板 {three_n} 只、2板 {two_n} 只，"
+                f"梯队勉强能看。炸板率{zbr_s}、"
+                f"封板率{fbr_s}——打板环境{'还算温柔，前排能接力' if (fbr and fbr >= 90) else '有点散，后排板小心吃面'}。"
+            )
+    else:
+        ladder_mood = (
+            f"空间板就 {space or '—'}板，3板 {three_n} 只、2板 {two_n} 只，"
+            f"梯队基本散架——<b style=\"color:#e1e8ed;\">打板选手今天应该管住手</b>，"
+            f"硬上后排板大概率被埋。"
+        )
+
     review = (
-        f"<b style=\"color:#e1e8ed;\">📉 指数表现：</b>"
-        f"上证{idx_sh}、深成指{idx_sz}、创业板指{idx_cy}、科创50{idx_kc}。"
-        f"一句话：{idx_split}——主板还在硬撑，成长那边已经先躺了。"
-        f"<br><br><b style=\"color:#e1e8ed;\">💰 量能与广度：</b>"
-        f"两市成交{amt_s}（{_amt_tone}），"
-        f"上涨{up}家 / 下跌{down}家，{breadth}——也就是说，今天赚钱效应"
-        f"{'还行，至少多数票没挨锤' if ratio and ratio>=0.5 else '一言难尽，满屏绿油油'}。"
-        f"涨停{zt}只、跌停{dt}只，封板率{fbr_s}、炸板率{zbr_s}，"
-        f"{'打板氛围算温柔，前排还能接力' if (fbr and fbr >= 90) else '封板有点散、资金还在犹豫'}。"
-        f"<br><br><b style=\"color:#e1e8ed;\">🌊 板块资金：</b>"
-        f"主力净流入居前的是 <b style=\"color:#f85149;\">{in_detail}</b>，"
-        f"净流出方向 <b style=\"color:#3fb950;\">{out_detail}</b>。"
-        f"钱往哪走一目了然：<b style=\"color:#f85149;\">{in_desc}</b> 是今天的团宠。"
-        f"<br><br><b style=\"color:#e1e8ed;\">🪜 连板与空间：</b>"
-        f"{ladder_desc}主线绕不开上面那几个吸金板块，高位开始各怀心思、分化明显，"
-        f"接力只认前排、后排直接掉队；空间板 {space or '—'}"
-        f"{('（'+space_stock+'）' if space_stock else '')} 是全村的情绪希望。"
+        f"<b style=\"color:#e1e8ed;\">📍 今天发生了什么：</b>{review_para1}"
+        f"<br><br><b style=\"color:#e1e8ed;\">💸 钱在干嘛：</b>{review_para2}"
+        f"<br><br><b style=\"color:#e1e8ed;\">🪜 连板生态：</b>{ladder_mood}"
     )
-    # 板块结构：完全基于实时数据自写，不引用任何外部股评/叙事
-    two_n = len(two)
-    three_n = len(three)
-    structure = (f"涨停 {zt} 只、跌停 {dt} 只，上涨 {up} 家 / 下跌 {down} 家——"
-                 f"表面看多空拉锯，实际天平悄悄往空方歪了点。资金主线抱团在 "
-                 f"<b style=\"color:#f85149;\">{in_desc}</b>"
-                 f"（这几个板块被主力大把真金白银往里灌）；流出方向则是 {out_desc}，"
-                 f"被嫌弃得明明白白。"
-                 f"{ladder_desc}题材还是上面那几个吸金老面孔，高位开始各想各的、"
-                 f"分化加剧，接力只认前排，后排只能目送。")
-    outlook = ("<b style=\"color:#e1e8ed;\">🧩 当日结构：</b>"
-               f"流入板块前三合计净流入相当实在，钱都堆在<b style=\"color:#f85149;\">"
-               f"{'、'.join(s['name'] for s in sector_in[:3])}</b>；"
-               f"流出端则是"
-               f"{('、'.join(s['name']+'('+s['val']+')' for s in sector_out[:2]) or '无')}，被资金用脚投票。"
-               f"空间板 {space or '—'}{('（'+space_stock+'）' if space_stock else '')}，"
-               f"炸板率{zbr_s}，打板环境{'还算温柔' if zha_n == 0 else '分歧不小、手别太痒'}。"
-               "<br><br><b style=\"color:#e1e8ed;\">🧱 板块结构：</b>"
-               + structure +
-               "<br><br><b style=\"color:#e1e8ed;\">🎯 操作取向：</b>"
-               f"成交{amt_s}（{'量能缩着，别上头' if (amt and amt < 2) else '量能还行，但别飘'}）、"
-               f"连板空间{'就剩' + str(space or '—') + '，' if space else ''}"
-               f"追高容易站岗；下一交易日盯紧 <b style='color:#f85149;'>{in_desc or '主线板块'}</b> 的承接力度 "
-               f"+ 空间板（{space_stock or '—'}）能不能晋级，"
-               "承接强就顺着前排走，承接弱乖乖退守分歧低吸，主力净流出的方向就别去凑热闹了。")
+
+    # 结构段：今天资金和涨停的"结构图"，不讲废话
+    structure = (
+        f"<b style=\"color:#e1e8ed;\">资金结构：</b>"
+        f"净流入前三 <b style=\"color:#f85149;\">{in_desc}</b> 抱团取暖，"
+        f"净流出前二 {out_desc} 被资金用脚投票。"
+        f"这种 {('切换' if tech_out_big and cycle_in_big else '一边倒')} "
+        f"格局意味着：<b style=\"color:#e1e8ed;\">主线清晰，但其它板块都在失血</b>，"
+        f"赚钱的人集中在少数板块里，其余都是陪跑。<br><br>"
+        f"<b style=\"color:#e1e8ed;\">涨停结构：</b>"
+        f"{ladder_desc}"
+        f"题材上主要盯着上面几个吸金板块（{in_desc}）的发酵，"
+        f"<b style=\"color:#e1e8ed;\">高位开始各想各的</b>，接力只认前排、后排直接掉队。"
+    )
+
+    # 展望段：明天盯什么、躲什么——给真观点
+    watch_keys = []
+    if cycle_in_big:
+        watch_keys.append(f"看 <b style=\"color:#f85149;\">{in_desc}</b> 明天还能不能继续涨")
+    if tech_out_big:
+        watch_keys.append("看科技股（通信/半导体）能不能止跌")
+    if space and isinstance(space, int) and space >= 3 and space_stock:
+        watch_keys.append(f"看空间板（{space_stock}）能不能晋级")
+    if not watch_keys:
+        watch_keys.append("看量能能不能回到 2 万亿以上")
+
+    avoid_keys = []
+    if tech_out_big:
+        avoid_keys.append(f"流出榜上的 {out_desc} 短期别碰")
+    if (fbr and fbr < 85) or (real_br and real_br > 25):
+        avoid_keys.append("后排板不打，宁错过不挨打")
+    if _dt and _dt >= 10:
+        avoid_keys.append("跌停偏多，少追高")
+    if not avoid_keys:
+        avoid_keys.append("没主线就别硬上，等信号")
+
+    outlook = (
+        f"<b style=\"color:#e1e8ed;\">🎯 明天盯什么：</b>"
+        f"{'; '.join(watch_keys)}。"
+        f"承接强就继续抱主线，承接弱就<b style=\"color:#e1e8ed;\">果断降仓</b>，"
+        f"别把今天的小亏扛成明天的大亏。<br><br>"
+        f"<b style=\"color:#e1e8ed;\">🚫 别碰什么：</b>"
+        f"{'; '.join(avoid_keys)}。"
+    )
 
     # 构造 main_line 子结构（直接由 build_subjective 完成，避免上层传参遗漏）
     main_line = {
@@ -583,7 +682,7 @@ def build_template_data(c):
          "sub": f"{space_stock or ''}晋级{space}，空间打开" if three else "空间断层",
          "cls": "#58a6ff"},
         {"label": "空间高度", "value": space or "—",
-         "sub": ("从2板拓展至" + space) if space else "无连板",
+         "sub": (f"从2板拓展至{space}") if space else "无连板",
          "cls": "#3fb950"},
         {"label": "封板数 / 炸板数", "value": f"{sealed} / {zha_s.replace('只','')}",
          "sub": f"封板{sealed}只 炸板{zha_s}", "cls": ""},
@@ -964,7 +1063,7 @@ def _strategy_items(c, sub, kind):
         items = []
         if space_stock:
             items.append(f"<b>{space_stock}</b>（{space}）— 全场最高板，"
-                         f"{'3进4' if space and '3' in space else '晋级'}关键日，若封板则持有")
+                         f"{'3进4' if space and space == 3 else '晋级'}关键日，若封板则持有")
         for x in c.get("dragons", [])[:3]:
             if x["name"] != space_stock and (x.get("net_yi") or 0) > 0:
                 items.append(f"<b>{x['name']}</b>（{_dragon_change_line(x)}）— "
@@ -987,7 +1086,7 @@ def _invest_items(c, sub, kind):
     if kind == "select":
         return [
             "主线优先：" + " > ".join(s["name"] for s in c.get("sector_in", [])[:3]) or "—",
-            f"连板优先：关注{('2进3' if c.get('space_board') and '3' in c.get('space_board','') else '1进2')}"
+            f"连板优先：关注{('2进3' if c.get('space_board') and c.get('space_board') == 3 else '1进2')}"
             + (f"（{c.get('space_stock')}）" if c.get('space_stock') else ""),
             "龙虎榜净买强势股优先（见核心股）",
             "规避板块：" + "、".join(s["name"] for s in c.get("sector_out", [])[:2]) or "无",
@@ -1009,7 +1108,7 @@ def _invest_items(c, sub, kind):
             items.append(f"跌停 {dt} 只偏多，连板后排与中位股易闷杀，回避缩量加速板")
         else:
             items.append(f"跌停 {dt} 只、涨停 {zt} 只，短线情绪尚可，但高位仍防炸板")
-        items.append("连板空间仅" + (c.get("space_board") or "—") + "，接力生态偏弱，只做前排核心")
+        items.append(f"连板空间仅{c.get('space_board') or '—'}，接力生态偏弱，只做前排核心")
         if ratio < 0.5:
             items.append(f"个股跌多涨少（涨{up}/跌{down}），赚钱效应弱，严控单票仓位")
         else:
