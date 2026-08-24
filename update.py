@@ -297,7 +297,7 @@ def build_subjective(c):
         items = []
         for x in stocks[:8]:
             board_txt = f"{x['board']}连板" if x["board"] > 1 else "首板"
-            seal = f"封单{x['seal_yi']}亿" if x["seal_yi"] else "—"
+            seal = f"{x['seal_yi']}亿" if x["seal_yi"] else "—"
             items.append({
                 "name": x["name"],
                 "reason": x["reason"],
@@ -1297,36 +1297,68 @@ def main():
     recollect = "--recollect" in args
 
     if recollect:
-        print("[update] 重新采集...（优先 WeStock Data）")
+        print("[update] 重新采集...（优先 WeStock Data + collect.py 补涨停池）")
         env = dict(os.environ)
         env["PATH"] = os.path.expanduser(r"~\AppData\Roaming\npm") + os.pathsep + env.get("PATH", "")
-        # 优先 collect_westock.py（腾讯自选股）
+        # 优先 collect_westock.py（腾讯自选股：广度/指数/资金/龙虎榜/情绪）
         ws_py = os.path.join(BASE, "collect_westock.py")
-        used_westock = False
+        base = None
         if os.path.isfile(ws_py):
             try:
-                r = subprocess.run([sys.executable, ws_py],
-                                   stdout=open(COLLECTED, "w", encoding="utf-8"),
-                                   stderr=sys.stderr, env=env, timeout=540)
-                if r.returncode == 0:
-                    # 校验产出含 trade_date
+                _buf = subprocess.run([sys.executable, ws_py],
+                                      capture_output=True, text=True, env=env, timeout=540)
+                if _buf.returncode == 0:
                     try:
-                        _chk = json.load(open(COLLECTED, encoding="utf-8"))
-                        if _chk.get("trade_date") or _chk.get("up"):
-                            used_westock = True
-                            print("[update] WeStock 采集成功，写入 collected.json")
-                    except Exception:
-                        used_westock = False
+                        base = json.loads(_buf.stdout)
+                        if base.get("trade_date") or base.get("up"):
+                            print("[update] WeStock 采集成功")
+                        else:
+                            base = None
+                    except Exception as e:
+                        print(f"[update] WeStock 产出解析失败：{e}")
+                        base = None
+                else:
+                    print(f"[update] WeStock 采集非零退出：{_buf.stderr[:200]}")
             except Exception as e:
                 print(f"[update] WeStock 采集异常：{e}")
-        # 回退 collect.py（原四源）
-        if not used_westock:
-            print("[update] 回退 collect.py（原四源）...")
-            r = subprocess.run([sys.executable, os.path.join(BASE, "collect.py")],
-                               stdout=open(COLLECTED, "w", encoding="utf-8"),
-                               stderr=sys.stderr, env=env)
-            if r.returncode != 0:
-                print("[update] 采集失败，中止"); sys.exit(1)
+        # 补充 collect.py（原四源）：westock 缺失的涨停池/炸板池/热度真实数据
+        supp = None
+        try:
+            _buf2 = subprocess.run([sys.executable, os.path.join(BASE, "collect.py")],
+                                   capture_output=True, text=True, env=env, timeout=540)
+            if _buf2.returncode == 0:
+                try:
+                    supp = json.loads(_buf2.stdout)
+                    if not (supp.get("trade_date") or supp.get("up")):
+                        supp = None
+                except Exception as e:
+                    print(f"[update] collect.py 产出解析失败：{e}")
+                    supp = None
+        except Exception as e:
+            print(f"[update] collect.py 采集异常：{e}")
+        # 合并：westock 优先，collect.py 补齐 westock 恒空字段
+        if base is None and supp is None:
+            print("[update] 两源皆失败，中止"); sys.exit(1)
+        if base is None:
+            base = supp
+            supp = None
+            print("[update] 仅 collect.py 可用")
+        elif supp is not None:
+            # westock 缺失/恒空字段用 collect.py 补（不覆盖 westock 已有字段）
+            for k in ("limit_up", "break_pool", "break_rate_real", "hot", "cross_check", "fuyao_source"):
+                if k in supp and supp[k]:
+                    base[k] = supp[k]
+            # 若 westock 空间板/梯队缺，用 collect.py 的梯子补
+            if not base.get("space_stock") and supp.get("space_stock"):
+                base["space_board"] = supp.get("space_board")
+                base["space_stock"] = supp.get("space_stock")
+            if not base.get("ladder") and supp.get("ladder"):
+                base["ladder"] = supp["ladder"]
+            print(f"[update] 合并完成：limit_up={len(base.get('limit_up') or [])}条、"
+                  f"break_pool={len(base.get('break_pool') or [])}条、hot={len(base.get('hot') or [])}条")
+        with open(COLLECTED, "w", encoding="utf-8") as f:
+            json.dump(base, f, ensure_ascii=False, indent=2)
+        print(f"[update] collected.json 写入（trade_date={base.get('trade_date')}）")
 
     c = load_collected()
     td = build_template_data(c)
