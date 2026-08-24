@@ -554,12 +554,17 @@ def build_subjective(c):
         )
 
     # review：风趣但不漂浮，每段都锚定真实盘面 + 外围因果
+    # 通信/半导体流出明细（动态取真实值，避免硬编码数字漂移）
+    tech_top_out = next((s for s in sector_out
+                         if "通信" in s["name"]), sector_out[0] if sector_out else {})
+    semi_out = next((s for s in sector_out
+                     if "半导体" in s["name"]), sector_out[1] if len(sector_out) > 1 else {})
     if growth_lying and mainboard_ok:
-        _sz_tone = "上证就跌了 0.59%，看着像在散步"
+        _sz_tone = f"上证就跌了 {abs(_sh_chg or 0):.2f}%，看着像在散步"
     elif _sh_chg and _sh_chg < -1.5:
         _sz_tone = "连上证都砸了下去，没一个能打的"
     else:
-        _sz_tone = "上证小跌 0.59%，勉强维持体面"
+        _sz_tone = f"上证小跌 {abs(_sh_chg or 0):.2f}%，勉强维持体面"
     review = (
         f"<b style=\"color:#e1e8ed;\">📍 今天发生了什么：</b>"
         f"一句话——<b style=\"color:#e1e8ed;\">主板在装睡，成长已经哭出声</b>。"
@@ -569,7 +574,8 @@ def build_subjective(c):
         f"<br><br><b style=\"color:#e1e8ed;\">💸 钱在干嘛：</b>"
         f"今天资金演了一出<b style=\"color:#e1e8ed;\">「从科技仓皇出逃、扑进周期怀抱」</b>。"
         f"净流入前三是 <b style=\"color:#f85149;\">{in_desc}</b>（合计二十多亿真金白银），"
-        f"而通信设备一家就吐了 355.93 亿、半导体再砸 180.66 亿——"
+        f"而通信设备一家就吐了 {abs(tech_top_out.get('val_yi') or 0):.2f} 亿、"
+        f"半导体再砸 {abs(semi_out.get('val_yi') or 0):.2f} 亿——"
         f"这笔钱不是消失了，是连夜从 AI 算力搬到铜铝煤炭里避险。逻辑也很直："
         f"隔夜美股有色贵金属集体暴动（南方铜业 +8.7%、黄金重回 4600 美元），"
         f"美元走弱、美债收益率却往上拱，高估值科技股本来就被利率压得喘不过气，"
@@ -620,13 +626,13 @@ def build_subjective(c):
         f"今天它是被外围有色暴涨+美元弱共振推起来的，如果隔夜 LME 铜铝继续红、"
         f"黄金稳在 4600 上方，周期线大概率还能接着奏乐；反之若大宗商品一夜变脸，"
         f"这波抱团就是一日游，别恋战。"
-        f"{('；第二，盯科技股（通信/半导体）能不能止跌——它们被美债收益率压着，' + ('下周英伟达周三财报是科技线的命门，' if True else '') + '在财报落地前，抄底科技等同于接飞刀') if tech_out_big else ''}"
+        f"{('；第二，盯科技股（通信/半导体）能不能止跌——它们被美债收益率压着，' + ('8月26日盘后英伟达财报是科技线的命门，' if True else '') + '在财报落地前，抄底科技等同于接飞刀') if tech_out_big else ''}"
         f"{('；第三，看空间板 ' + space_stock + ' 能不能把 4 板顶成 5 板，它活则短线情绪活，它死则全场连板先跪') if (space and isinstance(space, int) and space >= 3 and space_stock) else ''}。"
         f"总之一句话：<b style=\"color:#e1e8ed;\">主线看承接、科技看英伟达、高度看空间板</b>，"
         f"三者任一塌方就果断降仓，别把今天的浮亏熬成明天的大坑。<br><br>"
         f"<b style=\"color:#e1e8ed;\">🚫 别碰什么：</b>"
         f"{'; '.join(avoid_keys) if avoid_keys else '没主线就别硬上，等信号'}。"
-        f"另外提醒一句：<b style=\"color:#e1e8ed;\">美联储沃什下周五杰克逊霍尔讲话</b>是个大变量，"
+        f"另外提醒一句：<b style=\"color:#e1e8ed;\">美联储沃什8月28日杰克逊霍尔讲话</b>是个大变量，"
         f"讲话前别把仓位打满，留点子弹应对利率预期的反转。"
     )
 
