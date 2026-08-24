@@ -1345,8 +1345,9 @@ def main():
             print("[update] 仅 collect.py 可用")
         elif supp is not None:
             # westock 缺失/恒空字段用 collect.py 补（不覆盖 westock 已有字段）
-            for k in ("limit_up", "break_pool", "break_rate_real", "hot", "cross_check", "fuyao_source"):
-                if k in supp and supp[k]:
+            for k in ("limit_up", "break_pool", "break_rate_real", "hot",
+                      "margin", "overseas", "cross_check", "fuyao_source"):
+                if k in supp and supp[k] is not None:
                     base[k] = supp[k]
             # 若 westock 空间板/梯队缺，用 collect.py 的梯子补
             if not base.get("space_stock") and supp.get("space_stock"):
