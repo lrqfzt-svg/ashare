@@ -46,7 +46,58 @@
   },
   "space_board": 4,
   "space_stock": "汉森制药",
-  "hot": [],
+  "hot": [
+    {
+      "rank": 1,
+      "name": "宇树科技",
+      "heat": "10605975"
+    },
+    {
+      "rank": 2,
+      "name": "中际旭创",
+      "heat": "4930605"
+    },
+    {
+      "rank": 3,
+      "name": "长鑫科技",
+      "heat": "4036901"
+    },
+    {
+      "rank": 4,
+      "name": "士兰微",
+      "heat": "3860942"
+    },
+    {
+      "rank": 5,
+      "name": "哈药股份",
+      "heat": "3651604"
+    },
+    {
+      "rank": 6,
+      "name": "湖南白银",
+      "heat": "3143460"
+    },
+    {
+      "rank": 7,
+      "name": "金牛化工",
+      "heat": "2660920"
+    },
+    {
+      "rank": 8,
+      "name": "通鼎互联",
+      "heat": "2462257"
+    },
+    {
+      "rank": 9,
+      "name": "神奇制药",
+      "heat": "2402486"
+    },
+    {
+      "rank": 10,
+      "name": "白银有色",
+      "heat": "2345233"
+    }
+  ],
   "dragons": [
     {
       "name": "山东黄金",
@@ -368,13 +419,336 @@
       "chg_pct": "+15.52%"
     }
   ],
-  "limit_up": [],
+  "limit_up": [
+    {
+      "name": "汉森制药",
+      "reason": "创新药+中药+中报预增",
+      "board": 4,
+      "seal_yi": 2.5,
+      "is_st": false
+    },
+    {
+      "name": "深中华A",
+      "reason": "黄金珠宝+黄金涨价+年报增长",
+      "board": 3,
+      "seal_yi": 1.81,
+      "is_st": false
+    },
+    {
+      "name": "中 关 村",
+      "reason": "mRNA疫苗+集采中选+麻精镇痛",
+      "board": 3,
+      "seal_yi": 0.89,
+      "is_st": false
+    },
+    {
+      "name": "哈森股份",
+      "reason": "苹果产业链+机器人概念+重组+中报预计扭亏",
+      "board": 3,
+      "seal_yi": 0.53,
+      "is_st": false
+    },
+    {
+      "name": "白银有色",
+      "reason": "白银+黄金+多金属综合+锂电材料",
+      "board": 2,
+      "seal_yi": 3.03,
+      "is_st": false
+    },
+    {
+      "name": "湖南白银",
+      "reason": "半年报增长+白银+湖南国资",
+      "board": 2,
+      "seal_yi": 1.57,
+      "is_st": false
+    },
+    {
+      "name": "新华百货",
+      "reason": "回购+新质零售+区域零售",
+      "board": 2,
+      "seal_yi": 0.74,
+      "is_st": false
+    },
+    {
+      "name": "东信和平",
+      "reason": "中报增长+数字货币+eSIM",
+      "board": 2,
+      "seal_yi": 0.52,
+      "is_st": false
+    },
+    {
+      "name": "天洋新材",
+      "reason": "光模块胶+中报预盈+资产出售",
+      "board": 2,
+      "seal_yi": 0.49,
+      "is_st": false
+    },
+    {
+      "name": "楚天龙",
+      "reason": "数字人民币+AI应用+数字政务",
+      "board": 2,
+      "seal_yi": 0.32,
+      "is_st": false
+    },
+    {
+      "name": "协鑫能科",
+      "reason": "签署算电协同项目+算力租赁+虚拟电厂",
+      "board": 1,
+      "seal_yi": 3.48,
+      "is_st": false
+    },
+    {
+      "name": "华阳集团",
+      "reason": "国资拟入主+人形机器人+精密压铸+AI BOX",
+      "board": 1,
+      "seal_yi": 3.26,
+      "is_st": false
+    },
+    {
+      "name": "盈新发展",
+      "reason": "中报扭亏+存储芯片+拟定增",
+      "board": 1,
+      "seal_yi": 2.51,
+      "is_st": false
+    },
+    {
+      "name": "海鸥住工",
+      "reason": "控制权拟变更+装配式厨卫+越南制造",
+      "board": 1,
+      "seal_yi": 2.36,
+      "is_st": false
+    },
+    {
+      "name": "中南文化",
+      "reason": "重组+拟并购热电+火电热力+金属管件",
+      "board": 1,
+      "seal_yi": 1.99,
+      "is_st": false
+    },
+    {
+      "name": "圣阳股份",
+      "reason": "液冷储能+算力+固态电池+山东国资",
+      "board": 1,
+      "seal_yi": 1.89,
+      "is_st": false
+    },
+    {
+      "name": "众合科技",
+      "reason": "牛散入股+间接参股磷化铟公司+算力服务",
+      "board": 1,
+      "seal_yi": 1.69,
+      "is_st": false
+    },
+    {
+      "name": "同力天启",
+      "reason": "算电协同+储能+电梯部件",
+      "board": 1,
+      "seal_yi": 1.39,
+      "is_st": false
+    },
+    {
+      "name": "大有能源",
+      "reason": "煤炭+产销增长+中报预计减亏",
+      "board": 1,
+      "seal_yi": 1.09,
+      "is_st": false
+    },
+    {
+      "name": "登海种业",
+      "reason": "转基因+玉米种业+粮食概念",
+      "board": 1,
+      "seal_yi": 1.02,
+      "is_st": false
+    },
+    {
+      "name": "神奇制药",
+      "reason": "抗肿瘤+品牌OTC+情绪过热",
+      "board": 1,
+      "seal_yi": 0.94,
+      "is_st": false
+    },
+    {
+      "name": "红星发展",
+      "reason": "半年报增长+钡盐放量+玻璃基板上游+MLCC上游",
+      "board": 1,
+      "seal_yi": 0.91,
+      "is_st": false
+    },
+    {
+      "name": "中谷物流",
+      "reason": "红海航线+船队扩张+多式联运",
+      "board": 1,
+      "seal_yi": 0.76,
+      "is_st": false
+    },
+    {
+      "name": "北方国际",
+      "reason": "中报增长+国际工程+物流",
+      "board": 1,
+      "seal_yi": 0.74,
+      "is_st": false
+    },
+    {
+      "name": "上海能源",
+      "reason": "中报增长+煤炭+新能源",
+      "board": 1,
+      "seal_yi": 0.74,
+      "is_st": false
+    },
+    {
+      "name": "利君股份",
+      "reason": "航空航天+军工+机器人+粉磨装备",
+      "board": 1,
+      "seal_yi": 0.69,
+      "is_st": false
+    },
+    {
+      "name": "南网能源",
+      "reason": "虚拟电厂+零碳园区+AI应用+节能服务",
+      "board": 1,
+      "seal_yi": 0.68,
+      "is_st": false
+    },
+    {
+      "name": "市北高新",
+      "reason": "中报减亏+间接参股长存+园区运营",
+      "board": 1,
+      "seal_yi": 0.66,
+      "is_st": false
+    },
+    {
+      "name": "中毅达",
+      "reason": "营收增长+季戊四醇+产品涨价+中字头",
+      "board": 1,
+      "seal_yi": 0.65,
+      "is_st": false
+    },
+    {
+      "name": "芯能科技",
+      "reason": "分布式光伏+工商业储能+户用储能",
+      "board": 1,
+      "seal_yi": 0.61,
+      "is_st": false
+    },
+    {
+      "name": "澳洋健康",
+      "reason": "脑机接口+医疗服务+国企改革",
+      "board": 1,
+      "seal_yi": 0.59,
+      "is_st": false
+    },
+    {
+      "name": "安德利",
+      "reason": "覆铜板材料+浓缩果汁",
+      "board": 1,
+      "seal_yi": 0.55,
+      "is_st": false
+    },
+    {
+      "name": "同洲电子",
+      "reason": "算力电源+锂电池+电源产品",
+      "board": 1,
+      "seal_yi": 0.5,
+      "is_st": false
+    },
+    {
+      "name": "风范股份",
+      "reason": "特高压+中标+国企改革+中报预增",
+      "board": 1,
+      "seal_yi": 0.5,
+      "is_st": false
+    },
+    {
+      "name": "德新科技",
+      "reason": "中报增长+锂电模具+机器人",
+      "board": 1,
+      "seal_yi": 0.49,
+      "is_st": false
+    },
+    {
+      "name": "友阿股份",
+      "reason": "功率半导体+零售+机器人+重组",
+      "board": 1,
+      "seal_yi": 0.45,
+      "is_st": false
+    },
+    {
+      "name": "联合精密",
+      "reason": "成飞概念+航空精密零部件+拟定增",
+      "board": 1,
+      "seal_yi": 0.44,
+      "is_st": false
+    },
+    {
+      "name": "上海洗霸",
+      "reason": "固态电池+液冷+水处理",
+      "board": 1,
+      "seal_yi": 0.41,
+      "is_st": false
+    },
+    {
+      "name": "益佰制药",
+      "reason": "创新药+抗肿瘤药+医疗服务",
+      "board": 1,
+      "seal_yi": 0.37,
+      "is_st": false
+    },
+    {
+      "name": "美锦能源",
+      "reason": "煤焦一体化+电容炭+氢能",
+      "board": 1,
+      "seal_yi": 0.3,
+      "is_st": false
+    },
+    {
+      "name": "正裕工业",
+      "reason": "柔性触觉+汽车减震器+定增募资",
+      "board": 1,
+      "seal_yi": 0.27,
+      "is_st": false
+    },
+    {
+      "name": "天力锂能",
+      "reason": "固态电池+高镍三元+锂电材料",
+      "board": 1,
+      "seal_yi": 0.25,
+      "is_st": false
+    },
+    {
+      "name": "金龙羽",
+      "reason": "固态电池+机器人电池+电线电缆",
+      "board": 1,
+      "seal_yi": 0.23,
+      "is_st": false
+    },
+    {
+      "name": "天山生物",
+      "reason": "肉牛全产业链+活畜销售增长+摘帽",
+      "board": 1,
+      "seal_yi": 0.23,
+      "is_st": false
+    },
+    {
+      "name": "开开实业",
+      "reason": "SPD+医药商业+资产收购+上海国资",
+      "board": 1,
+      "seal_yi": 0.18,
+      "is_st": false
+    },
+    {
+      "name": "锦江航运",
+      "reason": "航运+集装箱运输+东南亚航线",
+      "board": 1,
+      "seal_yi": 0.17,
+      "is_st": false
+    }
+  ],
   "break_pool": [],
   "break_rate_real": null,
   "fuyao_source": {
-    "limit_up_count": null,
-    "break_count": null,
-    "dragon_count": 29
+    "limit_up_count": 46,
+    "break_count": 0,
+    "dragon_count": 0
   },
   "sector_in": [
     {
@@ -605,9 +979,138 @@
     "tdate": "2026-08-21"
   },
   "cross_check": {
-    "ok": false,
-    "note": "westock 单源，跳过交叉校验",
-    "dimensions": []
+    "ok": true,
+    "dimensions": [
+      {
+        "name": "板块主力资金流（东财 vs 问财）",
+        "matched": [
+          {
+            "eastmoney": "有色金属",
+            "emx_yi": 88.29,
+            "iwencai": null,
+            "same_sign": null
+          },
+          {
+            "eastmoney": "通信设备",
+            "emx_yi": 85.32,
+            "iwencai": null,
+            "same_sign": null
+          },
+          {
+            "eastmoney": "黄金",
+            "emx_yi": 13.78,
+            "iwencai": null,
+            "same_sign": null
+          },
+          {
+            "eastmoney": "半导体",
+            "emx_yi": 6.23,
+            "iwencai": null,
+            "same_sign": null
+          },
+          {
+            "eastmoney": "银行",
+            "emx_yi": -8.49,
+            "iwencai": null,
+            "same_sign": null
+          }
+        ],
+        "direction_consistent": null,
+        "uncovered": [
+          "有色金属",
+          "通信设备",
+          "黄金",
+          "半导体",
+          "银行"
+        ],
+        "note": "口径不同(申万一级 vs 同花顺三级行业)，仅比对方向；问财未覆盖流出项：有色金属,通信设备,黄金,半导体,银行"
+      },
+      {
+        "name": "问财内部：资金流入Top vs 涨幅Top",
+        "flow_top": [],
+        "chg_top": [],
+        "overlap": [],
+        "overlap_count": 0
+      },
+      {
+        "name": "个股维度：同花顺涨停池 抽样 vs 问财可查",
+        "samples": [
+          {
+            "name": "汉森制药",
+            "found": false
+          },
+          {
+            "name": "深中华A",
+            "found": false
+          },
+          {
+            "name": "中 关 村",
+            "found": false
+          },
+          {
+            "name": "哈森股份",
+            "found": false
+          },
+          {
+            "name": "白银有色",
+            "found": false
+          }
+        ],
+        "all_found": false
+      },
+      {
+        "name": "龙虎榜（fuyao 官方 vs 同花顺 CLI）",
+        "fuyao_count": 0,
+        "hithink_count": 12,
+        "overlap": [],
+        "overlap_count": 0,
+        "same_direction": 0,
+        "direction_consistent": null
+      },
+      {
+        "name": "涨停池（fuyao 官方 vs 同花顺 CLI）",
+        "fuyao_count": 46,
+        "hithink_count": 46,
+        "overlap_count": 46,
+        "consistent": true,
+        "real_break_rate": 0.0
+      },
+      {
+        "name": "选股宝板块（涨幅 vs 问财 + 领涨股 vs 涨停池）",
+        "matched": [],
+        "direction_consistent": null,
+        "leader_overlap": [
+          "转基因/登海种业",
+          "eSIM/楚天龙",
+          "eSIM/东信和平",
+          "磷酸铁锂/天力锂能",
+          "磷酸铁锂/圣阳股份",
+          "RWA/协鑫能科",
+          "电力体制改革/南网能源",
+          "乡村振兴/登海种业",
+          "硅锰/红星发展",
+          "黄金/白银有色",
+          "黄金/湖南白银",
+          "白银/白银有色",
+          "白银/湖南白银",
+          "大豆/登海种业",
+          "煤炭/上海能源",
+          "煤炭/大有能源",
+          "煤炭/美锦能源",
+          "锂矿/碳酸锂/天力锂能",
+          "珠宝饰品/深中华A",
+          "有色 · 锑/湖南白银",
+          "复牌股/中南文化",
+          "复牌股/海鸥住工",
+          "复牌股/华阳集团",
+          "高股息/中谷物流",
+          "举牌/同洲电子",
+          "定增破发/正裕工业",
+          "破净股/上海能源"
+        ],
+        "leader_overlap_count": 27
+      }
+    ]
   },
   "source_log": [
     {
